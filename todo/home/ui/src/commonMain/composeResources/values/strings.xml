@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="home_add_new_task_description">Add new task</string>
+    <string name="home_add_new_category_description">Add new category</string>
+    <string name="home_title">Home</string>
+    <string name="main_title">Main</string>
+    <string name="main_tasks_for_today_title">Tasks for today</string>
+    <string name="main_today_schedule_title">Today's schedule</string>
+    <string name="main_view_more_title">View more</string>
+    <string name="main_view_calendar_title">View calendar</string>
+    <string name="main_progress_title">Progress</string>
+    <string name="main_progress_value" formatted="true">%1$d \u0025</string>
+</resources>

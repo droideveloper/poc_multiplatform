@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="core_ui_loading_text">Loading...</string>
+    <string name="core_ui_error_title">Encountered an error</string>
+    <string name="core_ui_select_option">Please select an option</string>
+    <string name="core_ui_error_primary_title">Try again</string>
+    <string name="core_ui_error_secondary_title">Go back</string>
+
+    <string name="core_ui_input_error_not_matching">Value does not match required type</string>
+    <string name="core_ui_input_error_not_allowed">Value is not allowed</string>
+    <string name="core_ui_input_error_min_length_error" formatted="true">Value length must be at least %d</string>
+    <string name="core_ui_input_error_required_value">Value required</string>
+</resources>

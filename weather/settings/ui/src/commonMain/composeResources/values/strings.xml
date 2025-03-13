@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="settings_ui_title">Settings</string>
+    <string name="settings_ui_temperature_unit">Temperature Unit:</string>
+    <string name="settings_ui_pressure_unit">Pressure Unit:</string>
+    <string name="settings_ui_humidity_unit">Humidity Unit:</string>
+    <string name="settings_ui_speed_unit">Wind Speed Unit:</string>
+    <string name="settings_ui_number_of_days">Number of Days:</string>
+</resources>

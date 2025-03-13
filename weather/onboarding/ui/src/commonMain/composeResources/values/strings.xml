@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="onboarding_ui_select_city">Let's select a city or more</string>
+    <string name="onboarding_ui_select_city_body">You could select more than one city and\nhave swipe action to see weather on that city</string>
+    <string name="onboarding_ui_select_temperature_unit">Let's select a temperature unit</string>
+    <string name="onboarding_ui_select_temperature_unit_body">You could select your desired temperature unit below</string>
+    <string name="onboarding_ui_select_wind_speed_unit">Let's select a wind speed unit</string>
+    <string name="onboarding_ui_select_wind_speed_unit_body">You could select your desired wind speed unit below</string>
+    <string name="onboarding_ui_continue">Continue</string>
+    <string name="onboarding_ui_done">Done</string>
+    <string name="onboarding_ui_select_city_title">City</string>
+    <string name="onboarding_ui_select_temperature_title">Temperature</string>
+    <string name="onboarding_ui_select_wind_speed_title">Wind Speed</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="tasks_title">Tasks</string>
+    <string name="tasks_progress_title">Progress</string>
+    <string name="tasks_progress_value" formatted="true">%1$d \u0025</string>
+</resources>

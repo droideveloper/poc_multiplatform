@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_notification_title">Notifications enabled:</string>
+    <string name="settings_notify_before_title">Notify before:</string>
+    <string name="settings_notify_before_minutes" formatted="true">%1$d min(s)</string>
+</resources>

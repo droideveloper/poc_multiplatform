@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="city_ui_select_city_title">City</string>
+    <string name="city_ui_select_city">Select a city</string>
+    <string name="city_ui_select_another_city">Select another city</string>
+    <string name="city_ui_failure_title">Failed to load cities</string>
+    <string name="city_ui_failure_message">Error occur, please try again later!</string>
+    <string name="city_ui_try_again">Try Again</string>
+</resources>
