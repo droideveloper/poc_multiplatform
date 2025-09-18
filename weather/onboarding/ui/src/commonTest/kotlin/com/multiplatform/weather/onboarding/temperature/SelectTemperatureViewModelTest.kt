@@ -49,42 +49,42 @@ internal class SelectTemperatureViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun given_temperature_change_will_save_new_settings() {
+    fun `given temperature change will save new settings`() {
         viewModel.dispatch(SelectTemperatureEvent.OnChanged(Temperature.Fahrenheit))
 
         verifySuspend { repository.save(setting) }
     }
 
     @Test
-    fun given_success_will_load_default_selection() {
+    fun `given success will load default selection`() {
         assertEquals(viewModel.state.temperature, Temperature.Celsius)
 
         verifySuspend { repository.get() }
     }
 
     @Test
-    fun given_try_again_clicked_will_load_initial_state() {
+    fun `given try again clicked will load initial state`() {
         viewModel.dispatch(SelectTemperatureEvent.OnTryAgainClicked)
 
         verifySuspend { repository.get() }
     }
 
     @Test
-    fun given_back_clicked_will_navigate_back() {
+    fun `given back clicked will navigate back`() {
         viewModel.dispatch(SelectTemperatureEvent.OnBackClicked)
 
         verify { featureRouter.back() }
     }
 
     @Test
-    fun given_continue_clicked_will_route_to_wind_speed_selection() {
+    fun `given continue clicked will route to wind speed selection`() {
         viewModel.dispatch(SelectTemperatureEvent.OnContinueClicked)
 
         verify { featureRouter.navigate(OnboardingRoute.SelectWindSpeed) }
     }
 
     @Test
-    fun given_initial_load_and_failed_to_retrieve_state_then_will_save_defaults() {
+    fun `given initial load and failed to retrieve state then will save defaults`() {
         repository = mock {
             everySuspend { get() } throws Exception()
             everySuspend { save(Settings.Defaults) } returns Result.success(Unit)
@@ -99,7 +99,7 @@ internal class SelectTemperatureViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun given_initial_load_and_failed_to_retrieve_state_and_save_failed_then_show_error_ui() {
+    fun `given initial load and failed to retrieve state and save failed then show error ui`() {
         repository = mock {
             everySuspend { get() } throws Exception()
             everySuspend { save(Settings.Defaults) } throws Exception()

@@ -23,7 +23,7 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testContinueButton() {
         with(testRule) {
             val onClick = spy<() -> Unit>({})
-            setScreen { FwTheme { ContinueButton(onClick = onClick) } }
+            setScreen { ContinueButton(onClick = onClick) }
 
             onNodeWithTag("button_text", useUnmergedTree = true).assertTextEquals("Continue")
             onNodeWithTag("button_continue").performClick()
@@ -36,7 +36,7 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testDoneButton() {
         with(testRule) {
             val onClick = spy<() -> Unit>({})
-            setScreen { FwTheme { DoneButton(onClick = onClick) } }
+            setScreen { DoneButton(onClick = onClick) }
             onNodeWithTag("button_text", useUnmergedTree = true).assertTextEquals("Done")
             onNodeWithTag("button_done").performClick()
 
@@ -48,14 +48,12 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testOnboardingLayout() {
         with(testRule) {
             setScreen {
-                FwTheme {
-                    OnboardingLayout(
-                        title = "Title",
-                        body = "Body",
-                        content = {},
-                        action = {},
-                    )
-                }
+                OnboardingLayout(
+                    title = "Title",
+                    body = "Body",
+                    content = {},
+                    action = {},
+                )
             }
 
             onNodeWithText("Title", useUnmergedTree = true).isDisplayed()
@@ -69,7 +67,7 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
             val onClick = spy<() -> Unit>({})
             val state = UiState.Failure.Text("Error body")
             setScreen {
-                FwTheme { OnboardingFailureView(state, onClick) }
+                OnboardingFailureView(state, onClick)
             }
 
             onNodeWithText("Encountered an error", useUnmergedTree = true).isDisplayed()
@@ -84,7 +82,11 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
 
     private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
         if (this is ComposeContentTestRule) {
-            setContent { content() }
+            setContent {
+                FwTheme {
+                    content()
+                }
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ internal class SplashViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun given_screen_loaded_and_screen_viewed_then_when_success_will_navigate_to_forecast_feature() {
+    fun `given screen loaded and screen viewed then when success will navigate to forecast feature`() {
         viewModel.dispatch(SplashEvent.OnScreenViewed)
 
         verifySuspend { onboardingRepository.get() }
@@ -56,7 +56,7 @@ internal class SplashViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun given_screen_loaded_and_screen_viewed_then_when_success_will_navigate_to_select_city() {
+    fun `given screen loaded and screen viewed then when success will navigate to select city`() {
         onboardingRepository = mock<OnboardingRepository> {
             everySuspend { get() } returns Result.success(false)
         }

@@ -33,7 +33,7 @@ internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
             targetSdk = target.targetSdkVersion.asInt()
         }
         unitTests {
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = target.isAndroidResourcesShouldIncluded()
             isReturnDefaultValues = true
         }
     }
@@ -56,3 +56,7 @@ internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
         add("androidTestImplementation", target.jUnit.asDependency())
     }
 }
+
+internal fun Project.isAndroidResourcesShouldIncluded(): Boolean =
+    layout.projectDirectory.dir("src/androidUnitTest").asFile.exists() ||
+        layout.projectDirectory.dir("src/commonTest").asFile.exists()

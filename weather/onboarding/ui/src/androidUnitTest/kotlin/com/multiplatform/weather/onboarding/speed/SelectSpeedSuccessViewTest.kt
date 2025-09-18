@@ -25,13 +25,11 @@ internal class SelectSpeedSuccessViewTest : AbstractAndroidUnitTest() {
         val dispatch = spy<(SelectWindSpeedEvent) -> Unit>({})
         with(testRule) {
             setScreen {
-                FwTheme {
-                    SelectWindSpeedSuccessView(
-                        isEnabled = true,
-                        speed = Speed.KilometersPerHour,
-                        dispatch = dispatch,
-                    )
-                }
+                SelectWindSpeedSuccessView(
+                    isEnabled = true,
+                    speed = Speed.KilometersPerHour,
+                    dispatch = dispatch,
+                )
             }
 
             onNodeWithTag("nav_bar_title", useUnmergedTree = true).assertTextEquals("Wind Speed")
@@ -56,7 +54,11 @@ internal class SelectSpeedSuccessViewTest : AbstractAndroidUnitTest() {
 
     private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
         if (this is ComposeContentTestRule) {
-            setContent { content() }
+            setContent {
+                FwTheme {
+                    content()
+                }
+            }
         }
     }
 }

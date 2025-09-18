@@ -37,7 +37,8 @@ internal fun ApplicationExtension.configureAndroidApplication(
     testOptions {
         animationsDisabled = true
         unitTests {
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = target.isAndroidResourcesShouldIncluded()
+            isReturnDefaultValues = true
         }
     }
 

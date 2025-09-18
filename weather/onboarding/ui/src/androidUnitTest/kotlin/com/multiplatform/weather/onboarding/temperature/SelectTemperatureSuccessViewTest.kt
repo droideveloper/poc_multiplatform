@@ -25,13 +25,11 @@ internal class SelectTemperatureSuccessViewTest : AbstractAndroidUnitTest() {
         with(testRule) {
             val dispatch: (SelectTemperatureEvent) -> Unit = spy({})
             setScreen {
-                FwTheme {
-                    SelectTemperatureSuccessView(
-                        isEnabled = true,
-                        temperature = Temperature.Celsius,
-                        dispatch = dispatch,
-                    )
-                }
+                SelectTemperatureSuccessView(
+                    isEnabled = true,
+                    temperature = Temperature.Celsius,
+                    dispatch = dispatch,
+                )
             }
 
             onNodeWithTag("nav_bar_title", useUnmergedTree = true).assertTextEquals("Temperature")
@@ -51,7 +49,11 @@ internal class SelectTemperatureSuccessViewTest : AbstractAndroidUnitTest() {
 
     private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
         if (this is ComposeContentTestRule) {
-            setContent { content() }
+            setContent {
+                FwTheme {
+                    content()
+                }
+            }
         }
     }
 }
