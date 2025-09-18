@@ -1,14 +1,12 @@
 name: build
 
 on:
+  pull_request:
   workflow_dispatch:
-    push:
-      branches: [ master ]
-    pull_request:
-      branches:
-        - master
-        - feature/*
-        - fix/*
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -81,6 +79,6 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: Gradlew execute permission
         run: chmod +x gradlew
-      - name: Execute ui tests
+      - name: Execute build android app
         run: ./gradlew :weather:app:bundleStagingDebug :todo:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
 
