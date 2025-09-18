@@ -41,6 +41,8 @@ kotlin {
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.kotlin.datetime)
 
+                implementation(libs.room.runtime)
+
                 implementation(libs.kotlin.serialization.json)
                 implementation(libs.navigation.compose)
             }

@@ -18,7 +18,7 @@ internal class SplashUiTest : AbstractAndroidUnitTest() {
     fun testSplashUi() {
         with(testRule) {
             val dispatch: (SplashEvent) -> Unit = spy({})
-            setScreen { FwTheme { SplashUi(dispatch) } }
+            setScreen { SplashUi(dispatch) }
 
             verify { dispatch(SplashEvent.OnScreenViewed) }
         }
@@ -26,7 +26,11 @@ internal class SplashUiTest : AbstractAndroidUnitTest() {
 
     private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
         if (this is ComposeContentTestRule) {
-            setContent { content() }
+            setContent {
+                FwTheme {
+                    content()
+                }
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun `given_success_will_load_settings_selected_and_display`() {
+    fun `given success will load settings selected and display`() {
         viewModel.dispatch(SelectWindSpeedEvent.OnScreenViewed)
 
         verifySuspend {
@@ -80,7 +80,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun `given_try_again_clicked_will_load_settings_selected_and_display`() {
+    fun `given try again clicked will load settings selected and display`() {
         viewModel.dispatch(SelectWindSpeedEvent.OnScreenViewed)
         viewModel.dispatch(SelectWindSpeedEvent.OnTryAgainClicked)
 
@@ -93,7 +93,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun `given_back_clicked_will_route_to_back`() {
+    fun `given back clicked will route to back`() {
         viewModel.dispatch(SelectWindSpeedEvent.OnBackClicked)
 
         verifySuspend {
@@ -104,7 +104,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun `given_speed_changed_save_settings_selected_and_display`() {
+    fun `given speed changed save settings selected and display`() {
         repository = mock<SettingsRepository> {
             everySuspend { get() } returns Result.success(Settings.Defaults)
             everySuspend { save(setting.copy(speedUnit = Speed.Knots)) } returns Result.success(Unit)
@@ -120,7 +120,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     @Test
-    fun `given_done_clicked_will_navigate_to_forecast_feature`() {
+    fun `given done clicked will navigate to forecast feature`() {
         viewModel.dispatch(SelectWindSpeedEvent.OnDoneClicked)
 
         verifySuspend {

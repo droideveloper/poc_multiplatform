@@ -1,13 +1,19 @@
 package com.multiplatform.td.core.testing
 
 import android.content.ContentProvider
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.Before
 import org.junit.Rule
 import org.robolectric.Robolectric
+import org.robolectric.annotation.Config
 
+@Config(sdk = [
+    Build.VERSION_CODES.M,
+    Build.VERSION_CODES.TIRAMISU,
+])
 abstract class AbstractAndroidUnitTest {
 
     @get:Rule
