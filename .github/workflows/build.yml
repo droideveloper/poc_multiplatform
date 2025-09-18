@@ -9,8 +9,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Kotlin lint
+  unit-test:
+    name: Unit test
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -31,8 +31,8 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: Gradlew execute permission
         run: chmod +x gradlew
-      - name: Lint run
-        run: ./gradlew check
+      - name: Execute unit tests
+        run: ./gradlew jvmTest
   ui-unit-test:
     name: Ui unit test on android
     runs-on: ubuntu-latest
