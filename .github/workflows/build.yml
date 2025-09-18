@@ -4,11 +4,6 @@ on:
   on:
     pull_request:
     workflow_dispatch:
-      pull_request:
-        branches:
-          - master
-          - feature/*
-          - fix/*
 
     concurrency:
       group: ${{ github.ref }}
