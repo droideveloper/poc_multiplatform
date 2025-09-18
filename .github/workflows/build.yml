@@ -1,0 +1,53 @@
+name: build
+
+on:
+  workflow_dispatch:
+    push:
+      branches: [ master ]
+    pull_request:
+      branches: [ master ]
+
+jobs:
+  lint:
+    name: Kotlin lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Lint run
+        run: ./gradlew check
+  ui-unit-test:
+    name: Ui unit test on android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Execute ui tests
+        run: ./gradlew testStagingDebugUnitTest
+  build-android-app:
+    name: Ui unit test on android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Execute ui tests
+        run: ./gradlew :weather:app:bundleStagingDebug :todo:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
+
