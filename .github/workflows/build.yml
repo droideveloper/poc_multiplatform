@@ -40,7 +40,7 @@ jobs:
       - name: Execute ui tests
         run: ./gradlew testStagingDebugUnitTest
   build-android-app:
-    name: Ui unit test on android
+    name: Build android application
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
