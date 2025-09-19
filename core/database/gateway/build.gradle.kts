@@ -4,14 +4,16 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            implementation(projects.core.coroutines)
-            implementation(projects.core.kotlin)
+        commonMain {
+            dependencies {
+                implementation(projects.core.coroutines)
+                implementation(projects.core.kotlin)
 
-            implementation(projects.core.environment.gateway)
+                implementation(projects.core.environment.gateway)
 
-            implementation(libs.kotlin.inject.runtime)
-            implementation(libs.room.runtime)
+                implementation(libs.kotlin.inject.runtime)
+                implementation(libs.room.runtime)
+            }
         }
     }
 

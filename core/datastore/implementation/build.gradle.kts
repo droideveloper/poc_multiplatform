@@ -10,6 +10,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(projects.core.datastore.gateway)
+
                 implementation(projects.core.coroutines)
                 implementation(projects.core.injection)
                 implementation(projects.core.kotlin)
