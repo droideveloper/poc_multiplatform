@@ -9,6 +9,7 @@ class DomainMultiplatformPlugin: Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(CommonMultiplatformPlugin::class)
+            apply(LanguageLintPlugin::class)
         }
     }
 }

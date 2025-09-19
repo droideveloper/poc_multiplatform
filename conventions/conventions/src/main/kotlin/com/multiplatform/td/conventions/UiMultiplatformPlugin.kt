@@ -19,6 +19,7 @@ class UiMultiplatformPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(KotlinMultiplatformPluginWrapper::class)
                 apply(LibraryPlugin::class)
+                apply(LanguageLintPlugin::class)
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
                 apply(MetadataPlugin::class)

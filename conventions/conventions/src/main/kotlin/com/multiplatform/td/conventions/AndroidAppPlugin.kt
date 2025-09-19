@@ -19,6 +19,7 @@ class AndroidAppPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(AppPlugin::class)
                 apply(KotlinMultiplatformPluginWrapper::class)
+                apply(LanguageLintPlugin::class)
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
                 apply(MetadataPlugin::class)

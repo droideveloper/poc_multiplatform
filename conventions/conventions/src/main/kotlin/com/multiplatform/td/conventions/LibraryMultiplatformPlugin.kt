@@ -16,6 +16,7 @@ class LibraryMultiplatformPlugin : Plugin<Project> {
         with(pluginManager) {
             apply(KotlinMultiplatformPluginWrapper::class)
             apply(LibraryPlugin::class)
+            apply(LanguageLintPlugin::class)
             apply(MetadataPlugin::class)
         }
 
