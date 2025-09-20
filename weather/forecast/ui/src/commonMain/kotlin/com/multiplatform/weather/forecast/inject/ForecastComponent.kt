@@ -23,4 +23,4 @@ expect fun createForecastComponent(
     networkComponent: NetworkComponent,
     navigationComponent: NavigationComponent,
     dataStoreComponent: DataStoreComponent,
-) : ForecastComponent
+): ForecastComponent

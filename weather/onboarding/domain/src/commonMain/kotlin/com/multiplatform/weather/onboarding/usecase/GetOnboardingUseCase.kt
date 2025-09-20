@@ -5,7 +5,7 @@ import me.tatarka.inject.annotations.Inject
 
 @Inject
 class GetOnboardingUseCase(
-    private val onboardingRepository: OnboardingRepository
+    private val onboardingRepository: OnboardingRepository,
 ) {
 
     suspend operator fun invoke(): Result<Boolean> = runCatching {

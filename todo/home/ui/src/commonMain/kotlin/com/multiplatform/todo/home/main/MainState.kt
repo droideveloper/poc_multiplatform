@@ -14,7 +14,6 @@ internal data class MainState(
     val date: LocalDate = LocalDate(2025, 3, 4),
 )
 
-
 internal interface UiState {
     data object Loading : UiState
     data object Success : UiState

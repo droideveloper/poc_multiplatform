@@ -63,7 +63,7 @@ internal fun TodayTask(
             .clickable { onTaskClick(task) },
         contentColor = selectBackgroundColor(
             color = selectContainerColor(task.category.color),
-        )
+        ),
     ) {
         TodayTaskHeader(
             modifier = Modifier.fillMaxWidth(),
@@ -91,7 +91,7 @@ internal fun TodayTaskHeader(
     modifier: Modifier = Modifier,
     category: Category,
     date: LocalDate,
-    onClick: (Category) -> Unit
+    onClick: (Category) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -126,7 +126,7 @@ internal fun CategoryTitle(
             .then(modifier)
             .background(
                 color = selectContainerColor(color),
-                shape = RoundedCornerShape(TdTheme.dimens.standard24)
+                shape = RoundedCornerShape(TdTheme.dimens.standard24),
             )
             .padding(vertical = TdTheme.dimens.standard4)
             .padding(horizontal = TdTheme.dimens.standard12),
@@ -138,7 +138,7 @@ internal fun CategoryTitle(
                 fontSize = 14.sp,
                 color = TdTheme.colors.whites.primary,
                 fontWeight = FontWeight.SemiBold,
-            )
+            ),
         )
     }
 }
@@ -181,7 +181,7 @@ internal fun TodayTaskDescription(
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
-            .padding(horizontal = TdTheme.dimens.standard12)
+            .padding(horizontal = TdTheme.dimens.standard12),
     ) {
         Text(
             text = title,
@@ -217,7 +217,7 @@ internal fun TodayTaskProgress(
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
-            .padding(horizontal = TdTheme.dimens.standard12)
+            .padding(horizontal = TdTheme.dimens.standard12),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -229,7 +229,7 @@ internal fun TodayTaskProgress(
                     fontSize = 14.sp,
                     color = TdTheme.colors.blacks.secondary,
                     fontWeight = FontWeight.SemiBold,
-                )
+                ),
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
@@ -238,7 +238,7 @@ internal fun TodayTaskProgress(
                     fontSize = 14.sp,
                     color = TdTheme.colors.blacks.secondary,
                     fontWeight = FontWeight.SemiBold,
-                )
+                ),
             )
         }
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
@@ -265,8 +265,8 @@ internal fun TodayScheduleTask(
     TodayScheduleLayout(
         modifier = Modifier
             .fillMaxWidth()
-            then(modifier)
-            .clickable { onTaskClick(task) },
+            then (modifier)
+                .clickable { onTaskClick(task) },
         backgroundColor = selectContainerColor(task.category.color),
         contentColor = TdTheme.colors.whites.primary,
     ) {
@@ -298,7 +298,7 @@ internal fun TodayScheduleDescription(
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
-            .padding(horizontal = TdTheme.dimens.standard12)
+            .padding(horizontal = TdTheme.dimens.standard12),
     ) {
         Text(
             text = title,
@@ -330,7 +330,7 @@ internal fun TodayScheduleFooter(
     category: Category,
     time: LocalTime,
     duration: Duration,
-    onClick: (Category) -> Unit
+    onClick: (Category) -> Unit,
 ) {
     Row(
         modifier = Modifier

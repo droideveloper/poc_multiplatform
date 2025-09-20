@@ -7,9 +7,11 @@ import de.jensklingenberg.ktorfit.http.Query
 internal interface ForecastService {
 
     // Ktorfit does encode on `,`, but API apparently does not like it
-    @GET("v1/forecast" +
+    @GET(
+        "v1/forecast" +
             "?hourly=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,pressure_msl" +
-            "&daily=sunset,sunrise,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,wind_speed_10m_max,wind_speed_10m_min,uv_index_max")
+            "&daily=sunset,sunrise,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,wind_speed_10m_max,wind_speed_10m_min,uv_index_max",
+    )
     suspend fun forecast(
         @Query(
             value = "latitude",

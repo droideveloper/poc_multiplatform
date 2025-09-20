@@ -14,7 +14,8 @@ import androidx.compose.ui.platform.testTag
 import com.multiplatform.td.core.ui.TdTheme
 
 enum class BottomCardButtonsOrientation {
-    VERTICAL, HORIZONTAL
+    VERTICAL,
+    HORIZONTAL,
 }
 
 interface BottomCardButtonsScope {
@@ -58,7 +59,7 @@ internal class BottomCardButtonsScopeImpl : BottomCardButtonsScope {
                 if (index + 1 < buttonsContent.size) {
                     Spacer(
                         modifier = Modifier
-                            .width(TdTheme.dimens.standard16)
+                            .width(TdTheme.dimens.standard16),
                     )
                 }
             }
@@ -70,14 +71,14 @@ internal class BottomCardButtonsScopeImpl : BottomCardButtonsScope {
         Column(
             Modifier
                 .fillMaxWidth()
-                .testTag("buttons_vertical_column")
+                .testTag("buttons_vertical_column"),
         ) {
             buttonsContent.forEachIndexed { index, button ->
                 button()
                 if (index + 1 < buttonsContent.size) {
                     Spacer(
                         modifier = Modifier
-                            .height(TdTheme.dimens.standard16)
+                            .height(TdTheme.dimens.standard16),
                     )
                 }
             }

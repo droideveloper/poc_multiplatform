@@ -13,6 +13,6 @@ class SelectedCityRepositoryBinder(
 
     override fun invoke(): SelectedCityRepository =
         SelectedCityRepositoryImpl(
-            dataStore = dataStore
+            dataStore = dataStore,
         )
 }

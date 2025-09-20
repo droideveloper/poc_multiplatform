@@ -66,7 +66,7 @@ private fun TaskDetailSuccessView(
                     dispatch(TaskDetailEvent.OnBackClicked)
                 },
             )
-        }
+        },
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -91,7 +91,7 @@ private fun TaskDetailsHeader(
     description: String,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -100,7 +100,7 @@ private fun TaskDetailsHeader(
                 color = selectContainerColor(category.color),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
         Text(
@@ -110,7 +110,7 @@ private fun TaskDetailsHeader(
                 color = TdTheme.colors.blacks.secondary,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Medium,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
         Text(
@@ -120,7 +120,7 @@ private fun TaskDetailsHeader(
                 color = TdTheme.colors.blacks.light,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Light,
-            )
+            ),
         )
     }
 }
@@ -131,7 +131,7 @@ private fun TaskStatusDetails(
     status: TaskStatus,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -140,7 +140,7 @@ private fun TaskStatusDetails(
                 color = TdTheme.colors.blacks.light,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.SemiBold,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
         Text(
@@ -150,7 +150,7 @@ private fun TaskStatusDetails(
                 color = TdTheme.colors.blacks.light,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-            )
+            ),
         )
     }
 }

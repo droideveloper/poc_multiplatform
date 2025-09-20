@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.multiplatform.td.core.ui.navbar.TdNavBar
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
+import com.multiplatform.td.core.ui.navbar.TdNavBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -23,7 +23,7 @@ fun FwNavBar(
         contentColor = Color.Transparent,
         title = title,
         navAction = navAction,
-        actions = actions
+        actions = actions,
     )
 }
 
@@ -34,7 +34,7 @@ private fun FwNavBarPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+                .background(color = Color.White),
         ) {
             FwNavBar(
                 title = NavBarDefaults.Title.Default.Text("Hello World!"),

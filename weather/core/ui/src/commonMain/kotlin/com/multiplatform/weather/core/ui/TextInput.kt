@@ -73,7 +73,7 @@ fun FwTextInput(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .then(modifier)
+            .then(modifier),
     ) {
         label?.let {
             FwInputLabel(
@@ -105,14 +105,14 @@ fun FwTextInput(
             keyboardOptions = KeyboardOptions.Default.copy(
                 capitalization = capitalization,
                 keyboardType = keyboardType,
-                imeAction = imeAction
+                imeAction = imeAction,
             ),
             keyboardActions = KeyboardActions(onDone = {
                 defaultKeyboardAction(ImeAction.Done)
                 onDoneClicked()
             }),
             visualTransformation = visualTransformation,
-            textStyle = textStyle
+            textStyle = textStyle,
         ) { innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value.value,
@@ -135,10 +135,12 @@ fun FwTextInput(
                             colorFilter = ColorFilter.tint(
                                 color = FwTheme.colors.blues.primary,
                             ),
-                            onClick = { onValueChange(InputValue.Entered("")) }
+                            onClick = { onValueChange(InputValue.Entered("")) },
                         )
                     }
-                } else null,
+                } else {
+                    null
+                },
                 singleLine = singleLine,
                 colors = textFieldColors,
                 isError = error.isError(),
@@ -165,7 +167,7 @@ private fun FwTextInputPreview() {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.White)
-                .padding(FwTheme.dimens.standard8)
+                .padding(FwTheme.dimens.standard8),
         ) {
             FwTextInput(
                 label = "Enter Sth",

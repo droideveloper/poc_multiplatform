@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 
 internal fun Project.configureKspDependencies() {
     extensions.getByType<KotlinMultiplatformExtension>().apply {
@@ -59,6 +60,10 @@ internal fun Project.configureCommonMetadataCompiler(
             if (name != "kspCommonMainKotlinMetadata") {
                 dependsOn("kspCommonMainKotlinMetadata")
             }
+        }
+
+        tasks.withType(BaseKtLintCheckTask::class).configureEach {
+            dependsOn("kspCommonMainKotlinMetadata")
         }
     }
 

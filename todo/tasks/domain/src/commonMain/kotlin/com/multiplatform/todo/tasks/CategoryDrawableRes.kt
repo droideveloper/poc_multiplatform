@@ -19,5 +19,5 @@ value class CategoryDrawableRes private constructor(val value: String) {
 
 sealed class CategoryDrawableResException : IllegalArgumentException() {
 
-    data class Invalid(val res: String): CategoryDrawableResException()
+    data class Invalid(val res: String) : CategoryDrawableResException()
 }

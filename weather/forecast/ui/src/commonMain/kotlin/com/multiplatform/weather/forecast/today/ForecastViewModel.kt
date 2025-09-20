@@ -27,12 +27,12 @@ internal class ForecastViewModel(
     private val getForecastUseCase: GetForecastUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val featureRouter: FeatureRouter,
-): MviViewModel<ForecastEvent, ForecastState>(
+) : MviViewModel<ForecastEvent, ForecastState>(
     initialState = ForecastState(),
 ) {
 
     init {
-        on<ForecastEvent.OnScreenViewed> {  }
+        on<ForecastEvent.OnScreenViewed> { }
         onClick<ForecastEvent.OnCityChanged> {
             state = state.copy(uiState = UiState.Loading)
             collectInitialState(city = it.city)
@@ -64,7 +64,7 @@ internal class ForecastViewModel(
         )
     }.onFailure {
         state = state.copy(
-            uiState = UiState.Failure.Text(it.message ?: "unknown error")
+            uiState = UiState.Failure.Text(it.message ?: "unknown error"),
         )
     }
 
@@ -79,7 +79,7 @@ internal class ForecastViewModel(
                     },
                     onFailure = { error ->
                         error.printStackTrace()
-                    }
+                    },
                 )
             }
             .launchIn(viewModelScope)
@@ -108,7 +108,7 @@ internal class ForecastViewModel(
                     },
                     onFailure = { error ->
                         error.printStackTrace()
-                    }
+                    },
                 )
             }
             .launchIn(viewModelScope)

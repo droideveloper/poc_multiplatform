@@ -28,4 +28,4 @@ abstract class HomeComponent(
 expect fun createHomeComponent(
     databaseComponent: DatabaseComponent,
     navHostController: NavHostController,
-) : HomeComponent
+): HomeComponent

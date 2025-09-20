@@ -29,6 +29,7 @@ android-compose = "1.9.1"
 robol-ectiric = "4.16"
 kotlin-inject = "0.8.0"
 coil = "3.3.0"
+ktlint = "13.1.0"
 
 # android app values
 android-compileSdk = "36"
@@ -126,6 +127,7 @@ ktorfit-gradle-plugin = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-
 buildkonfig-gradle-plugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 buildkonfig-compiler-gradle-plugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-compiler", version.ref = "buildkonfig" }
 mokkery-gradle-plugin = { group = "dev.mokkery", name = "mokkery-gradle", version.ref = "mokkery" }
+ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -139,6 +141,7 @@ ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
 room = { id = "androidx.room", version.ref = "room" }
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 # compiler
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 # project plugins

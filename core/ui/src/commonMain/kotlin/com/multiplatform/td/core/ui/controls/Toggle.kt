@@ -28,12 +28,12 @@ fun TdToggle(
     onCheckedChange: (Boolean) -> Unit = {},
 ) {
     val animatedHorizontalBias by animateFloatAsState(
-        targetValue = if (checked) 1f else -1f
+        targetValue = if (checked) 1f else -1f,
     )
     val toggleAlignment by derivedStateOf {
         BiasAlignment(
             horizontalBias = animatedHorizontalBias,
-            verticalBias = 0f
+            verticalBias = 0f,
         )
     }
     Box(
@@ -45,14 +45,14 @@ fun TdToggle(
                 onCheckedChange(it)
             }
             .then(modifier),
-        contentAlignment = toggleAlignment
+        contentAlignment = toggleAlignment,
     ) {
         Box(modifier = Modifier.padding(2.dp)) {
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100.dp))
                     .size(TdTheme.dimens.standard16)
-                    .background(TdTheme.colors.whites.primary)
+                    .background(TdTheme.colors.whites.primary),
             )
         }
     }

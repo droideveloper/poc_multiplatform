@@ -3,9 +3,9 @@ package com.multiplatform.todo.tasks.repo
 import com.multiplatform.todo.tasks.Category
 import com.multiplatform.todo.tasks.CategoryTasks
 import com.multiplatform.todo.tasks.db.CategoryDao
+import com.multiplatform.todo.tasks.error.CategoryException
 import com.multiplatform.todo.tasks.mapper.toData
 import com.multiplatform.todo.tasks.mapper.toDomain
-import com.multiplatform.todo.tasks.error.CategoryException
 
 internal class CategoryRepositoryImpl(
     private val dao: CategoryDao,

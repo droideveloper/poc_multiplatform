@@ -43,8 +43,11 @@ internal class CityWidgetViewModel(
         val result = getCitiesUseCase()
         result.fold(
             onSuccess = {
-                if (it.isEmpty()) populateThenCollectState()
-                else collectState(it)
+                if (it.isEmpty()) {
+                    populateThenCollectState()
+                } else {
+                    collectState(it)
+                }
             },
             onFailure = {
                 it.printStackTrace()
@@ -52,15 +55,15 @@ internal class CityWidgetViewModel(
                     uiState = when (val message = it.message) {
                         null -> UiState.Failure.Res(Res.string.city_ui_failure_message)
                         else -> UiState.Failure.Text(message)
-                    }
+                    },
                 )
-            }
+            },
         )
     }
         .onFailure {
             it.printStackTrace()
             state = state.copy(
-                uiState = UiState.Failure.Res(Res.string.city_ui_failure_message)
+                uiState = UiState.Failure.Res(Res.string.city_ui_failure_message),
             )
         }
 
@@ -73,7 +76,7 @@ internal class CityWidgetViewModel(
             uiState = UiState.Success(
                 cities = items,
                 selectedCities = selectedItems,
-            )
+            ),
         )
     }
 
@@ -83,7 +86,7 @@ internal class CityWidgetViewModel(
             uiState = UiState.Success(
                 cities = cities,
                 selectedCities = selectedItems,
-            )
+            ),
         )
     }
 
@@ -96,11 +99,11 @@ internal class CityWidgetViewModel(
                     state = state.copy(
                         uiState = uiState.copy(
                             selectedCities = uiState.selectedCities + city,
-                        )
+                        ),
                     )
                 }
             },
-            onFailure = { it.printStackTrace() }
+            onFailure = { it.printStackTrace() },
         )
     }
 
@@ -113,11 +116,11 @@ internal class CityWidgetViewModel(
                     state = state.copy(
                         uiState = uiState.copy(
                             selectedCities = uiState.selectedCities - city,
-                        )
+                        ),
                     )
                 }
             },
-            onFailure = { it.printStackTrace() }
+            onFailure = { it.printStackTrace() },
         )
     }
 }

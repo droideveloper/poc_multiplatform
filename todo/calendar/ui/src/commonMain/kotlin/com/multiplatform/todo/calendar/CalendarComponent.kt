@@ -63,7 +63,7 @@ internal fun CalendarScheduleTitle(
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
-            .padding(horizontal = TdTheme.dimens.standard8)
+            .padding(horizontal = TdTheme.dimens.standard8),
     ) {
         Text(
             text = title,
@@ -133,7 +133,7 @@ fun CalendarDay(
             style = TdTheme.typography.titleBig.copy(
                 color = selectDayNameColor(isSelected),
                 fontWeight = FontWeight.Medium,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
         Text(
@@ -143,7 +143,7 @@ fun CalendarDay(
             style = TdTheme.typography.titleExtraLarge.copy(
                 color = selectDayNumberColor(isSelected),
                 fontWeight = FontWeight.ExtraBold,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard4))
         Box(
@@ -152,7 +152,7 @@ fun CalendarDay(
                 .background(
                     color = selectSelectionIndicatorColor(isSelected),
                     shape = RoundedCornerShape(TdTheme.dimens.standard4),
-                )
+                ),
         )
     }
 }

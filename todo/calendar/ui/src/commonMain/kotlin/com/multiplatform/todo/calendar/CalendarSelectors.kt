@@ -34,7 +34,8 @@ import kotlin.time.ExperimentalTime
 // Duplicate from Task ui
 @Composable
 internal fun selectLocalTime(time: LocalTime, duration: Duration): String {
-    val timeFormat = remember { LocalTime.Format {
+    val timeFormat = remember {
+        LocalTime.Format {
             hour(Padding.ZERO)
             char(':')
             minute(Padding.ZERO)
@@ -84,7 +85,7 @@ internal fun selectSelectionIndicatorColor(isSelected: Boolean): Color = when {
 internal fun selectSecondaryTitle(
     // may be provide this outside
     dateTime: LocalDateTime = Clock.System.now().toLocalDateTime(
-        timeZone = TimeZone.currentSystemDefault()
+        timeZone = TimeZone.currentSystemDefault(),
     ),
 ): String {
     val dateFormat = remember {
@@ -123,19 +124,19 @@ internal fun List<Task>.selectTaskComposable(
                     onTaskClick = onTaskClick,
                 )
             }
-        }
+        },
     )
 
 @Composable
 fun Modifier.layoutTaskOnTimeSlot(
     minute: Int,
-) : Modifier =
+): Modifier =
     composed(
         inspectorInfo =
-            debugInspectorInfo {
-                name = "layoutTaskOnTimeSlot"
-                value = minute
-            }
+        debugInspectorInfo {
+            name = "layoutTaskOnTimeSlot"
+            value = minute
+        },
     ) {
         val height = LocalDensity.current.run { TdTheme.dimens.standard96.toPx() }
         // measure y of calendar item
@@ -153,17 +154,16 @@ fun Modifier.layoutTaskOnTimeSlot(
         }
     }
 
-
 @Composable
 fun Modifier.layoutScheduleOnTimeSlot(
     minute: Int,
-) : Modifier =
+): Modifier =
     composed(
         inspectorInfo =
-            debugInspectorInfo {
-                name = "layoutScheduleOnTimeSlot"
-                value = minute
-            }
+        debugInspectorInfo {
+            name = "layoutScheduleOnTimeSlot"
+            value = minute
+        },
     ) {
         val height = LocalDensity.current.run { TdTheme.dimens.standard96.toPx() }
         // measure y of calendar item
@@ -180,4 +180,3 @@ fun Modifier.layoutScheduleOnTimeSlot(
             }
         }
     }
-

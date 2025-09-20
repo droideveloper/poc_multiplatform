@@ -50,7 +50,7 @@ fun HomeScreen() {
 
 @Composable
 internal fun rememberHomeComponent(
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ): HomeComponent {
     val databaseComponent = LocalDatabaseComponent.current
 
@@ -83,7 +83,7 @@ private fun HomeSuccessView(
             TdFabButton(selectedItem = state.selectedMenuItem) {
                 // TODO put add new action in here
             }
-        }
+        },
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -91,7 +91,7 @@ private fun HomeSuccessView(
                 .padding(
                     start = paddingValues.calculateStartPadding(LocalLayoutDirection.current),
                     end = paddingValues.calculateEndPadding(LocalLayoutDirection.current),
-                )
+                ),
         ) {
             val navController = LocalNavController.current
             NavHost(navController = navController, startDestination = Route.Graph) {

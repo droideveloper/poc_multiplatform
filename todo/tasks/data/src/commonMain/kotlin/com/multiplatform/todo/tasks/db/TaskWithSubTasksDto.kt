@@ -10,5 +10,5 @@ internal data class TaskWithSubTasksDto(
         parentColumn = "id",
         entityColumn = "taskId",
     )
-    val tasks: List<TaskDto>
+    val tasks: List<TaskDto>,
 )

@@ -8,7 +8,7 @@ import com.multiplatform.todo.onboarding.inject.rememberOnboardingComponent
 internal fun SplashScreen() {
     val component = rememberOnboardingComponent()
     val viewModel = kotlinInjectViewModel(
-         create = component.splashViewModelFactory,
+        create = component.splashViewModelFactory,
     )
     SplashUi(viewModel.state, viewModel::dispatch)
 }

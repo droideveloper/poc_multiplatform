@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 internal class IntroViewModel(
     private val featureRouter: FeatureRouter,
 ) : MviViewModel<IntroEvent, IntroState>(
-    initialState = IntroState()
+    initialState = IntroState(),
 ) {
 
     init {

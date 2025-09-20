@@ -30,7 +30,7 @@ internal fun SplashUi(
             modifier = Modifier
                 .fillMaxSize()
                 .background(selectDayBackground())
-                .padding(it)
+                .padding(it),
         )
     }
     OnScreenStart { dispatch(SplashEvent.OnScreenViewed) }

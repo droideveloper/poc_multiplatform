@@ -24,14 +24,14 @@ internal class SettingRepositoryImpl(
     override suspend fun save(settings: Settings): Result<Unit> = runCatching {
         dataStore.setSerializable(
             dataStoreKey,
-            settings.toData()
+            settings.toData(),
         )
             .getOrThrow()
     }
 
     override suspend fun get(): Result<Settings> = runCatching {
         val result = dataStore.getSerializable<JsonSettings>(
-            dataStoreKey
+            dataStoreKey,
         )
             .getOrThrow()
 
@@ -42,7 +42,7 @@ internal class SettingRepositoryImpl(
         .map { result ->
             result.fold(
                 onSuccess = { Result.success(it.toDomain()) },
-                onFailure = { Result.failure(it) }
+                onFailure = { Result.failure(it) },
             )
         }
 }

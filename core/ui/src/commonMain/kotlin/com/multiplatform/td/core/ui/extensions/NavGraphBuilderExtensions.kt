@@ -10,8 +10,8 @@ import com.multiplatform.td.core.ui.transitions.fadeOutTransition
 import com.multiplatform.td.core.ui.transitions.slideInTransition
 import com.multiplatform.td.core.ui.transitions.slideOutTransition
 
-inline fun <reified T: Any> NavGraphBuilder.animatedComposable(
-    crossinline content: @Composable (AnimatedContentScope.(NavBackStackEntry) -> Unit)
+inline fun <reified T : Any> NavGraphBuilder.animatedComposable(
+    crossinline content: @Composable (AnimatedContentScope.(NavBackStackEntry) -> Unit),
 ) {
     composable<T>(
         enterTransition = { slideInTransition() },

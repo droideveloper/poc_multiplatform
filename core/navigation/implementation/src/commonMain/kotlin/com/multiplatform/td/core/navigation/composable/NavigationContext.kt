@@ -28,7 +28,7 @@ fun NavigationContext(
     }
 
     CompositionLocalProvider(
-        LocalNavigationComponent provides navigationComponent
+        LocalNavigationComponent provides navigationComponent,
     ) {
         content()
     }

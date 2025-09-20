@@ -44,11 +44,11 @@ fun OnScreenPause(
 
 @Composable
 internal fun OnLifecycleEffect(
-    onCreate    : () -> Unit = {},
-    onStart     : () -> Unit = {},
-    onResume    : () -> Unit = {},
-    onPause     : () -> Unit = {},
-    onStop      : () -> Unit = {},
+    onCreate: () -> Unit = {},
+    onStart: () -> Unit = {},
+    onResume: () -> Unit = {},
+    onPause: () -> Unit = {},
+    onStop: () -> Unit = {},
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val lifecycle = remember { lifecycleOwner.lifecycle }

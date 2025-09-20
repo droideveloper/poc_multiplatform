@@ -21,7 +21,7 @@ fun TodoApp(
 
     AppContext(component, navController) {
         DatabaseContext(
-            databaseName = DatabaseName.of("todo_database")
+            databaseName = DatabaseName.of("todo_database"),
         ) {
             DataStoreContext {
                 NavigationContext {

@@ -5,7 +5,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        androidMain{
+        androidMain {
             dependencies {
                 implementation(libs.ktor.client.okhttp)
             }
@@ -33,7 +33,7 @@ kotlin {
                 implementation(libs.ktorfit.lib.light)
             }
         }
-        iosMain{
+        iosMain {
             dependencies {
                 implementation(libs.ktor.client.darwin)
             }

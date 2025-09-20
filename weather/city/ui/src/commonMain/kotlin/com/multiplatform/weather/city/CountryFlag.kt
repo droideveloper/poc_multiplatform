@@ -20,7 +20,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun RowScope.CountryFlag(
     countryCode: CountryCode,
     modifier: Modifier = Modifier,
-    countryFlagSize: CountryFlagSize = CountryFlagSize.Small
+    countryFlagSize: CountryFlagSize = CountryFlagSize.Small,
 ) {
     Text(
         modifier = Modifier
@@ -88,7 +88,7 @@ private fun CountryFlagPreview() {
         Row(
             modifier = Modifier
                 .background(Color.White)
-                .padding(FwTheme.dimens.standard8)
+                .padding(FwTheme.dimens.standard8),
         ) {
             CountryFlag(
                 countryCode = CountryCode.getOrThrow("TR"),
@@ -97,4 +97,3 @@ private fun CountryFlagPreview() {
         }
     }
 }
-

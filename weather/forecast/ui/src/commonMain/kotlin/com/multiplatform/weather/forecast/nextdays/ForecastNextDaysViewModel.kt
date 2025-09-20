@@ -26,7 +26,7 @@ internal class ForecastNextDaysViewModel(
     private val featureRouter: FeatureRouter,
     @Assisted private val selectedCityId: Long,
 ) : MviViewModel<ForecastNextDaysEvent, ForecastNextDaysState>(
-    initialState = ForecastNextDaysState()
+    initialState = ForecastNextDaysState(),
 ) {
 
     init {

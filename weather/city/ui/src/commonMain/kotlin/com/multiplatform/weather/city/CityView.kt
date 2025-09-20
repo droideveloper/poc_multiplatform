@@ -40,7 +40,7 @@ fun CityView(
                 .padding(end = FwTheme.dimens.standard8),
             text = selectCity(city),
             style = FwTheme.typography.bodySecondary.copy(
-                color = FwTheme.colors.blues.secondary
+                color = FwTheme.colors.blues.secondary,
             ),
         )
         Spacer(modifier = Modifier.width(FwTheme.dimens.standard4))
@@ -60,7 +60,7 @@ private fun CityViewPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+                .background(color = Color.White),
         ) {
             CityView(city = city)
         }

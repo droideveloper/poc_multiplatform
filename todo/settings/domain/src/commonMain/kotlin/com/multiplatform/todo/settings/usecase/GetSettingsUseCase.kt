@@ -6,7 +6,7 @@ import me.tatarka.inject.annotations.Inject
 
 @Inject
 class GetSettingsUseCase(
-    private val repository: SettingRepository
+    private val repository: SettingRepository,
 ) {
 
     suspend operator fun invoke(): Result<Settings> = runCatching {

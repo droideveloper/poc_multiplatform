@@ -43,7 +43,7 @@ internal fun City.toJsonData(): JsonCity {
     )
 }
 
-internal fun JsonCity.toDomain() : City = City(
+internal fun JsonCity.toDomain(): City = City(
     id = id,
     name = name,
     displayName = asciiName,

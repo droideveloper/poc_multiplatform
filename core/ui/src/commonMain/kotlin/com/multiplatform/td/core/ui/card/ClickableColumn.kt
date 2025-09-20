@@ -27,16 +27,16 @@ fun TdClickableColumn(
     onClick: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val interactionSource =  remember { MutableInteractionSource() }
+    val interactionSource = remember { MutableInteractionSource() }
     val indicationFactory = remember { RippleIndicationFactory(interactionSource, { rippleColor }) }
-    Column (
+    Column(
         modifier = Modifier
             .background(color = backgroundColor)
             .clickable(
                 interactionSource = interactionSource,
                 indication = indicationFactory,
                 enabled = enabled,
-                onClick = if (enabled) onClick else ({/*no-op*/}),
+                onClick = if (enabled) onClick else ({ /*no-op*/ }),
             )
             .then(modifier),
     ) {
@@ -48,7 +48,7 @@ internal class RippleIndicationFactory(
     private val interactionSource: MutableInteractionSource,
     private val colorProducer: ColorProducer,
     private val radius: Dp = Dp.Unspecified,
-): IndicationNodeFactory {
+) : IndicationNodeFactory {
 
     private val rippleAlpha = RippleAlpha(
         pressedAlpha = 0.24f,
@@ -69,7 +69,7 @@ internal class RippleIndicationFactory(
         if (other == null) return false
         if (other is RippleIndicationFactory) {
             return other.colorProducer == colorProducer &&
-                    other.interactionSource == interactionSource
+                other.interactionSource == interactionSource
         }
         return false
     }

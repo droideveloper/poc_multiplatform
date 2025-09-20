@@ -18,7 +18,7 @@ internal class CalendarViewModel(
     private val getWeekUseCase: GetWeekUseCase,
     private val featureRouter: FeatureRouter,
 ) : MviViewModel<CalendarEvent, CalendarState>(
-    initialState = CalendarState()
+    initialState = CalendarState(),
 ) {
 
     private val today by lazy {
@@ -30,7 +30,7 @@ internal class CalendarViewModel(
             // TODO send analytics or track event
         }
         onClick<CalendarEvent.OnDateClicked> {
-           collectInitialState(date = it.date)
+            collectInitialState(date = it.date)
         }
         onClick<CalendarEvent.OnTaskClicked> {
             featureRouter.navigate(AppRoute.Detail(it.task.id))

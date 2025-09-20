@@ -12,7 +12,7 @@ import okio.use
 internal class JsonDataLoaderImpl(
     private val dao: CityDao,
     private val sourceProvider: JsonDataSourceProvider,
-    private val json: Json = Json { ignoreUnknownKeys = true }
+    private val json: Json = Json { ignoreUnknownKeys = true },
 ) : JsonDataLoader {
 
     @OptIn(ExperimentalSerializationApi::class)

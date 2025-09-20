@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain{
+        commonMain {
             dependencies {
                 implementation(projects.core.datastore.gateway)
                 implementation(projects.core.coroutines)
@@ -17,7 +17,6 @@ kotlin {
                 implementation(projects.core.app)
                 implementation(projects.core.environment.gateway)
                 implementation(projects.core.environment.implementation)
-
 
                 implementation(libs.kotlin.serialization.json)
 
@@ -38,4 +37,3 @@ kotlin {
 android {
     namespace = "com.multiplatform.td.core.datastore"
 }
-

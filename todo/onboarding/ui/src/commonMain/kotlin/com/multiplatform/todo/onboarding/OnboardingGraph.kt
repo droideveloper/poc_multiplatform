@@ -10,7 +10,7 @@ import com.multiplatform.todo.onboarding.splash.SplashScreen
 fun NavGraphBuilder.onboardingGraph() {
     navigation<Route.Graph>(startDestination = Route.Splash) {
         composable<Route.Splash> { SplashScreen() }
-        composable<Route.Intro> { IntroScreen()  }
+        composable<Route.Intro> { IntroScreen() }
         composable<Route.Categories> { CategoriesScreen() }
     }
 }

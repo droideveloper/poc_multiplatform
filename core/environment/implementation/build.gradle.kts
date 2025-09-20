@@ -30,5 +30,3 @@ android {
 buildkonfig {
     packageName = `package`
 }
-
-

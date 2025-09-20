@@ -33,10 +33,10 @@ fun FwLoadingOverlay() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Row (
+            Row(
                 modifier = Modifier.wrapContentWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-            ){
+            ) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .padding(FwTheme.dimens.standard8)
@@ -50,7 +50,7 @@ fun FwLoadingOverlay() {
                     text = stringResource(Res.string.core_ui_loading_text),
                     style = FwTheme.typography.titleSecondary.copy(
                         fontWeight = FontWeight.SemiBold,
-                    )
+                    ),
                 )
             }
         }

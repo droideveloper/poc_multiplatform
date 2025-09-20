@@ -14,7 +14,7 @@ internal class CategoriesViewModel(
     private val getOnboardingUseCase: GetOnboardingUseCase,
     private val setOnboardingUseCase: GetOnboardingUseCase,
 ) : MviViewModel<CategoriesEvent, CategoriesState>(
-    initialState = CategoriesState()
+    initialState = CategoriesState(),
 ) {
 
     init {

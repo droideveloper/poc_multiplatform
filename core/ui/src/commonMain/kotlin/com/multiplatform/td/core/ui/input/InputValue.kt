@@ -3,8 +3,8 @@ package com.multiplatform.td.core.ui.input
 sealed class InputValue<V> {
     abstract val value: V
 
-    data class Default<V>(override val value: V): InputValue<V>()
-    data class Entered<V>(override val value: V): InputValue<V>()
+    data class Default<V>(override val value: V) : InputValue<V>()
+    data class Entered<V>(override val value: V) : InputValue<V>()
 }
 
 typealias TextValue = InputValue<String>

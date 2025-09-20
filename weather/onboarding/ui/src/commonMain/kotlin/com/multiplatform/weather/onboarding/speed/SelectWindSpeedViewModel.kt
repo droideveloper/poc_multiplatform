@@ -31,7 +31,7 @@ internal class SelectWindSpeedViewModel(
 ) {
 
     init {
-        on<SelectWindSpeedEvent.OnScreenViewed> {  }
+        on<SelectWindSpeedEvent.OnScreenViewed> { }
         onClick<SelectWindSpeedEvent.OnTryAgainClicked> {
             state = state.copy(uiState = UiState.Loading)
             collectInitialState()
@@ -51,7 +51,7 @@ internal class SelectWindSpeedViewModel(
     private suspend fun collectInitialState() = runCatching {
         val saved = getSettingsUseCase()
         saved.fold(
-            onSuccess =  {
+            onSuccess = {
                 updateState(speed = it.speedUnit)
             },
             onFailure = {
@@ -59,7 +59,7 @@ internal class SelectWindSpeedViewModel(
                     .getOrThrow()
 
                 updateState(speed = Settings.Defaults.speedUnit)
-            }
+            },
         )
     }
 
@@ -77,7 +77,7 @@ internal class SelectWindSpeedViewModel(
             options = FeatureNavOptions.Builder().apply {
                 inclusive(true)
                 popUpTo(Onboarding.Graph)
-            }.build()
+            }.build(),
         ).also {
             // if there is onboarding component it will be cleared in here
             componentStore.remove<OnboardingComponent>()

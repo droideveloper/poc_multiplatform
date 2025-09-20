@@ -9,9 +9,9 @@ import com.multiplatform.todo.home.Route
 
 @ContributesViewModel(scope = FeatureScope::class)
 internal class HomeViewModel(
-    private val featureRouter: FeatureRouter
+    private val featureRouter: FeatureRouter,
 ) : MviViewModel<HomeEvent, HomeState>(
-    initialState = HomeState()
+    initialState = HomeState(),
 ) {
 
     init {
@@ -32,7 +32,7 @@ internal class HomeViewModel(
                     inclusive(true)
                     popUpTo(Route.Graph)
                 }
-                    .build()
+                    .build(),
             )
         }
     }

@@ -62,7 +62,7 @@ internal fun rememberForecastComponent(): ForecastComponent {
         LoggerComponent.create(
             environmentComponent = componentStore.store {
                 EnvironmentComponent.create()
-            }
+            },
         )
     }
     val networkComponent: NetworkComponent = componentStore.store {
@@ -85,11 +85,11 @@ private fun ForecastUi(
     state: ForecastState,
     dispatch: (ForecastEvent) -> Unit,
 ) {
-   when (val uiState = state.uiState) {
-       UiState.Loading -> FwLoadingOverlay()
-       UiState.Success -> ForecastSuccessView(state, dispatch)
-       else -> Unit // TODO implement this
-   }
+    when (val uiState = state.uiState) {
+        UiState.Loading -> FwLoadingOverlay()
+        UiState.Success -> ForecastSuccessView(state, dispatch)
+        else -> Unit // TODO implement this
+    }
     OnScreenStart { dispatch(ForecastEvent.OnScreenViewed) }
     TickEffect(
         onTick = { dispatch(ForecastEvent.OnTick) },
@@ -112,7 +112,7 @@ private fun ForecastSuccessView(
                 .padding(horizontal = FwTheme.dimens.standard16)
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .verticalScroll(scrollState)
+                .verticalScroll(scrollState),
         ) {
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard32))
             Text(

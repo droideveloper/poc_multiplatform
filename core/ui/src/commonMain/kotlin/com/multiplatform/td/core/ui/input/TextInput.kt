@@ -69,7 +69,7 @@ fun TdTextInput(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .then(modifier)
+            .then(modifier),
     ) {
         label?.let {
             TdInputLabel(
@@ -99,14 +99,14 @@ fun TdTextInput(
             keyboardOptions = KeyboardOptions.Default.copy(
                 capitalization = capitalization,
                 keyboardType = keyboardType,
-                imeAction = imeAction
+                imeAction = imeAction,
             ),
             keyboardActions = KeyboardActions(onDone = {
                 defaultKeyboardAction(ImeAction.Done)
                 onDoneClicked()
             }),
             visualTransformation = visualTransformation,
-            textStyle = textStyle
+            textStyle = textStyle,
         ) { innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value.value,
@@ -125,10 +125,12 @@ fun TdTextInput(
                     {
                         TdInputClearButton(
                             ColorFilter.tint(TdTheme.colors.blacks.primary),
-                            onClick = { onValueChange(InputValue.Entered("")) }
+                            onClick = { onValueChange(InputValue.Entered("")) },
                         )
                     }
-                } else null,
+                } else {
+                    null
+                },
                 singleLine = singleLine,
                 colors = textFieldColors,
                 isError = error.isError(),
@@ -153,13 +155,13 @@ private fun EmptyTextField() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdTextInput(
             value = InputValue.Default(""),
             onValueChange = {},
             label = "Label",
-            placeholder = "Type here"
+            placeholder = "Type here",
         )
     }
 }
@@ -170,13 +172,13 @@ private fun TextFieldWithValue() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdTextInput(
             value = InputValue.Entered("Text entered"),
             onValueChange = {},
             label = "Label",
-            placeholder = "Type here"
+            placeholder = "Type here",
         )
     }
 }
@@ -187,14 +189,14 @@ private fun TextFieldWithError() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdTextInput(
             value = InputValue.Entered("Text entered"),
             onValueChange = {},
             label = "Label",
             placeholder = "Type here",
-            error = InputError.WithMessage("Please enter the correct value here.")
+            error = InputError.WithMessage("Please enter the correct value here."),
         )
     }
 }
@@ -205,7 +207,7 @@ private fun TextFieldWithMaxLengthAndIcon() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdTextInput(
             value = InputValue.Entered("Text entered"),

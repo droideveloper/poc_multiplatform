@@ -80,12 +80,14 @@ fun TdTextLinkButton(
             .then(modifier),
         text = text,
         color = if (enabled) {
-            if (pressedState.value)
+            if (pressedState.value) {
                 pressedTextColor
-            else
+            } else {
                 textColor
-        } else
-            TdTheme.colors.greys.primary,
+            }
+        } else {
+            TdTheme.colors.greys.primary
+        },
         style = textStyle.copy(textDecoration = TextDecoration.Underline),
     )
 }
@@ -117,4 +119,3 @@ private fun Disabled() = TdTheme {
         enabled = false,
     )
 }
-

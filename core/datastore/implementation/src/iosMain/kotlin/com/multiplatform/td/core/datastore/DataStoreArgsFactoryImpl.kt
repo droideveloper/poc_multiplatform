@@ -32,7 +32,7 @@ internal fun NSFileManager.ofDataStoreArgs(
                 appropriateForURL = null,
                 create = false,
                 error = null,
-            )
+            ),
         ).path + "/${dataStoreName.asFileName}"
     },
     scope = scope,

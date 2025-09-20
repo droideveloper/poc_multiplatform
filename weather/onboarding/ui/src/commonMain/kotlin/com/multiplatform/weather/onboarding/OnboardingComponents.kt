@@ -33,7 +33,7 @@ internal fun OnboardingFailureView(
     }
     TdErrorScreen(
         message = message,
-        actions = { TdErrorScreenDefaultActions(onPrimaryActionClick = onClick) }
+        actions = { TdErrorScreenDefaultActions(onPrimaryActionClick = onClick) },
     )
 }
 
@@ -109,7 +109,7 @@ internal fun OnboardingLayout(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = FwTheme.dimens.standard32)
+                .padding(bottom = FwTheme.dimens.standard32),
         ) {
             action()
         }

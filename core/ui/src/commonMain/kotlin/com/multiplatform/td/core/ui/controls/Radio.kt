@@ -28,7 +28,7 @@ fun TdRadio(
     rippleRadius: Dp = TdTheme.dimens.standard32,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource =  remember { MutableInteractionSource() }
+    val interactionSource = remember { MutableInteractionSource() }
     val indicationFactory = remember {
         RippleIndicationFactory(interactionSource, { rippleColor }, rippleRadius)
     }
@@ -40,9 +40,11 @@ fun TdRadio(
                 enabled = true,
                 role = Role.RadioButton,
                 interactionSource = interactionSource,
-                indication = indicationFactory
+                indication = indicationFactory,
             )
-    } else Modifier
+    } else {
+        Modifier
+    }
 
     Crossfade(targetState = selected) {
         Box(
@@ -51,8 +53,11 @@ fun TdRadio(
                 .then(modifier),
             contentAlignment = Alignment.Center,
         ) {
-            if (it) RadioChecked()
-            else RadioUnchecked()
+            if (it) {
+                RadioChecked()
+            } else {
+                RadioUnchecked()
+            }
         }
     }
 }
@@ -64,13 +69,13 @@ private fun RadioChecked() {
             .size(TdTheme.dimens.standard24)
             .clip(CircleShape)
             .background(TdTheme.colors.oranges.primary),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Box(
             modifier = Modifier
                 .size(TdTheme.dimens.standard12)
                 .clip(CircleShape)
-                .background(TdTheme.colors.oranges.secondary)
+                .background(TdTheme.colors.oranges.secondary),
         )
     }
 }
@@ -83,8 +88,8 @@ private fun RadioUnchecked() {
             .border(
                 width = TdTheme.dimens.standard1,
                 color = TdTheme.colors.greys.primary,
-                shape = CircleShape
-            )
+                shape = CircleShape,
+            ),
     )
 }
 

@@ -34,7 +34,7 @@ fun TdSecondaryButton(
             .height(TdTheme.dimens.standard48),
         colors = outlinedButtonColors(
             contentColor = contentColor,
-            disabledContentColor = TdTheme.colors.greys.primary
+            disabledContentColor = TdTheme.colors.greys.primary,
         ),
         border = BorderStroke(
             width = TdTheme.dimens.standard1,
@@ -43,7 +43,7 @@ fun TdSecondaryButton(
         contentPadding = PaddingValues(
             vertical = TdTheme.dimens.standard0,
             horizontal = TdTheme.dimens.standard16,
-        )
+        ),
     ) {
         if (loading) {
             TdButtonLoadingIndicator(color = contentColor)

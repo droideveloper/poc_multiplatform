@@ -17,14 +17,14 @@ internal class DatabaseBuilderArgsFactoryImpl(
 @OptIn(ExperimentalForeignApi::class)
 internal fun NSFileManager.ofDatabaseBuilderArgs(
     databaseName: DatabaseName,
-) : DatabaseBuilderArgs = DatabaseBuilderArgs(
+): DatabaseBuilderArgs = DatabaseBuilderArgs(
     name = requireNotNull(
         URLForDirectory(
             directory = NSDocumentDirectory,
             inDomain = NSUserDomainMask,
             appropriateForURL = null,
             create = false,
-            error = null
-        )
-    ).path + "/${databaseName.asFileName}"
+            error = null,
+        ),
+    ).path + "/${databaseName.asFileName}",
 )

@@ -15,7 +15,7 @@ internal class TaskDetailViewModel(
     private val getTasksUseCase: GetTasksUseCase,
     @Assisted private val taskId: Long,
 ) : MviViewModel<TaskDetailEvent, TaskDetailState>(
-    initialState = TaskDetailState()
+    initialState = TaskDetailState(),
 ) {
 
     init {
@@ -34,7 +34,7 @@ internal class TaskDetailViewModel(
             ?: throw IllegalArgumentException("task not found $taskId")
 
         state = state.copy(
-            uiState = UiState.Success(task)
+            uiState = UiState.Success(task),
         )
     }
 }

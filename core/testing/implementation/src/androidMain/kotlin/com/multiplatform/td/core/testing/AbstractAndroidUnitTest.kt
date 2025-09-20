@@ -10,17 +10,21 @@ import org.junit.Rule
 import org.robolectric.Robolectric
 import org.robolectric.annotation.Config
 
-@Config(sdk = [
-    Build.VERSION_CODES.M,
-    Build.VERSION_CODES.TIRAMISU,
-])
+@Config(
+    sdk = [
+        Build.VERSION_CODES.M,
+        Build.VERSION_CODES.TIRAMISU,
+    ],
+)
 abstract class AbstractAndroidUnitTest {
 
     @get:Rule
     val testRule: ComposeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Before
-    fun setup() { setupAndroidContextProvider() }
+    fun setup() {
+        setupAndroidContextProvider()
+    }
 
     private fun setupAndroidContextProvider() {
         val providerClass = androidContentProviderClass() ?: return

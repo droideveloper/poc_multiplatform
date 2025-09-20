@@ -33,7 +33,7 @@ internal fun City.toData(): CityDto {
     )
 }
 
-internal fun CityDto.toDomain() : City = City(
+internal fun CityDto.toDomain(): City = City(
     id = id,
     name = name,
     displayName = asciiName,

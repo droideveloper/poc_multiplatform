@@ -20,4 +20,4 @@ abstract class TasksComponent(
 expect fun createTasksComponent(
     databaseComponent: DatabaseComponent,
     navigationComponent: NavigationComponent,
-) : TasksComponent
+): TasksComponent

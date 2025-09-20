@@ -68,7 +68,7 @@ object NavBarDefaults {
                         style = style ?: TdTheme.typography.titleTiny,
                         modifier = Modifier
                             .padding(end = TdTheme.dimens.standard8)
-                            .clickable { onClick() }
+                            .clickable { onClick() },
                     )
                 }
             }
@@ -112,7 +112,7 @@ object NavBarDefaults {
         @Composable
         abstract fun Content()
 
-        sealed class Default : Title()  {
+        sealed class Default : Title() {
 
             data class Text(
                 val text: String,

@@ -6,7 +6,7 @@ sealed class CategoryException(
 
     data class NotFound(
         val categoryId: Long,
-    ): CategoryException(
+    ) : CategoryException(
         message = "category with id $categoryId does not exists.",
     )
 

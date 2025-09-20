@@ -23,7 +23,7 @@ abstract class DataStoreComponent(
 }
 
 fun AppComponent.createDataStoreComponent(
-    dataStoreName: DataStoreName = DataStoreName.DefaultDataStore
+    dataStoreName: DataStoreName = DataStoreName.DefaultDataStore,
 ): DataStoreComponent = DataStoreComponent.create(
     appComponent = this,
     dataStoreName = dataStoreName,

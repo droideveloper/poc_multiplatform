@@ -5,6 +5,6 @@ internal sealed interface HomeEvent {
     data object OnScreenViewed : HomeEvent
     data object OnNewClicked : HomeEvent
     data class OnMenuItemSelected(
-        val item: MenuItem
+        val item: MenuItem,
     ) : HomeEvent
 }

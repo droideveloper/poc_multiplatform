@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.td.multiplatform.data)
+    alias(libs.plugins.td.multiplatform.kotlin.inject.common)
 }
 
 kotlin {
@@ -28,8 +29,4 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
-}
-
-dependencies {
-    kspCommonMainMetadata(projects.core.injection.compiler)
 }

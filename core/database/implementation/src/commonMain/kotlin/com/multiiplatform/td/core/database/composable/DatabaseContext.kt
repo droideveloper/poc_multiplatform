@@ -31,7 +31,7 @@ fun DatabaseContext(
     }
 
     CompositionLocalProvider(
-        LocalDatabaseComponent provides databaseComponent
+        LocalDatabaseComponent provides databaseComponent,
     ) {
         content()
     }

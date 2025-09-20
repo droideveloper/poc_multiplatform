@@ -5,8 +5,8 @@ import com.multiplatform.td.core.datastore.KeyedValueDataStore
 import com.multiplatform.td.core.datastore.getSerializable
 import com.multiplatform.td.core.datastore.getSerializableFlow
 import com.multiplatform.td.core.datastore.setSerializable
-import com.multiplatform.weather.settings.json.JsonSettings
 import com.multiplatform.weather.settings.Settings
+import com.multiplatform.weather.settings.json.JsonSettings
 import com.multiplatform.weather.settings.json.toData
 import com.multiplatform.weather.settings.json.toDomain
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +21,7 @@ internal class SettingsRepositoryImpl(
     override suspend fun save(settings: Settings): Result<Unit> = runCatching {
         dataStore.setSerializable(
             dataStoreKey,
-            settings.toData()
+            settings.toData(),
         )
             .getOrThrow()
     }
@@ -41,7 +41,7 @@ internal class SettingsRepositoryImpl(
         .map { result ->
             result.fold(
                 onSuccess = { Result.success(it.toDomain()) },
-                onFailure = { Result.failure(it) }
+                onFailure = { Result.failure(it) },
             )
         }
 }

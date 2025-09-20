@@ -13,7 +13,9 @@ internal class LoggerImpl(
     }
 
     private fun debugLogger(
-        level: LogLevel, tag: String, message: String,
+        level: LogLevel,
+        tag: String,
+        message: String,
     ) {
         val platformLog: (String?, String) -> Unit = when (level) {
             LogLevel.Debug -> Log::d
@@ -25,7 +27,9 @@ internal class LoggerImpl(
     }
 
     private fun releaseLogger(
-        level: LogLevel, tag: String, message: String,
+        level: LogLevel,
+        tag: String,
+        message: String,
     ) = Unit
     // may be want to send error or warning levels to analytics like firebase as non-fatal.
 }

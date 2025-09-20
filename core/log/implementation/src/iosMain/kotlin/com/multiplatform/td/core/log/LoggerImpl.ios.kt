@@ -13,13 +13,17 @@ internal class LoggerImpl(
     }
 
     private fun debugLogger(
-        level: LogLevel, tag: String, message: String,
+        level: LogLevel,
+        tag: String,
+        message: String,
     ) {
         NSLog("[%s] [ %s ] : %s", level.asName(), tag, message)
     }
 
     private fun releaseLogger(
-        level: LogLevel, tag: String, message: String,
+        level: LogLevel,
+        tag: String,
+        message: String,
     ) = Unit
     // may be want to log those in remote as non-fatal.
 

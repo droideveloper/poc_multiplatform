@@ -37,13 +37,13 @@ import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.td.core.ui.overlay.TdErrorScreen
 import com.multiplatform.td.core.ui.overlay.TdErrorScreenDefaultActions
+import com.multiplatform.weather.city.CityWidget
+import com.multiplatform.weather.core.measure.Speed
+import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
-import com.multiplatform.weather.city.CityWidget
-import com.multiplatform.weather.core.measure.Speed
-import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.settings.inject.SettingsComponent
 import com.multiplatform.weather.settings.inject.createSettingsComponent
 import org.jetbrains.compose.resources.stringResource
@@ -60,7 +60,7 @@ import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_title
 internal fun SettingsScreen() {
     val component = rememberSettingsComponent()
     val viewModel = kotlinInjectViewModel(
-        create = component.settingsViewModelFactory
+        create = component.settingsViewModelFactory,
     )
     SettingsUi(viewModel.state, viewModel::dispatch)
 }
@@ -107,7 +107,7 @@ private fun SettingsFailureView(
     }
     TdErrorScreen(
         message = message,
-        actions = { TdErrorScreenDefaultActions { dispatch(SettingsEvent.OnTryAgainClicked) } }
+        actions = { TdErrorScreenDefaultActions { dispatch(SettingsEvent.OnTryAgainClicked) } },
     )
 }
 
@@ -121,13 +121,13 @@ private fun SettingsSuccessView(
         topBar = {
             FwNavBar(
                 title = NavBarDefaults.Title.Default.Res(
-                    stringRes = Res.string.settings_ui_title
+                    stringRes = Res.string.settings_ui_title,
                 ),
                 navAction = NavBarDefaults.ArrowBackAction {
                     dispatch(SettingsEvent.OnBackClicked)
                 },
             )
-        }
+        },
     ) { padding ->
         Column(
             modifier = Modifier
@@ -137,7 +137,7 @@ private fun SettingsSuccessView(
                 .padding(padding),
             verticalArrangement = Arrangement.spacedBy(
                 space = FwTheme.dimens.standard16,
-            )
+            ),
         ) {
             TemperatureSection(
                 temperature = settings.temperatureUnit,
@@ -170,28 +170,28 @@ fun TemperatureSection(
     temperatures: List<Temperature> = listOf(Temperature.Celsius, Temperature.Fahrenheit),
     onClick: (Temperature) -> Unit,
 ) {
-   Column(
-       modifier = Modifier
-           .fillMaxWidth(),
-       verticalArrangement = Arrangement.Top,
-   ) {
-       SettingLabel(text = stringResource(Res.string.settings_ui_temperature_unit))
-       Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
-       SingleChoiceSegmentedButtonRow(
-           modifier = Modifier.fillMaxWidth(),
-       ) {
-           temperatures.forEachIndexed { index, unit ->
-               FwSegmentedButton(
-                   index = index,
-                   count = temperatures.size,
-                   isSelected = unit == temperature,
-                   text = unit.toString(),
-               ) {
-                   onClick(unit)
-               }
-           }
-       }
-   }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.Top,
+    ) {
+        SettingLabel(text = stringResource(Res.string.settings_ui_temperature_unit))
+        Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
+        SingleChoiceSegmentedButtonRow(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            temperatures.forEachIndexed { index, unit ->
+                FwSegmentedButton(
+                    index = index,
+                    count = temperatures.size,
+                    isSelected = unit == temperature,
+                    text = unit.toString(),
+                ) {
+                    onClick(unit)
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -205,7 +205,7 @@ fun WindSpeedSection(
     ),
     onClick: (Speed) -> Unit,
 ) {
-   Column(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .selectableGroup(),
@@ -251,7 +251,7 @@ fun NumberOfDaysSection(
                     .size(FwTheme.dimens.standard24)
                     .background(
                         color = FwTheme.colors.whites.secondary.copy(
-                            alpha = .5f
+                            alpha = .5f,
                         ),
                         shape = RoundedCornerShape(FwTheme.dimens.standard12),
                     )
@@ -271,7 +271,7 @@ fun NumberOfDaysSection(
                 style = FwTheme.typography.titleSecondary.copy(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 36.sp,
-                )
+                ),
             )
             Spacer(modifier = Modifier.width(FwTheme.dimens.standard8))
             IconButton(
@@ -279,7 +279,7 @@ fun NumberOfDaysSection(
                     .size(FwTheme.dimens.standard24)
                     .background(
                         color = FwTheme.colors.whites.secondary.copy(
-                            alpha = .5f
+                            alpha = .5f,
                         ),
                         shape = RoundedCornerShape(FwTheme.dimens.standard12),
                     )
@@ -298,7 +298,7 @@ fun NumberOfDaysSection(
 
 @Composable
 private fun SettingLabel(
-    text: String
+    text: String,
 ) {
     Text(
         modifier = Modifier
@@ -317,7 +317,6 @@ private fun SettingsVersion() {
 
     val environment = remember { appComponent.environment }
 
-
     val version = "${appComponent.version.value} - ${environment.flavorName}"
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -335,7 +334,7 @@ private fun SettingsVersion() {
 
 @Composable
 private fun SettingRowLabel(
-    text: String
+    text: String,
 ) {
     Text(
         modifier = Modifier.wrapContentWidth(),
@@ -345,4 +344,3 @@ private fun SettingRowLabel(
         ),
     )
 }
-

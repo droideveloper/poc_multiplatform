@@ -33,4 +33,4 @@ abstract class CityComponent(
 expect fun createCityComponent(
     databaseComponent: DatabaseComponent,
     dataStoreComponent: DataStoreComponent,
-) : CityComponent
+): CityComponent
