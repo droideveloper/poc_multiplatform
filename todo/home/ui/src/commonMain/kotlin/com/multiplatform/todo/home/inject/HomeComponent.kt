@@ -24,6 +24,7 @@ abstract class HomeComponent(
     fun bindFeatureRouter(binder: FeatureRouterBinder): FeatureRouter = binder()
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createHomeComponent(
     databaseComponent: DatabaseComponent,

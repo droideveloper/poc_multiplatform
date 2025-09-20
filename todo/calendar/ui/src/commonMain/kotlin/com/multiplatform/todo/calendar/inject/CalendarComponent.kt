@@ -17,6 +17,7 @@ abstract class CalendarComponent(
     companion object;
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createCalendarComponent(
     databaseComponent: DatabaseComponent,

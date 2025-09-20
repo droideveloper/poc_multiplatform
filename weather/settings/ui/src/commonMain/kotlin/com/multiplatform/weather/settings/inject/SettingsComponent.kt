@@ -16,6 +16,7 @@ abstract class SettingsComponent(
     companion object;
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createSettingsComponent(
     dataStoreComponent: DataStoreComponent,

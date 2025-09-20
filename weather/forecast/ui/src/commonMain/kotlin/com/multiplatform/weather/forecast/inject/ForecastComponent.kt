@@ -18,6 +18,7 @@ abstract class ForecastComponent(
     companion object;
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createForecastComponent(
     networkComponent: NetworkComponent,

@@ -18,6 +18,7 @@ abstract class OnboardingComponent(
     companion object;
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createOnboardingComponent(
     dataStoreComponent: DataStoreComponent,

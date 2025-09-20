@@ -18,6 +18,7 @@ abstract class SettingsComponent(
     abstract val version: AppVersion
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createSettingsComponent(
     dataStoreComponent: DataStoreComponent,

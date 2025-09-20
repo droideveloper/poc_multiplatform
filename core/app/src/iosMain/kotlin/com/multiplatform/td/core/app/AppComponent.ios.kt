@@ -27,6 +27,7 @@ actual abstract class AppComponent : AppModule, CoroutinesModule, EnvironmentMod
         }
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createAppComponent(): AppComponent
 

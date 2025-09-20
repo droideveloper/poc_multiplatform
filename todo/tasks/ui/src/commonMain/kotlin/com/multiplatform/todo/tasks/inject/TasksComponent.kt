@@ -16,6 +16,7 @@ abstract class TasksComponent(
     companion object;
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createTasksComponent(
     databaseComponent: DatabaseComponent,

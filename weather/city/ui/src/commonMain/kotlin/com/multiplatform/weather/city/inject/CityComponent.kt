@@ -29,6 +29,7 @@ abstract class CityComponent(
     fun bindCityDatabase(binder: CityDatabaseBinder): CityDatabase = binder()
 }
 
+@Suppress("KotlinNoActualForExpect")
 @KmpComponentCreate
 expect fun createCityComponent(
     databaseComponent: DatabaseComponent,
