@@ -6,7 +6,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain{
+        commonMain {
             dependencies {
                 implementation(projects.weather.city.data)
                 implementation(projects.weather.city.domain)

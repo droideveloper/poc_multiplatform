@@ -34,7 +34,7 @@ fun TdBottomCardContentLayout(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxWidth()
-            .background(TdTheme.colors.whites.primary)
+            .background(TdTheme.colors.whites.primary),
     ) {
         icon()
         title()
@@ -59,7 +59,7 @@ fun TdBottomCardContent(
                 text = title,
                 style = TdTheme.typography.titleBig,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.padding(top = TdTheme.dimens.standard16))
         },
@@ -68,12 +68,12 @@ fun TdBottomCardContent(
                 text = (message as? AnnotatedString) ?: AnnotatedString(message.toString()),
                 style = TdTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.padding(top = TdTheme.dimens.standard12))
         },
         modifier = modifier,
-        buttonsBuilder = buttonsBuilder
+        buttonsBuilder = buttonsBuilder,
     )
 }
 
@@ -90,7 +90,7 @@ fun TdBottomCardContent(
         title = title,
         message = message,
         modifier = modifier,
-        buttonsBuilder = buttonsBuilder
+        buttonsBuilder = buttonsBuilder,
     )
 }
 
@@ -104,20 +104,20 @@ fun TdBottomCardContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .background(TdTheme.colors.whites.primary)
+            .background(TdTheme.colors.whites.primary),
     ) {
         Text(
             text = title,
             style = TdTheme.typography.titleBig,
             textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard12))
         Text(
             text = message,
             style = TdTheme.typography.bodyMedium,
             textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         content()
     }
@@ -129,7 +129,7 @@ private fun PreviewWithIcon() = TdTheme {
     TdBottomCardContent(
         icon = Icons.Default.AccountBox,
         title = "Title goes here",
-        message = "Body goes here"
+        message = "Body goes here",
     )
 }
 
@@ -167,6 +167,6 @@ private fun PreviewOnlyText() = TdTheme {
     TdBottomCardContent(
         title = "Title goes here",
         message = "Body goes here",
-        content = {}
+        content = {},
     )
 }

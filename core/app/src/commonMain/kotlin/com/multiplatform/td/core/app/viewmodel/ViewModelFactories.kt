@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 
 class ParameterizedViewModelFactory<VM : ViewModel, P>(
     private val param: P,
-    private val create: (param: P) -> VM
+    private val create: (param: P) -> VM,
 ) : ViewModelProvider.Factory {
 
     override fun <VM : ViewModel> create(modelClass: KClass<VM>, extras: CreationExtras): VM {
@@ -18,7 +18,7 @@ class ParameterizedViewModelFactory<VM : ViewModel, P>(
 }
 
 class ViewModelFactory<VM : ViewModel>(
-    private val create: () -> VM
+    private val create: () -> VM,
 ) : ViewModelProvider.Factory {
 
     override fun <VM : ViewModel> create(modelClass: KClass<VM>, extras: CreationExtras): VM {

@@ -43,7 +43,7 @@ fun TdPrimaryButton(
         ),
         contentPadding = PaddingValues(
             vertical = TdTheme.dimens.standard0,
-            horizontal = TdTheme.dimens.standard16
+            horizontal = TdTheme.dimens.standard16,
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = TdTheme.dimens.standard0,

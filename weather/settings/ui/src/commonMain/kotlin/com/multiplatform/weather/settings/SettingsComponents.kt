@@ -25,7 +25,7 @@ internal fun SingleChoiceSegmentedButtonRowScope.FwSegmentedButton(
     count: Int,
     isSelected: Boolean,
     text: String,
-    onClick: ()-> Unit = {},
+    onClick: () -> Unit = {},
 ) {
     val colors = selectSegmentedColors()
     SegmentedButton(
@@ -39,8 +39,8 @@ internal fun SingleChoiceSegmentedButtonRowScope.FwSegmentedButton(
             text = text,
             style = FwTheme.typography.bodySecondary.copy(
                 fontWeight = FontWeight.SemiBold,
-                color = if (isSelected) colors.activeContentColor else colors.inactiveContentColor
-            )
+                color = if (isSelected) colors.activeContentColor else colors.inactiveContentColor,
+            ),
         )
     }
 }
@@ -74,7 +74,7 @@ private fun FwSegmentedButtonPreview() {
                 .padding(
                     horizontal = FwTheme.dimens.standard16,
                     vertical = FwTheme.dimens.standard8,
-                )
+                ),
         ) {
             SingleChoiceSegmentedButtonRow(
                 modifier = Modifier.fillMaxWidth(),

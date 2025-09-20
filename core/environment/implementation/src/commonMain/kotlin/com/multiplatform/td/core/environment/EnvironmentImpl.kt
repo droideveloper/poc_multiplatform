@@ -1,6 +1,6 @@
 package com.multiplatform.td.core.environment
 
-internal class EnvironmentImpl: Environment, Initializer<Environment> {
+internal class EnvironmentImpl : Environment, Initializer<Environment> {
 
     override val isDebug: Boolean
         get() = platformIsDebug

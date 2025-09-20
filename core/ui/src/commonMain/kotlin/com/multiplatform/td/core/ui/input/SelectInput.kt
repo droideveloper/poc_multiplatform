@@ -37,14 +37,14 @@ fun TdSelectInput(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .then(modifier)
+            .then(modifier),
     ) {
         label?.let { TdInputLabel(text = it, style = TdTheme.typography.titleTinySemi) }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = TdTheme.dimens.standard8)
+                .padding(vertical = TdTheme.dimens.standard8),
         ) {
             value
                 .value
@@ -53,8 +53,8 @@ fun TdSelectInput(
                 ?: TdInputPlaceholder(
                     text = placeholder,
                     style = TdTheme.typography.titleSmall.copy(
-                        color = TdTheme.colors.greys.secondary
-                    )
+                        color = TdTheme.colors.greys.secondary,
+                    ),
                 )
             Icon(
                 painter = rememberVectorPainter(Icons.Filled.ArrowDropDown),
@@ -73,7 +73,7 @@ private fun NoValue() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdSelectInput(
             value = InputValue.Default(""),
@@ -89,13 +89,13 @@ private fun Error() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdSelectInput(
             value = InputValue.Default(""),
             label = "Label",
             onClick = {},
-            error = InputError.Unspecified
+            error = InputError.Unspecified,
         )
     }
 }
@@ -106,7 +106,7 @@ private fun ValueSelected() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdSelectInput(
             value = InputValue.Default("Option selected"),

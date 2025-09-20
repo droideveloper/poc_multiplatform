@@ -5,7 +5,7 @@ import me.tatarka.inject.annotations.Inject
 
 @Inject
 class PopulateDatabaseUseCase(
-    private val jsonDataLoader: JsonDataLoader
+    private val jsonDataLoader: JsonDataLoader,
 ) {
 
     suspend operator fun invoke(): Result<Unit> = runCatching {

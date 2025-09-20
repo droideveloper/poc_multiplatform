@@ -80,7 +80,7 @@ fun TodayScheduleLayout(
                         topEnd = TdTheme.dimens.standard16,
                         bottomStart = TdTheme.dimens.standard0,
                         bottomEnd = TdTheme.dimens.standard16,
-                    )
+                    ),
                 ),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -120,7 +120,7 @@ fun CalendarScheduleLayout(
                 .padding(vertical = TdTheme.dimens.standard16)
                 .background(
                     color = contentColor,
-                    shape = RoundedCornerShape(TdTheme.dimens.standard8)
+                    shape = RoundedCornerShape(TdTheme.dimens.standard8),
                 ),
         )
         Column(
@@ -170,12 +170,12 @@ fun CalendarTimeLayout(
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
-            .background(TdTheme.colors.whites.primary)
+            .background(TdTheme.colors.whites.primary),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .then(modifier)
+                .then(modifier),
         ) {
             HorizontalDivider(
                 thickness = TdTheme.dimens.standard1,
@@ -186,7 +186,7 @@ fun CalendarTimeLayout(
                 text = selectLocalTime(time),
                 style = TdTheme.typography.titleMedium.copy(
                     color = TdTheme.colors.blacks.light,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
                 ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -198,8 +198,11 @@ fun CalendarTimeLayout(
 
 @Composable
 internal fun selectLocalTime(time: LocalTime): String {
-    val timeFormat = remember { LocalTime.Format {
-            hour(Padding.ZERO); char(':'); minute(Padding.ZERO)
+    val timeFormat = remember {
+        LocalTime.Format {
+            hour(Padding.ZERO)
+            char(':')
+            minute(Padding.ZERO)
         }
     }
     return timeFormat.format(time)

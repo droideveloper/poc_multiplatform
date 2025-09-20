@@ -9,7 +9,7 @@ data class Week(
 
     companion object {
         val Default = Week(
-            today = LocalDate(2025,3,4),
+            today = LocalDate(2025, 3, 4),
             days = emptyList(),
         )
     }

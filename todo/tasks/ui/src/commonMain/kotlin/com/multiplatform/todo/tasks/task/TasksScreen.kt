@@ -83,16 +83,16 @@ private fun TasksSuccessView(
                     icon = rememberVectorPainter(vectorResource(Res.drawable.ic_filter)),
                     onClick = { dispatch(TasksEvent.OnFilterClicked) },
                     tint = TdTheme.colors.greys.primary,
-                )
+                ),
             )
-        }
+        },
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = TdTheme.dimens.standard16)
-                .background(color = TdTheme.colors.whites.primary)
+                .background(color = TdTheme.colors.whites.primary),
         ) {
             val scrollState = rememberLazyListState()
             LazyColumn(

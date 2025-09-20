@@ -47,7 +47,6 @@ import androidx.compose.ui.window.PopupProperties
 import com.multiplatform.td.core.ui.button.TdTextLinkBlue
 import com.multiplatform.td.core.ui.card.TdCard
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
-import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.city.City
 import com.multiplatform.weather.city.CityView
 import com.multiplatform.weather.core.measure.Speed
@@ -55,6 +54,7 @@ import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.core.measure.TemperatureAmount
 import com.multiplatform.weather.core.measure.WindAmount
 import com.multiplatform.weather.core.ui.FwImage
+import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.forecast.today.SelectedCityState
 import com.multiplatform.weather.forecast.today.WeatherData
@@ -165,10 +165,10 @@ internal fun WeatherHourlyDescription(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = FwTheme.dimens.standard16)
-            .then(modifier)
+            .then(modifier),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Text(
                 modifier = Modifier.weight(1f),
@@ -321,7 +321,7 @@ internal fun WeatherDescription(
                 text = stringResource(descriptionRes),
                 style = FwTheme.typography.bodySecondary.copy(
                     fontWeight = FontWeight.Medium,
-                )
+                ),
             )
         }
     }
@@ -390,7 +390,9 @@ internal fun RowScope.SelectedCityTitle(
             .weight(1f)
             .then(modifier)
             .clickable {
-                if (isSelectCityEnabled) { cityDialogVisible = true }
+                if (isSelectCityEnabled) {
+                    cityDialogVisible = true
+                }
             },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -406,7 +408,7 @@ internal fun RowScope.SelectedCityTitle(
         Text(
             text = "${city.name}, ${city.country.name}",
             style = FwTheme.typography.bodySecondary.copy(
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             ),
         )
         if (isSelectCityEnabled) {
@@ -436,7 +438,7 @@ private fun DropDownMenu(
         properties = PopupProperties(
             focusable = false,
             dismissOnBackPress = true,
-            dismissOnClickOutside = true
+            dismissOnClickOutside = true,
         ),
         modifier = Modifier
             .widthIn(max = FwTheme.dimens.standard256)
@@ -492,7 +494,7 @@ internal fun WeatherDetailDescriptionItem(
                 text = title,
                 style = FwTheme.typography.spotPrimary.copy(
                     fontWeight = FontWeight.Medium,
-                )
+                ),
             )
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard2))
             Text(
@@ -500,7 +502,7 @@ internal fun WeatherDetailDescriptionItem(
                 style = FwTheme.typography.bodySecondary.copy(
                     fontWeight = FontWeight.SemiBold,
                     color = FwTheme.colors.blacks.secondary,
-                )
+                ),
             )
         }
     }
@@ -526,7 +528,7 @@ internal fun WeatherDetailDescriptionItemReversed(
                 text = title,
                 style = FwTheme.typography.spotPrimary.copy(
                     fontWeight = FontWeight.Medium,
-                )
+                ),
             )
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard2))
             Text(
@@ -534,7 +536,7 @@ internal fun WeatherDetailDescriptionItemReversed(
                 style = FwTheme.typography.bodySecondary.copy(
                     fontWeight = FontWeight.SemiBold,
                     color = FwTheme.colors.blacks.secondary,
-                )
+                ),
             )
         }
         Spacer(modifier = Modifier.width(FwTheme.dimens.standard12))
@@ -567,14 +569,14 @@ internal fun WeatherHourlyDescriptionItem(
     unit: Temperature,
 ) {
     // same for this
-    val isSelected = remember(currentTime) { currentTime.hour == weather.time.hour  }
+    val isSelected = remember(currentTime) { currentTime.hour == weather.time.hour }
     // should be in selectors
     val backgroundModifier = when {
         isSelected -> Modifier.background(
             color = FwTheme.colors.blues.light.copy(
                 alpha = 0.5f,
             ),
-            shape = RoundedCornerShape(FwTheme.dimens.standard48)
+            shape = RoundedCornerShape(FwTheme.dimens.standard48),
         )
         else -> Modifier
     }
@@ -611,7 +613,7 @@ internal fun WeatherHourlyDescriptionItem(
             text = selectMarkedTime(weather.time),
             style = FwTheme.typography.spotPrimary.copy(
                 fontWeight = FontWeight.Medium,
-            )
+            ),
         )
         Spacer(modifier = Modifier.height(FwTheme.dimens.standard2))
         Text(
@@ -636,7 +638,7 @@ private fun WeatherDescriptionPreview() {
                 .padding(
                     vertical = FwTheme.dimens.standard8,
                     horizontal = FwTheme.dimens.standard16,
-                )
+                ),
         ) {
             WeatherDescription(
                 state = WeatherDescriptionState(
@@ -663,7 +665,7 @@ private fun WeatherNextDayDescriptionItemPreview() {
                 .padding(
                     vertical = FwTheme.dimens.standard8,
                     horizontal = FwTheme.dimens.standard16,
-                )
+                ),
         ) {
             WeatherNextDayDescriptionItem(
                 currentDateTime = LocalDateTime.Companion.parse("2025-07-29T10:00:00"),
@@ -673,7 +675,7 @@ private fun WeatherNextDayDescriptionItemPreview() {
                         unit = Temperature.Celsius,
                     ),
                     weatherCode = WeatherCode.getOrThrow(22),
-                    date = LocalDateTime.Companion.parse("2025-07-30T10:00:00").date
+                    date = LocalDateTime.Companion.parse("2025-07-30T10:00:00").date,
                 ),
                 unit = Temperature.Celsius,
             )
@@ -693,7 +695,7 @@ private fun WeatherDescriptionItemPreview() {
         Column(
             modifier = Modifier
                 .background(brush = selectDayBackground())
-                .padding(FwTheme.dimens.standard8)
+                .padding(FwTheme.dimens.standard8),
         ) {
             WeatherDetailDescriptionItem(
                 title = stringResource(Res.string.forecast_ui_wind),
@@ -716,7 +718,7 @@ private fun WeatherDescriptionItemReversedPreview() {
         Column(
             modifier = Modifier
                 .background(brush = selectDayBackground())
-                .padding(FwTheme.dimens.standard8)
+                .padding(FwTheme.dimens.standard8),
         ) {
             WeatherDetailDescriptionItemReversed(
                 title = stringResource(Res.string.forecast_ui_temperature_felt),
@@ -734,7 +736,7 @@ private fun WeatherHourlyDescriptionItemPreview() {
         Column(
             modifier = Modifier
                 .background(Color.White)
-                .padding(FwTheme.dimens.standard8)
+                .padding(FwTheme.dimens.standard8),
         ) {
             WeatherHourlyDescriptionItem(
                 currentTime = LocalTime.fromSecondOfDay(3600),

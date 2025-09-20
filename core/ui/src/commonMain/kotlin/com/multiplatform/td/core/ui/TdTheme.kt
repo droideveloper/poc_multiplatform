@@ -254,7 +254,7 @@ private val tdColors = TdColors(
         primary = Color(0xFFFFFFFF),
         secondary = Color(0xFFF7F7FA),
         light = Color(0xFFF2F2F5),
-    )
+    ),
 )
 
 @Immutable
@@ -374,7 +374,9 @@ private val tdTypography
     )
 
 fun Color?.default(defaultColor: Color): Color {
-    return if (this == null || this == Color.Unspecified)
+    return if (this == null || this == Color.Unspecified) {
         defaultColor
-    else this
+    } else {
+        this
+    }
 }

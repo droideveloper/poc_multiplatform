@@ -34,7 +34,7 @@ class ForecastRepositoryBinder(
             service = network.create(
                 serviceFactory = { createForecastService() },
                 mockServiceFactory = { MockService.create() },
-            )
+            ),
         )
 
     private fun createDataTransformer(): DataTransformer<ForecastDto, Forecast> =

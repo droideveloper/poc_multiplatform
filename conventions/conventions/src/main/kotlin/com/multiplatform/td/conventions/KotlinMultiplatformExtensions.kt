@@ -6,12 +6,14 @@ import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 
 internal fun KotlinMultiplatformExtension.applyAndroidCompose(
     compose: ComposePlugin.Dependencies,
@@ -100,6 +102,10 @@ internal fun applyTargetKspMetadataDependencies(
         taskNames.forEach { taskName ->
             val task = target.tasks.find { it.name == taskName }
             task?.dependsOn("kspCommonMainKotlinMetadata")
+        }
+
+        tasks.withType(BaseKtLintCheckTask::class).configureEach {
+            dependsOn("kspCommonMainKotlinMetadata")
         }
     }
 }

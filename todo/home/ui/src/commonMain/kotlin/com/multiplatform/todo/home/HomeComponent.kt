@@ -53,13 +53,12 @@ internal fun TdFabButton(
             .size(TdTheme.dimens.standard48)
             .layout { measurable, constraints ->
                 val overriddenMeasure = measurable.measure(
-                    constraints = constraints
+                    constraints = constraints,
                 )
                 layout(overriddenMeasure.width, overriddenMeasure.height) {
                     overriddenMeasure.place(0, overriddenMeasure.toSeventhOfEightHeightMargin())
                 }
-            }
-        ,
+            },
         shape = RoundedCornerShape(TdTheme.dimens.standard24),
         onClick = { dispatch(HomeEvent.OnNewClicked) },
         containerColor = TdTheme.colors.deepOranges.primary,
@@ -95,7 +94,7 @@ internal fun TdBottomTabBar(
             indicator = { positions ->
                 SecondaryIndicator(
                     modifier = Modifier
-                        .tabTopIndicatorOffset(positions[index])
+                        .tabTopIndicatorOffset(positions[index]),
                 )
             },
             divider = {},
@@ -132,25 +131,25 @@ internal fun SecondaryIndicator(
 }
 
 internal fun Modifier.tabTopIndicatorOffset(
-    currentTabPosition: TabPosition
+    currentTabPosition: TabPosition,
 ): Modifier =
     composed(
         inspectorInfo =
         debugInspectorInfo {
             name = "tabIndicatorOffset"
             value = currentTabPosition
-        }
+        },
     ) {
         val currentTabWidth by
-        animateDpAsState(
-            targetValue = currentTabPosition.width,
-            animationSpec = TabRowIndicatorSpec
-        )
+            animateDpAsState(
+                targetValue = currentTabPosition.width,
+                animationSpec = TabRowIndicatorSpec,
+            )
         val indicatorOffset by
-        animateDpAsState(
-            targetValue = currentTabPosition.left,
-            animationSpec = TabRowIndicatorSpec
-        )
+            animateDpAsState(
+                targetValue = currentTabPosition.left,
+                animationSpec = TabRowIndicatorSpec,
+            )
         fillMaxWidth()
             .wrapContentSize(Alignment.TopStart)
             .offset { IntOffset(x = indicatorOffset.roundToPx(), y = 0) }

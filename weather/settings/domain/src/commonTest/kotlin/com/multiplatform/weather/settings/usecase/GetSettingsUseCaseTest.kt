@@ -20,7 +20,7 @@ internal class GetSettingsUseCaseTest {
             everySuspend { get() } returns Result.success(Settings.Defaults)
         }
 
-        val useCase =  GetSettingsUseCase(repository)
+        val useCase = GetSettingsUseCase(repository)
 
         val result = useCase()
 
@@ -36,7 +36,7 @@ internal class GetSettingsUseCaseTest {
             everySuspend { get() } throws error
         }
 
-        val useCase =  GetSettingsUseCase(repository)
+        val useCase = GetSettingsUseCase(repository)
 
         val result = useCase()
 

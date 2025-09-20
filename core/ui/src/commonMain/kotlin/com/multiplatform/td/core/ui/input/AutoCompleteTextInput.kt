@@ -43,7 +43,7 @@ fun TdAutoCompleteTextInput(
     }
     var expanded by remember(suggestions, value, isFocused) {
         mutableStateOf(
-            isFocused && suggestions.isNotEmpty() && !value.violatesRequired() && selectedItem != value.value
+            isFocused && suggestions.isNotEmpty() && !value.violatesRequired() && selectedItem != value.value,
         )
     }
     val handleSuggestionSelected: (suggestion: String) -> Unit = {
@@ -72,8 +72,9 @@ fun TdAutoCompleteTextInput(
             maxLength = 48,
             imeAction = imeAction,
         )
-        if (expanded)
+        if (expanded) {
             DropDownMenu(handleOnDismissRequested, suggestions, handleSuggestionSelected)
+        }
     }
 }
 
@@ -87,7 +88,7 @@ private fun DropDownMenu(
         properties = PopupProperties(
             focusable = false,
             dismissOnBackPress = true,
-            dismissOnClickOutside = true
+            dismissOnClickOutside = true,
         ),
         modifier = Modifier
             .fillMaxWidth()
@@ -95,7 +96,7 @@ private fun DropDownMenu(
             .background(TdTheme.colors.whites.primary)
             .testTag("text_input_suggestions"),
         expanded = true,
-        onDismissRequest = handleOnDismissRequested
+        onDismissRequest = handleOnDismissRequested,
     ) {
         suggestions.forEach {
             DropdownMenuItem(
@@ -112,7 +113,7 @@ private fun EmptyInput() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdAutoCompleteTextInput(
             value = InputValue.Default("Te"),
@@ -130,7 +131,7 @@ private fun InputWithValue() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdAutoCompleteTextInput(
             value = InputValue.Entered("Text entered"),
@@ -148,7 +149,7 @@ private fun InputWithError() = TdTheme {
     Box(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         TdAutoCompleteTextInput(
             value = InputValue.Entered("Text entered"),

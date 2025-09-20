@@ -86,9 +86,9 @@ private fun CalendarSuccessView(
                     icon = rememberVectorPainter(vectorResource(Res.drawable.ic_filter)),
                     onClick = { dispatch(CalendarEvent.OnFilterClicked) },
                     tint = TdTheme.colors.greys.primary,
-                )
+                ),
             )
-        }
+        },
     ) { paddingValues ->
         val scrollState = rememberScrollState()
         Column(
@@ -96,7 +96,7 @@ private fun CalendarSuccessView(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .verticalScroll(state = scrollState)
-                .background(color = TdTheme.colors.whites.primary)
+                .background(color = TdTheme.colors.whites.primary),
         ) {
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard36))
             CalendarWeekHeader(state.week, dispatch)

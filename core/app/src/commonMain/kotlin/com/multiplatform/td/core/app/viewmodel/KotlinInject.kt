@@ -30,7 +30,7 @@ inline fun <reified VM : ViewModel, reified P> kotlinInjectViewModel(
     key: String? = null,
     extras: CreationExtras = defaultExtras(viewModelStoreOwner),
     param: P,
-    noinline create: (param: P) -> VM
+    noinline create: (param: P) -> VM,
 ): VM {
     val factory = ParameterizedViewModelFactory(param, create)
     return resolveViewModel(
@@ -58,6 +58,3 @@ fun defaultExtras(viewModelStoreOwner: ViewModelStoreOwner): CreationExtras = wh
     viewModelStoreOwner is HasDefaultViewModelProviderFactory -> viewModelStoreOwner.defaultViewModelCreationExtras
     else -> CreationExtras.Empty
 }
-
-
-

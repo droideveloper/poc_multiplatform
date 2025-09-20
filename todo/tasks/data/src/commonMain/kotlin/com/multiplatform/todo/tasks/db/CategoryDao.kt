@@ -92,7 +92,6 @@ internal object MockDao {
                     else -> categories.remove(category)
                 }
             }
-
         }
 
     val taskDao: TaskDao get() =

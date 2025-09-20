@@ -49,8 +49,8 @@ internal fun WeatherDto.toDomain(): Map<LocalDate, List<Weather>> =
                 code = WeatherCode.getOrThrow(weatherCode),
                 pressure = PressureAmount.of(pressure),
                 wind = WindAmount.kmh(windSpeed),
-                humidity = HumidityAmount.of(humidity)
-            )
+                humidity = HumidityAmount.of(humidity),
+            ),
         )
     }
         .groupBy {

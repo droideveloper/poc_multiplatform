@@ -95,14 +95,14 @@ private fun SettingsSuccessView(
                 title = stringResource(Res.string.settings_title),
                 secondaryTitle = selectSecondaryTitle(),
             )
-        }
+        },
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = TdTheme.dimens.standard16)
-                .background(color = TdTheme.colors.whites.primary)
+                .background(color = TdTheme.colors.whites.primary),
         ) {
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard36))
             SettingsNotificationSection(state.settings.isNotificationEnabled, dispatch)
@@ -180,7 +180,7 @@ private fun SettingsNotifyBeforeSection(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 22.sp,
                     color = selectTitleColor(isEnabled),
-                )
+                ),
             )
             Spacer(modifier = Modifier.width(TdTheme.dimens.standard8))
             IconButton(
@@ -222,7 +222,7 @@ private fun SettingsSectionLayout(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 color = TdTheme.colors.blacks.secondary,
-            )
+            ),
         )
         Spacer(modifier = Modifier.weight(1f))
         content()
@@ -248,7 +248,7 @@ private fun SettingsVersionFooter(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 color = TdTheme.colors.blacks.secondary,
-            )
+            ),
         )
     }
 }

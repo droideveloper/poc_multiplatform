@@ -68,7 +68,7 @@ internal fun TdInputLabel(
     Text(
         text = text,
         modifier = Modifier.testTag("text_input_label"),
-        style = style
+        style = style,
     )
 }
 
@@ -103,11 +103,12 @@ internal fun TdInputError(text: String) {
 internal fun TdInputCounter(
     modifier: Modifier = Modifier,
     length: Int,
-    maxLength: Int
+    maxLength: Int,
 ) {
-    Box(modifier = Modifier
-        .padding(top = TdTheme.dimens.standard4)
-        .then(modifier),
+    Box(
+        modifier = Modifier
+            .padding(top = TdTheme.dimens.standard4)
+            .then(modifier),
     ) {
         Text(
             text = "$length / $maxLength",
@@ -135,7 +136,6 @@ internal fun TdInputClearButton(
     }
 }
 
-
 @Composable
 internal fun TdInputArrow(
     modifier: Modifier = Modifier,
@@ -143,12 +143,12 @@ internal fun TdInputArrow(
 ) {
     IconButton(
         onClick = onClick,
-        modifier = Modifier.testTag("input_arrow_down_button")
+        modifier = Modifier.testTag("input_arrow_down_button"),
     ) {
         Image(
             painter = rememberVectorPainter(Icons.Filled.ArrowDropDown),
             contentDescription = null,
-            modifier = Modifier.then(modifier)
+            modifier = Modifier.then(modifier),
         )
     }
 }

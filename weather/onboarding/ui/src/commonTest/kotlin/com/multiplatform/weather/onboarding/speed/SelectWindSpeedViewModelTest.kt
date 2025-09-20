@@ -51,7 +51,7 @@ internal class SelectWindSpeedViewModelTest : AbstractDispatcherTest() {
     }
 
     private val saveOnboardingUseCase by lazy { SaveOnboardingUseCase(onboardingRepository) }
-    private val getSettingsUseCase by lazy {  GetSettingsUseCase(repository) }
+    private val getSettingsUseCase by lazy { GetSettingsUseCase(repository) }
     private val saveSettingsUseCase by lazy { SaveSettingsUseCase(repository) }
     private val featureRouter = mock<FeatureRouter> {
         every { navigate(ForecastRoute.Forecast, forecastOptions) } returns Unit

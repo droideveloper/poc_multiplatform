@@ -40,7 +40,6 @@ kotlin {
 
                 implementation(libs.kotlin.inject.runtime)
 
-
                 implementation(libs.ktorfit.lib.light)
 
                 implementation(libs.navigation.compose)

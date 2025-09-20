@@ -7,6 +7,6 @@ internal interface TasksEvent {
     data object OnScreenViewed : TasksEvent
     data object OnFilterClicked : TasksEvent
     data class OnTaskClicked(
-        val task : Task
+        val task: Task,
     ) : TasksEvent
 }

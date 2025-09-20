@@ -63,7 +63,7 @@ internal fun TaskItemView(
                     color = TdTheme.colors.blacks.secondary,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
-                )
+                ),
             )
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
             Text(
@@ -73,7 +73,7 @@ internal fun TaskItemView(
                     fontSize = 16.sp,
                     color = TdTheme.colors.blacks.light,
                     fontWeight = FontWeight.SemiBold,
-                )
+                ),
             )
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
             TodayTaskFooter(
@@ -108,7 +108,7 @@ internal fun TodayTaskFooter(
                 fontSize = 14.sp,
                 color = selectContainerColor(category.color),
                 fontWeight = FontWeight.SemiBold,
-            )
+            ),
         )
         Spacer(modifier = Modifier.width(TdTheme.dimens.standard8))
         LocalDateTitle(
@@ -145,4 +145,3 @@ internal fun LocalDateTitle(
         )
     }
 }
-

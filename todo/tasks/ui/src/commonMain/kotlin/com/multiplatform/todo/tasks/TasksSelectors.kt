@@ -25,7 +25,8 @@ internal fun selectContainerColor(color: CategoryColor): Color =
 
 @Composable
 internal fun selectLocalDate(date: LocalDate): String {
-    val dateFormat = remember { LocalDate.Format {
+    val dateFormat = remember {
+        LocalDate.Format {
             day(Padding.ZERO)
             char(' ')
             monthName(MonthNames.ENGLISH_FULL)
@@ -38,7 +39,8 @@ internal fun selectLocalDate(date: LocalDate): String {
 
 @Composable
 internal fun selectLocalTime(time: LocalTime, duration: Duration): String {
-    val timeFormat = remember { LocalTime.Format {
+    val timeFormat = remember {
+        LocalTime.Format {
             hour(Padding.ZERO)
             char(':')
             minute(Padding.ZERO)
@@ -53,7 +55,7 @@ internal fun selectLocalTime(time: LocalTime, duration: Duration): String {
 internal fun selectSecondaryTitle(
     // may be provide this outside
     dateTime: LocalDateTime = Clock.System.now().toLocalDateTime(
-        timeZone = TimeZone.currentSystemDefault()
+        timeZone = TimeZone.currentSystemDefault(),
     ),
 ): String {
     val dateFormat = remember {

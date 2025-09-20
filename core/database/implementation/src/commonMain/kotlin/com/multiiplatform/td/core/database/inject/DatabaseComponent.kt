@@ -16,7 +16,7 @@ abstract class DatabaseComponent(
 }
 
 fun AppComponent.createDatabaseComponent(
-    databaseName: DatabaseName = DatabaseName.DefaultDatabase
+    databaseName: DatabaseName = DatabaseName.DefaultDatabase,
 ): DatabaseComponent = DatabaseComponent.create(
     appComponent = this,
     databaseName = databaseName,

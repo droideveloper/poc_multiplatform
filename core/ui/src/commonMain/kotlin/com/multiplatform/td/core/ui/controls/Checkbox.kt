@@ -36,7 +36,7 @@ fun TdCheckbox(
         modifier = modifier,
         shape = RoundedCornerShape(TdTheme.dimens.standard4),
         enabled = enabled,
-        onCheckedChange = onCheckedChange
+        onCheckedChange = onCheckedChange,
     )
 }
 
@@ -68,7 +68,7 @@ private fun Checkable(
     rippleColor: Color = TdTheme.colors.blacks.primary,
     borderColor: Color = TdTheme.colors.greys.primary,
 ) {
-    val interactionSource =  remember { MutableInteractionSource() }
+    val interactionSource = remember { MutableInteractionSource() }
     val indicationFactory = remember { RippleIndicationFactory(interactionSource, { rippleColor }) }
     Crossfade(
         targetState = checked,
@@ -82,10 +82,13 @@ private fun Checkable(
             ) {
                 onCheckedChange(it)
             }
-            .then(modifier)
+            .then(modifier),
     ) {
-        if (it) CheckboxChecked(shape)
-        else CheckboxUnchecked(shape, borderColor)
+        if (it) {
+            CheckboxChecked(shape)
+        } else {
+            CheckboxUnchecked(shape, borderColor)
+        }
     }
 }
 
@@ -97,7 +100,7 @@ private fun CheckboxChecked(shape: Shape) {
             .border(
                 width = TdTheme.dimens.standard1,
                 color = TdTheme.colors.oranges.primary,
-                shape = shape
+                shape = shape,
             ),
         contentAlignment = Alignment.Center,
     ) {
@@ -107,7 +110,7 @@ private fun CheckboxChecked(shape: Shape) {
             tint = TdTheme.colors.oranges.primary,
             modifier = Modifier
                 .size(TdTheme.dimens.standard16)
-                .clip(shape)
+                .clip(shape),
         )
     }
 }
@@ -115,7 +118,7 @@ private fun CheckboxChecked(shape: Shape) {
 @Composable
 private fun CheckboxUnchecked(
     shape: Shape,
-    borderColor: Color = TdTheme.colors.greys.primary
+    borderColor: Color = TdTheme.colors.greys.primary,
 ) {
     Box(
         modifier = Modifier
@@ -123,8 +126,8 @@ private fun CheckboxUnchecked(
             .border(
                 width = TdTheme.dimens.standard1,
                 color = borderColor,
-                shape = shape
-            )
+                shape = shape,
+            ),
     )
 }
 

@@ -32,7 +32,7 @@ import kotlin.time.ExperimentalTime
 
 internal data class ForecastState(
     val uiState: UiState = UiState.Loading,
-    val forecast : Forecast = Forecast.Defaults,
+    val forecast: Forecast = Forecast.Defaults,
     val settings: Settings = Settings.Defaults,
     val selectedCities: List<City> = emptyList(),
     val numberOfDays: Int = settings.days,
@@ -131,7 +131,6 @@ internal data class WeatherNextDayDescriptionState(
             else -> stringResource(Res.string.forecast_ui_next_day)
         }
     }
-
 }
 
 internal data class WeatherHourlyDescriptionState(

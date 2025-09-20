@@ -76,7 +76,7 @@ fun TdErrorScreenDefaultImage() {
         modifier = Modifier.sizeIn(
             minWidth = TdTheme.dimens.standard96,
             minHeight = TdTheme.dimens.standard96,
-        )
+        ),
     )
 }
 
@@ -152,9 +152,8 @@ private fun DefaultWithAction() = TdTheme {
                 primaryActionText = "Try Again",
                 onPrimaryActionClick = {},
                 secondaryActionText = "Back Home",
-                onSecondaryActionClick = {}
+                onSecondaryActionClick = {},
             )
-        }
+        },
     )
 }
-

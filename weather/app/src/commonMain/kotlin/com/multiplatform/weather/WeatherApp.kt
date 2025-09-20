@@ -17,13 +17,13 @@ import com.multiplatform.weather.settings.settingsGraph
 
 @Composable
 fun WeatherApp(
-    component: AppComponent
+    component: AppComponent,
 ) {
     val navController = rememberNavController()
 
     AppContext(component, navController) {
         DatabaseContext(
-            databaseName = DatabaseName.of("city_database")
+            databaseName = DatabaseName.of("city_database"),
         ) {
             DataStoreContext {
                 NavigationContext {

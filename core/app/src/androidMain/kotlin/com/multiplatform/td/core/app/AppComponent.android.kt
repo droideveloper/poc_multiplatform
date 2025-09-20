@@ -22,7 +22,8 @@ actual abstract class AppComponent(
     abstract val context: Context
 
     actual val version: AppVersion
-        @AppScope @Provides get() {
+        @AppScope @Provides
+        get() {
             val packageInfo = context.getPackageInfo()
             return AppVersion(packageInfo.versionOrDefault())
         }

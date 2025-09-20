@@ -12,14 +12,16 @@ import platform.Foundation.NSFileManager
 
 @AppScope
 @Component
-actual abstract class AppComponent : AppModule, CoroutinesModule, EnvironmentModule  {
+actual abstract class AppComponent : AppModule, CoroutinesModule, EnvironmentModule {
     actual companion object;
 
     val fileManager: NSFileManager
-        @AppScope @Provides get() = NSFileManager.defaultManager
+        @AppScope @Provides
+        get() = NSFileManager.defaultManager
 
     actual val version: AppVersion
-        @AppScope @Provides get() {
+        @AppScope @Provides
+        get() {
             val bundle = NSBundle.mainBundle
             return AppVersion(bundle.versionOrDefault())
         }
@@ -27,7 +29,6 @@ actual abstract class AppComponent : AppModule, CoroutinesModule, EnvironmentMod
 
 @KmpComponentCreate
 expect fun createAppComponent(): AppComponent
-
 
 internal const val VersionStringKey = "CFBundleShortVersionString"
 internal const val VersionStringDefault = "1.0"

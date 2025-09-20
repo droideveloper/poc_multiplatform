@@ -103,9 +103,9 @@ private fun MainSuccessView(
                     icon = rememberVectorPainter(vectorResource(Res.drawable.ic_filter)),
                     onClick = { dispatch(MainEvent.OnFilterClicked) },
                     tint = TdTheme.colors.greys.primary,
-                )
+                ),
             )
-        }
+        },
     ) { paddingValues ->
         val scrollState = rememberScrollState()
         Column(
@@ -113,7 +113,7 @@ private fun MainSuccessView(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .verticalScroll(state = scrollState)
-                .background(color = TdTheme.colors.whites.primary)
+                .background(color = TdTheme.colors.whites.primary),
         ) {
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard36))
             TodayScheduleSection(state.todayTasks, onViewMoreClick, dispatch)
@@ -132,7 +132,7 @@ private fun TodayScheduleSection(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = TdTheme.dimens.standard16)
+            .padding(horizontal = TdTheme.dimens.standard16),
     ) {
         TodaySectionHeader(
             title = stringResource(Res.string.main_tasks_for_today_title),
@@ -153,7 +153,7 @@ private fun TodayScheduleSection(
             ) { task ->
                 TodayTask(
                     progress = {
-                        when(val progress = task.selectProgress()) {
+                        when (val progress = task.selectProgress()) {
                             Float.NaN -> 0F
                             else -> progress
                         }
@@ -184,7 +184,7 @@ private fun TodaySectionHeader(
                 fontSize = 21.sp,
                 fontWeight = FontWeight.Bold,
                 color = TdTheme.colors.blacks.primary,
-            )
+            ),
         )
         TdTextLinkButton(
             text = secondaryTitle,
@@ -207,7 +207,7 @@ private fun TodayTasksSection(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = TdTheme.dimens.standard16)
+            .padding(horizontal = TdTheme.dimens.standard16),
     ) {
         TodaySectionHeader(
             title = stringResource(Res.string.main_today_schedule_title),

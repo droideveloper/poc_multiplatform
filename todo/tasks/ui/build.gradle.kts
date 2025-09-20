@@ -6,7 +6,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain{
+        commonMain {
             dependencies {
                 implementation(projects.todo.tasks.data)
                 implementation(projects.todo.tasks.domain)

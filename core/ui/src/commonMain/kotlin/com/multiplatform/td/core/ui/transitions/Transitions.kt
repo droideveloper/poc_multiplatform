@@ -37,4 +37,3 @@ fun AnimatedContentTransitionScope<NavBackStackEntry>.fadeInTransition() =
         initialAlpha = 0.5f,
         animationSpec = tween(easing = WeirdEasing, durationMillis = 300),
     )
-

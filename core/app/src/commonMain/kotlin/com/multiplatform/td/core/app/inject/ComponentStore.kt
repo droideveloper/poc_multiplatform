@@ -4,7 +4,7 @@ import kotlin.reflect.KClass
 
 interface ComponentStore {
 
-    fun <T : Any> storeIfNotExists(clazz: KClass<T>, factory: () -> T) : T
+    fun <T : Any> storeIfNotExists(clazz: KClass<T>, factory: () -> T): T
     fun <T : Any> removeIfExists(clazz: KClass<T>): T?
 }
 

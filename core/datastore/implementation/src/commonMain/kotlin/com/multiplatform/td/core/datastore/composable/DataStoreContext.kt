@@ -31,7 +31,7 @@ fun DataStoreContext(
     }
 
     CompositionLocalProvider(
-        LocalDataSoreComponent provides dataStoreComponent
+        LocalDataSoreComponent provides dataStoreComponent,
     ) {
         content()
     }

@@ -16,7 +16,7 @@ internal class SettingsViewModel(
     private val saveSettingsUseCase: SaveSettingsUseCase,
     version: AppVersion,
 ) : MviViewModel<SettingsEvent, SettingsState>(
-    initialState = SettingsState(version = version)
+    initialState = SettingsState(version = version),
 ) {
 
     init {
@@ -27,21 +27,21 @@ internal class SettingsViewModel(
             saveSettings(
                 settings = state.settings.copy(
                     isNotificationEnabled = it.enabled,
-                )
+                ),
             )
         }
         onClick<SettingsEvent.OnChange.Duration.Increment> {
             saveSettings(
                 settings = state.settings.copy(
                     notifyBefore = state.settings.notifyBefore.plus(1.minutes),
-                )
+                ),
             )
         }
         onClick<SettingsEvent.OnChange.Duration.Decrement> {
             saveSettings(
                 settings = state.settings.copy(
                     notifyBefore = state.settings.notifyBefore.minus(1.minutes),
-                )
+                ),
             )
         }
         viewModelScope.launch { collectInitialState() }

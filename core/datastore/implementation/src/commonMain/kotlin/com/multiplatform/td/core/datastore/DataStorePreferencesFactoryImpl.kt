@@ -12,6 +12,6 @@ internal class DataStorePreferencesFactoryImpl(
 
     override fun invoke(): DataStore<Preferences> =
         createDataStore(
-            args = dataStoreArgsFactory()
+            args = dataStoreArgsFactory(),
         )
 }

@@ -44,12 +44,12 @@ fun TdBottomCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
+                .wrapContentHeight(),
         ) {
             AnimatedVisibility(
                 visible = isCloseVisible,
                 modifier = Modifier
-                    .align(Alignment.End)
+                    .align(Alignment.End),
             ) {
                 IconButton(
                     modifier = Modifier

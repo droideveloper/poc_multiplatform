@@ -23,24 +23,26 @@ import kotlin.time.DurationUnit
 
 @Composable
 internal fun selectLocalDate(date: LocalDate): String {
-    val dateFormat = remember { LocalDate.Format {
-        day(Padding.ZERO)
-        char(' ')
-        monthName(MonthNames.ENGLISH_FULL)
-        char(' ')
-        year()
-    }
+    val dateFormat = remember {
+        LocalDate.Format {
+            day(Padding.ZERO)
+            char(' ')
+            monthName(MonthNames.ENGLISH_FULL)
+            char(' ')
+            year()
+        }
     }
     return dateFormat.format(date)
 }
 
 @Composable
 internal fun selectLocalTime(time: LocalTime, duration: Duration): String {
-    val timeFormat = remember { LocalTime.Format {
-        hour(Padding.ZERO)
-        char(':')
-        minute(Padding.ZERO)
-    }
+    val timeFormat = remember {
+        LocalTime.Format {
+            hour(Padding.ZERO)
+            char(':')
+            minute(Padding.ZERO)
+        }
     }
     val ms = time.toMillisecondOfDay() + duration.toInt(DurationUnit.MILLISECONDS)
     val next = LocalTime.fromMillisecondOfDay(ms)
@@ -54,10 +56,10 @@ internal fun selectContainerColor(color: CategoryColor): Color =
 @Composable
 internal fun List<Task>.selectTaskComposable(
     onTaskClick: (Task) -> Unit,
-    onCategoryClick : (Category) -> Unit,
+    onCategoryClick: (Category) -> Unit,
 ): Map<Int, @Composable () -> Unit> =
     associateBy(
-        keySelector =  {
+        keySelector = {
             // if spot is 24, pick as it is, else increment and pick
             when (val hour = it.dueDateTime.hour) {
                 24 -> hour
@@ -76,7 +78,7 @@ internal fun List<Task>.selectTaskComposable(
                     onTaskClick = onTaskClick,
                 )
             }
-        }
+        },
     )
 
 internal fun TaskSubTasks.selectProgress(): Float {

@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
-import com.multiplatform.weather.core.ui.FwLoadingOverlay
-import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.core.measure.Temperature
+import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.ContinueButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
 import com.multiplatform.weather.onboarding.OnboardingLayout
@@ -52,7 +52,6 @@ internal fun SelectTemperatureUi(
     OnScreenStart { dispatch(SelectTemperatureEvent.OnScreenViewed) }
 }
 
-
 @Composable
 internal fun SelectTemperatureSuccessView(
     isEnabled: Boolean,
@@ -69,7 +68,7 @@ internal fun SelectTemperatureSuccessView(
                     dispatch(SelectTemperatureEvent.OnBackClicked)
                 },
             )
-        }
+        },
     ) {
         OnboardingLayout(
             modifier = Modifier

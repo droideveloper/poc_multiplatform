@@ -23,7 +23,7 @@ internal class SelectTemperatureViewModel(
 ) {
 
     init {
-        on<SelectTemperatureEvent.OnScreenViewed> {  }
+        on<SelectTemperatureEvent.OnScreenViewed> { }
         onClick<SelectTemperatureEvent.OnTryAgainClicked> {
             state = state.copy(uiState = UiState.Loading)
             collectInitialState()
@@ -43,7 +43,7 @@ internal class SelectTemperatureViewModel(
     private suspend fun collectInitialState() = runCatching {
         val saved = getSettingsUseCase()
         saved.fold(
-            onSuccess =  {
+            onSuccess = {
                 updateState(temperature = it.temperatureUnit)
             },
             onFailure = {
@@ -51,11 +51,11 @@ internal class SelectTemperatureViewModel(
                     .getOrThrow()
 
                 updateState(temperature = Settings.Defaults.temperatureUnit)
-            }
+            },
         )
     }.onFailure {
         state = state.copy(
-            uiState = UiState.Failure.Text(it.message ?: "unknown error")
+            uiState = UiState.Failure.Text(it.message ?: "unknown error"),
         )
     }
 

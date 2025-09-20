@@ -6,7 +6,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.coroutines)
-            
+
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 

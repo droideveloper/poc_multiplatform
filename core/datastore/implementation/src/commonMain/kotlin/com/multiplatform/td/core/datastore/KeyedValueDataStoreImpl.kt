@@ -44,7 +44,7 @@ internal class KeyedValueDataStoreImpl(
 
     override fun <T : Any> getValueFlow(
         key: Result<DataStoreKey>,
-        valueClass: KClass<T>
+        valueClass: KClass<T>,
     ): Flow<Result<T>> {
         val k = key.getOrThrow()
         return getResultFlow(k.storeKey) {
@@ -67,7 +67,7 @@ internal class KeyedValueDataStoreImpl(
     override suspend fun <T : Any> getSerializable(
         key: Result<DataStoreKey>,
         valueType: KType,
-    ): Result<T> = runCatching{
+    ): Result<T> = runCatching {
         val k = key.getOrThrow()
         getResult(k.storeKey) {
             get<T>(k.storeKey, valueType)
@@ -77,7 +77,7 @@ internal class KeyedValueDataStoreImpl(
 
     override fun <T : Any> getSerializableFlow(
         key: Result<DataStoreKey>,
-        valueType: KType
+        valueType: KType,
     ): Flow<Result<T>> {
         val k = key.getOrThrow()
         return getResultFlow(k.storeKey) {
@@ -110,7 +110,7 @@ internal class KeyedValueDataStoreImpl(
 
     private fun <T> Preferences.get(key: String, type: KType): T? {
         return this[stringPreferencesKey(key)]
-            ?.let { serializer.fromString<T>(type, it).getOrThrow()  }
+            ?.let { serializer.fromString<T>(type, it).getOrThrow() }
             ?: throw KeyedValueDataStoreException.NotFoundException(key)
     }
 
@@ -133,7 +133,7 @@ internal class KeyedValueDataStoreImpl(
         .catch { throw it }
 
     @Suppress("UNCHECKED_CAST")
-    private fun < T: Any> Preferences.get(key: String, clazz: KClass<T>): T? {
+    private fun <T : Any> Preferences.get(key: String, clazz: KClass<T>): T? {
         return when (clazz) {
             Boolean::class -> this[booleanPreferencesKey(key)] as T
             Int::class -> this[intPreferencesKey(key)] as T
@@ -147,25 +147,31 @@ internal class KeyedValueDataStoreImpl(
     }
 
     private operator fun <T> MutablePreferences.set(key: String, type: KType, value: T) {
-        if (value == null) this -= stringPreferencesKey(key)
-        else this[stringPreferencesKey(key)] = serializer.toString(type, value).getOrThrow()
-    }
-
-    private operator fun <T> MutablePreferences.set(key: String, value: T) {
-        if (value == null) this -= stringPreferencesKey(key)
-        else when (value) {
-            is Boolean -> this[booleanPreferencesKey(key)] = value
-            is Int -> this[intPreferencesKey(key)] = value
-            is Long -> this[longPreferencesKey(key)] = value
-            is Float -> this[floatPreferencesKey(key)] = value
-            is Double -> this[doublePreferencesKey(key)] = value
-            is String -> this[stringPreferencesKey(key)] = value
-            is ByteArray -> this[byteArrayPreferencesKey(key)] = value
-            else -> throw IllegalArgumentException("Cannot set value for key `$key = $value`")
+        if (value == null) {
+            this -= stringPreferencesKey(key)
+        } else {
+            this[stringPreferencesKey(key)] = serializer.toString(type, value).getOrThrow()
         }
     }
 
-    private fun <T: Any> Preferences.getStoreKeys(storeKey: String): List<Preferences.Key<T>> {
+    private operator fun <T> MutablePreferences.set(key: String, value: T) {
+        if (value == null) {
+            this -= stringPreferencesKey(key)
+        } else {
+            when (value) {
+                is Boolean -> this[booleanPreferencesKey(key)] = value
+                is Int -> this[intPreferencesKey(key)] = value
+                is Long -> this[longPreferencesKey(key)] = value
+                is Float -> this[floatPreferencesKey(key)] = value
+                is Double -> this[doublePreferencesKey(key)] = value
+                is String -> this[stringPreferencesKey(key)] = value
+                is ByteArray -> this[byteArrayPreferencesKey(key)] = value
+                else -> throw IllegalArgumentException("Cannot set value for key `$key = $value`")
+            }
+        }
+    }
+
+    private fun <T : Any> Preferences.getStoreKeys(storeKey: String): List<Preferences.Key<T>> {
         return asMap()
             .keys
             .asSequence()
@@ -173,7 +179,7 @@ internal class KeyedValueDataStoreImpl(
                 DataStoreKey.get(key.name)
                     .fold(
                         onSuccess = { it.storeKey == storeKey },
-                        onFailure = { false }
+                        onFailure = { false },
                     )
             }
             .map {

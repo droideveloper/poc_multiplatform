@@ -17,5 +17,8 @@ ktlint_standard_class-signature = disabled
 ktlint_function_naming_ignore_when_annotated_with = Composable
 ktlint_property_naming_constant_naming = pascal_case
 
+[buildkonfig/*.{kt,kts}]
+ktlint_standard_indent = disabled
+
 [*.{yml,yaml}]
 indent_size = 2

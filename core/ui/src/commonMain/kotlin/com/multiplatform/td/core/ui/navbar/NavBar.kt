@@ -41,7 +41,7 @@ fun TdNavBar(
 @Composable
 internal fun ToolbarTitle(
     text: String,
-    style: TextStyle? = null
+    style: TextStyle? = null,
 ) {
     Text(
         text = text,
@@ -55,7 +55,7 @@ internal fun ToolbarTitle(
 @Composable
 internal fun ToolbarSecondaryTitle(
     text: String,
-    style: TextStyle? = null
+    style: TextStyle? = null,
 ) {
     Text(
         text = text,
@@ -69,7 +69,7 @@ internal fun ToolbarSecondaryTitle(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun selectToolbarColor(color: Color) = TopAppBarDefaults.topAppBarColors().copy(
-    containerColor = color.default(TdTheme.colors.whites.primary)
+    containerColor = color.default(TdTheme.colors.whites.primary),
 )
 
 @Preview
@@ -79,7 +79,7 @@ private fun TodoNavBarArrowPreview() {
         TdNavBar(
             modifier = Modifier.fillMaxWidth(),
             title = NavBarDefaults.Title.Default.Text("Title"),
-            navAction = NavBarDefaults.ArrowBackAction {  },
+            navAction = NavBarDefaults.ArrowBackAction { },
         )
     }
 }
@@ -100,7 +100,7 @@ private fun TodoNavBarNoTitlePreview() {
     TdTheme {
         TdNavBar(
             modifier = Modifier.fillMaxWidth(),
-            navAction = NavBarDefaults.CloseAction {  },
+            navAction = NavBarDefaults.CloseAction { },
         )
     }
 }
@@ -112,7 +112,7 @@ private fun TodoNavBarClosePreview() {
         TdNavBar(
             modifier = Modifier.fillMaxWidth(),
             title = NavBarDefaults.Title.Default.Text("Title"),
-            navAction = NavBarDefaults.CloseAction {  },
+            navAction = NavBarDefaults.CloseAction { },
         )
     }
 }
@@ -127,10 +127,10 @@ private fun TodoNavBarCloseEndActionsPreview() {
                 title = "Title",
                 secondaryTitle = "Secondary Title",
             ),
-            navAction = NavBarDefaults.CloseAction {  },
+            navAction = NavBarDefaults.CloseAction { },
             actions = {
-                NavBarDefaults.Action.Text("Settings") {  }.Content()
-            }
+                NavBarDefaults.Action.Text("Settings") { }.Content()
+            },
         )
     }
 }

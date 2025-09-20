@@ -8,5 +8,5 @@ actual data class DatabaseBuilderArgs(
 )
 
 actual inline fun <reified T : RoomDatabase> createDatabaseBuilder(
-    args: DatabaseBuilderArgs
+    args: DatabaseBuilderArgs,
 ): RoomDatabase.Builder<T> = Room.databaseBuilder(args.name)

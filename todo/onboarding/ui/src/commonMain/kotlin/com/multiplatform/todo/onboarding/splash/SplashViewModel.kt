@@ -13,7 +13,7 @@ internal class SplashViewModel(
     private val featureRouter: FeatureRouter,
     private val getOnboardingUseCase: GetOnboardingUseCase,
 ) : MviViewModel<SplashEvent, SplashState>(
-     initialState = SplashState()
+    initialState = SplashState(),
 ) {
 
     init {
@@ -34,7 +34,7 @@ internal class SplashViewModel(
             },
             onFailure = {
                 // show error ? try again ? what we gone try again :D
-            }
+            },
         )
     }
 }

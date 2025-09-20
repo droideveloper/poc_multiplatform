@@ -39,7 +39,7 @@ internal fun TdButtonIcon(iconResource: ImageVector, iconSize: Dp) {
             contentDescription = null,
             modifier = Modifier
                 .size(iconSize)
-                .testTag("button_icon")
+                .testTag("button_icon"),
         )
     }
 }
@@ -51,6 +51,6 @@ internal fun TdButtonText(text: String, textStyle: TextStyle, color: Color) {
         style = textStyle,
         color = color,
         textAlign = TextAlign.Center,
-        modifier = Modifier.testTag("button_text")
+        modifier = Modifier.testTag("button_text"),
     )
 }

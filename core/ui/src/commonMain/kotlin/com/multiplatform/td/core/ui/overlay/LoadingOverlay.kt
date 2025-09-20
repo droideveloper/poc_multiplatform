@@ -46,7 +46,7 @@ fun TdLoadingOverlay() {
                 textAlign = TextAlign.Center,
                 style = TdTheme.typography.bodyMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
-                )
+                ),
             )
         }
     }
@@ -57,5 +57,3 @@ fun TdLoadingOverlay() {
 private fun Preview() = TdTheme {
     TdLoadingOverlay()
 }
-
-

@@ -53,7 +53,7 @@ import kotlin.time.DurationUnit
 @Composable
 fun CityWidget(
     onCitySelect: (City) -> Unit = {},
-    onCityRemoved : (City) -> Unit = {},
+    onCityRemoved: (City) -> Unit = {},
     allowLastSelectionRemoval: Boolean = true,
 ) {
     val component = rememberCityComponent()
@@ -89,7 +89,7 @@ private fun CityUi(
     state: CityState,
     allowLastSelectionRemoval: Boolean,
     onCitySelect: (City) -> Unit,
-    onCityRemoved : (City) -> Unit,
+    onCityRemoved: (City) -> Unit,
     dispatch: (CityEvent) -> Unit,
 ) {
     when (val uiState = state.uiState) {
@@ -120,7 +120,7 @@ private fun CityLoadingView() {
             .height(FwTheme.dimens.standard16)
             .background(
                 color = FwTheme.colors.greys.light.copy(
-                    alpha = .35f
+                    alpha = .35f,
                 ),
                 shape = RoundedCornerShape(FwTheme.dimens.standard8),
             )
@@ -169,12 +169,13 @@ private fun BoxScope.SimmerEffect(
         start = Offset(x = translateAnimation.value - widthOfShadowBrush, y = 0f),
         end = Offset(x = translateAnimation.value, y = angleOfAxisY),
     )
-    Box(modifier = Modifier
-        .matchParentSize()
-        .background(
-            color = Color.Transparent,
-            shape = RoundedCornerShape(FwTheme.dimens.standard8),
-        )
+    Box(
+        modifier = Modifier
+            .matchParentSize()
+            .background(
+                color = Color.Transparent,
+                shape = RoundedCornerShape(FwTheme.dimens.standard8),
+            ),
     ) {
         Spacer(
             modifier = Modifier
@@ -182,7 +183,7 @@ private fun BoxScope.SimmerEffect(
                 .background(
                     brush = brush,
                     shape = RoundedCornerShape(FwTheme.dimens.standard8),
-                )
+                ),
         )
     }
 }
@@ -238,13 +239,13 @@ private fun CitySuccessView(
     cities: List<City>,
     selectedCities: List<City>,
     onCitySelect: (City) -> Unit,
-    onCityRemoved : (City) -> Unit,
+    onCityRemoved: (City) -> Unit,
     dispatch: (CityEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier
             .padding(horizontal = FwTheme.dimens.standard8)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         FwAutoCompleteCityInput(
             modifier = Modifier.fillMaxWidth(),
@@ -260,7 +261,7 @@ private fun CitySuccessView(
                     if (allowLastSelectionRemoval) {
                         dispatch(CityEvent.Operation.Remove(it.value))
                         onCityRemoved(it.value)
-                    } else if (size > 1){
+                    } else if (size > 1) {
                         dispatch(CityEvent.Operation.Remove(it.value))
                         onCityRemoved(it.value)
                     }
@@ -308,7 +309,7 @@ private fun CitySuccessViewPreview() {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(brush = selectDayBackground())
-                .padding(top = FwTheme.dimens.standard8)
+                .padding(top = FwTheme.dimens.standard8),
         ) {
             CitySuccessView(
                 allowLastSelectionRemoval = true,
@@ -333,7 +334,7 @@ private fun CityFailureViewPreview() {
         ) {
             CityFailureView(
                 uiState = UiState.Failure.Text(
-                    message = "Sorry can not help you with that right now"
+                    message = "Sorry can not help you with that right now",
                 ),
                 dispatch = {},
             )

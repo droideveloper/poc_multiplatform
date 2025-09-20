@@ -48,7 +48,7 @@ internal fun FwInputLabel(
     Text(
         text = text,
         modifier = Modifier.testTag("text_input_label"),
-        style = style
+        style = style,
     )
 }
 
@@ -83,11 +83,12 @@ internal fun FwInputError(text: String) {
 internal fun FwInputCounter(
     modifier: Modifier = Modifier,
     length: Int,
-    maxLength: Int
+    maxLength: Int,
 ) {
-    Box(modifier = Modifier
-        .padding(top = FwTheme.dimens.standard4)
-        .then(modifier),
+    Box(
+        modifier = Modifier
+            .padding(top = FwTheme.dimens.standard4)
+            .then(modifier),
     ) {
         Text(
             text = "$length / $maxLength",

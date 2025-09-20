@@ -22,7 +22,7 @@ internal class SelectCityViewModel(
     private var selectedCities = emptyList<City>()
 
     init {
-        on<SelectCityEvent.OnScreenViewed> {  }
+        on<SelectCityEvent.OnScreenViewed> { }
         onClick<SelectCityEvent.OnTryAgainClicked> {
             state = state.copy(uiState = UiState.Loading)
             collectInitialState()
@@ -50,7 +50,7 @@ internal class SelectCityViewModel(
             },
             onFailure = {
                 updateUiState(isEnabled = false)
-            }
+            },
         )
     }
 

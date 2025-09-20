@@ -38,4 +38,3 @@ internal class FeatureRouterImpl(
         }
     }
 }
-

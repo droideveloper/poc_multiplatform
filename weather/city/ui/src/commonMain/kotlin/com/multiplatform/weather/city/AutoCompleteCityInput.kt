@@ -90,8 +90,9 @@ internal fun FwAutoCompleteCityInput(
         SelectedCities(selectedValues) {
             onValueRemove(InputValue.Entered(it))
         }
-        if (expanded)
+        if (expanded) {
             DropDownMenu(handleOnDismissRequested, suggestions, handleSuggestionSelected)
+        }
     }
 }
 
@@ -108,7 +109,7 @@ private fun SelectedCities(
             )
             .fillMaxWidth()
             .wrapContentHeight(),
-        verticalArrangement = Arrangement.spacedBy(FwTheme.dimens.standard8)
+        verticalArrangement = Arrangement.spacedBy(FwTheme.dimens.standard8),
     ) {
         itemsIndexed(items = selectedValues) { index, item ->
             CityView(item, onClick = onValueRemove) {
@@ -146,7 +147,7 @@ private fun ColumnScope.DropDownMenu(
         properties = PopupProperties(
             focusable = false,
             dismissOnBackPress = true,
-            dismissOnClickOutside = true
+            dismissOnClickOutside = true,
         ),
         modifier = Modifier
             .weight(0.5f)
@@ -154,7 +155,7 @@ private fun ColumnScope.DropDownMenu(
             .background(FwTheme.colors.whites.secondary)
             .testTag("text_input_suggestions"),
         expanded = true,
-        onDismissRequest = handleOnDismissRequested
+        onDismissRequest = handleOnDismissRequested,
     ) {
         suggestions.forEach {
             DropdownMenuItem(

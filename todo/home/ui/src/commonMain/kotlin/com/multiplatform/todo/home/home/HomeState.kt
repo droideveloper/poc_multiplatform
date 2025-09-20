@@ -61,4 +61,3 @@ private val DefaultMenuItems = listOf(
     MenuItem.Calender(),
     MenuItem.Settings(),
 )
-

@@ -81,7 +81,7 @@ internal fun rememberMeasureComponent(): MeasureComponent {
 @Composable
 internal fun selectTemperature(
     temperature: TemperatureAmount,
-    unit: Temperature
+    unit: Temperature,
 ): String {
     val component = rememberMeasureComponent()
     val temperatureFormatter = remember { component.temperatureAmountFormatter }
@@ -131,7 +131,13 @@ internal fun selectPressure(pressure: PressureAmount): String {
 
 @Composable
 internal fun selectTime(time: LocalTime): String {
-    val timeFormat = remember { LocalTime.Format { hour(); char(':'); minute(); } }
+    val timeFormat = remember {
+        LocalTime.Format {
+            hour()
+            char(':')
+            minute()
+        }
+    }
     return time.format(format = timeFormat)
 }
 
@@ -139,8 +145,15 @@ internal fun selectTime(time: LocalTime): String {
 internal fun selectCurrentDateTime(dateTime: LocalDateTime): String {
     val dateTimeFormat = remember {
         LocalDateTime.Format {
-            day(Padding.NONE); char(' '); monthName(MonthNames.ENGLISH_ABBREVIATED); char(' ')
-            amPmHour(Padding.NONE); char(':'); minute(); char(' '); amPmMarker("am", "pm")
+            day(Padding.NONE)
+            char(' ')
+            monthName(MonthNames.ENGLISH_ABBREVIATED)
+            char(' ')
+            amPmHour(Padding.NONE)
+            char(':')
+            minute()
+            char(' ')
+            amPmMarker("am", "pm")
         }
     }
     val today = stringResource(Res.string.forecast_ui_today)
@@ -150,7 +163,11 @@ internal fun selectCurrentDateTime(dateTime: LocalDateTime): String {
 @Composable
 internal fun selectMarkedTime(time: LocalTime): String {
     val timeFormat = remember {
-        LocalTime.Format { amPmHour(Padding.NONE); char(' '); amPmMarker("AM", "PM") }
+        LocalTime.Format {
+            amPmHour(Padding.NONE)
+            char(' ')
+            amPmMarker("AM", "PM")
+        }
     }
     return timeFormat.format(time)
 }
@@ -159,12 +176,15 @@ internal fun selectMarkedTime(time: LocalTime): String {
 internal fun selectLocalDate(date: LocalDate): AnnotatedString {
     val dayFormat = remember {
         LocalDate.Format {
-            dayOfWeek(DayOfWeekNames.ENGLISH_FULL); char('\n')
+            dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
+            char('\n')
         }
     }
     val dateFormat = remember {
         LocalDate.Format {
-            day(Padding.NONE); char(' '); monthName(MonthNames.ENGLISH_ABBREVIATED);
+            day(Padding.NONE)
+            char(' ')
+            monthName(MonthNames.ENGLISH_ABBREVIATED)
         }
     }
 

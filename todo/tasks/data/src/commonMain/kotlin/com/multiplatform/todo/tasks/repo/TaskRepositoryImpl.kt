@@ -4,9 +4,9 @@ import com.multiplatform.todo.tasks.Task
 import com.multiplatform.todo.tasks.TaskSubTasks
 import com.multiplatform.todo.tasks.db.CategoryDao
 import com.multiplatform.todo.tasks.db.TaskDao
+import com.multiplatform.todo.tasks.error.TaskException
 import com.multiplatform.todo.tasks.mapper.toData
 import com.multiplatform.todo.tasks.mapper.toDomain
-import com.multiplatform.todo.tasks.error.TaskException
 import kotlinx.datetime.LocalDate
 
 internal class TaskRepositoryImpl(
@@ -49,7 +49,7 @@ internal class TaskRepositoryImpl(
 
     override suspend fun taskSubTasks(): Result<List<TaskSubTasks>> = runCatching {
         val categories = categoryDao.categories().map { it.toDomain() }
-        val result =  dao.tasksWithSubTasks()
+        val result = dao.tasksWithSubTasks()
         when {
             result.isEmpty() -> throw TaskException.EmptyData
             else ->

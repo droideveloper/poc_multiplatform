@@ -14,7 +14,6 @@ import androidx.compose.ui.semantics.semantics
 val DrawableResource = SemanticsPropertyKey<ImageVector>("ImageVector")
 var SemanticsPropertyReceiver.drawableResource by DrawableResource
 
-
 @Composable
 fun TdImage(
     resource: ImageVector,

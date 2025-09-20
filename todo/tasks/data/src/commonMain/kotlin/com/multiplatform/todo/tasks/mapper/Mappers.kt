@@ -53,7 +53,7 @@ internal fun Task.toData(): TaskDto = TaskDto(
     description = description,
     dueDateTime = dueDateTime.toData(),
     duration = duration.toData(),
-    status = status.toData()
+    status = status.toData(),
 )
 
 internal fun TaskWithSubTasksDto.toDomain(
@@ -75,7 +75,7 @@ internal fun CategoryWithTasksDto.toDomain(): CategoryTasks {
     val category = category.toDomain()
     return CategoryTasks(
         category = category,
-        tasks = tasks.map { it.toDomain(category = category) }
+        tasks = tasks.map { it.toDomain(category = category) },
     )
 }
 

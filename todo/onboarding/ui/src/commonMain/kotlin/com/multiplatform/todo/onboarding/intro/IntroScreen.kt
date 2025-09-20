@@ -8,7 +8,7 @@ import com.multiplatform.todo.onboarding.inject.rememberOnboardingComponent
 internal fun IntroScreen() {
     val component = rememberOnboardingComponent()
     val viewModel = kotlinInjectViewModel(
-        create =  component.introViewModelFactory,
+        create = component.introViewModelFactory,
     )
     IntroUi(viewModel.state, viewModel::dispatch)
 }
@@ -32,4 +32,3 @@ private fun IntroSuccessView(
 ) {
     // TODO implement this ui starting user with onboarding where means initial load or cleaned up app state
 }
-

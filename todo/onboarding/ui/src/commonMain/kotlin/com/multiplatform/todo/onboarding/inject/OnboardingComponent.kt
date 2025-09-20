@@ -3,8 +3,8 @@ package com.multiplatform.todo.onboarding.inject
 import com.multiplatform.td.core.datastore.inject.DataStoreComponent
 import com.multiplatform.td.core.injection.scopes.FeatureScope
 import com.multiplatform.td.core.navigation.inject.NavigationComponent
-import com.multiplatform.todo.onboarding.repo.GeneratedBinderModule
 import com.multiplatform.todo.onboarding.GeneratedViewModelModule
+import com.multiplatform.todo.onboarding.repo.GeneratedBinderModule
 import me.tatarka.inject.annotations.Component
 import me.tatarka.inject.annotations.KmpComponentCreate
 

@@ -23,6 +23,8 @@ class LanguageLintPlugin : Plugin<Project> {
                     val path = element.file.path
                     path.contains("\\generated\\")
                         || path.contains("/generated/")
+                        || path.contains("\\buildkonfig\\")
+                        || path.contains("/buildkonfig/")
                 }
             }
         }

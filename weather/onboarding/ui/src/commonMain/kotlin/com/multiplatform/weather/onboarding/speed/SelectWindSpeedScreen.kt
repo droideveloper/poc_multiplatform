@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
-import com.multiplatform.weather.core.ui.FwLoadingOverlay
-import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.core.measure.Speed
+import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.DoneButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
 import com.multiplatform.weather.onboarding.OnboardingLayout
@@ -68,7 +68,7 @@ internal fun SelectWindSpeedSuccessView(
                     dispatch(SelectWindSpeedEvent.OnBackClicked)
                 },
             )
-        }
+        },
     ) {
         OnboardingLayout(
             modifier = Modifier

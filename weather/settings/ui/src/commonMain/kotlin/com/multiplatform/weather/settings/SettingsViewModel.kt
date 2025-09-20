@@ -19,7 +19,7 @@ internal class SettingsViewModel(
     private val getSelectedCitiesUseCase: GetSelectedCitiesUseCase,
     private val featureRouter: FeatureRouter,
 ) : MviViewModel<SettingsEvent, SettingsState>(
-    initialState = SettingsState()
+    initialState = SettingsState(),
 ) {
 
     private var selectedCities = emptyList<City>()
@@ -90,7 +90,7 @@ internal class SettingsViewModel(
                 } else {
                     it.printStackTrace()
                 }
-            }
+            },
         )
     }
 
@@ -106,12 +106,12 @@ internal class SettingsViewModel(
             },
             onFailure = {
                 it.printStackTrace()
-            }
+            },
         )
     }
 
     private suspend fun updateState(
-        block : suspend UiState.Success.() -> Unit,
+        block: suspend UiState.Success.() -> Unit,
     ) {
         val uiState = state.uiState
         if (uiState is UiState.Success) {

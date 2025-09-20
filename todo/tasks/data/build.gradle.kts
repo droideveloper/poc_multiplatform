@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.td.multiplatform.data)
+    alias(libs.plugins.td.multiplatform.kotlin.inject.common)
     alias(libs.plugins.td.multiplatform.room)
 }
 
@@ -16,7 +17,6 @@ kotlin {
                 implementation(projects.core.environment.gateway)
 
                 implementation(libs.kotlin.inject.runtime)
-
             }
         }
     }

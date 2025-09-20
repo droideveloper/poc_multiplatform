@@ -21,7 +21,7 @@ internal class SelectedCityRepositoryImpl(
         dataStore.setSerializable(
             dataStoreKey,
             typeOf<List<JsonCity>>(),
-            cities.map { it.toJsonData() }
+            cities.map { it.toJsonData() },
         )
             .getOrThrow()
     }
@@ -35,7 +35,7 @@ internal class SelectedCityRepositoryImpl(
         .map { result ->
             result.fold(
                 onSuccess = { Result.success(it.map { city -> city.toDomain() }) },
-                onFailure = { Result.failure(it) }
+                onFailure = { Result.failure(it) },
             )
         }
 }

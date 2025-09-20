@@ -36,10 +36,6 @@ import com.multiplatform.td.core.ui.card.TdCard
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
-import com.multiplatform.weather.core.ui.FwLoadingOverlay
-import com.multiplatform.weather.core.ui.FwNavBar
-import com.multiplatform.weather.core.ui.FwTheme
-import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.city.City
 import com.multiplatform.weather.city.Country
 import com.multiplatform.weather.city.CountryCode
@@ -47,15 +43,19 @@ import com.multiplatform.weather.city.Location
 import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.core.measure.TemperatureAmount
 import com.multiplatform.weather.core.ui.FwImage
+import com.multiplatform.weather.core.ui.FwLoadingOverlay
+import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.FwTheme
+import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.forecast.WeatherCode
-import com.multiplatform.weather.forecast.today.UiState
-import com.multiplatform.weather.forecast.today.WeatherDescriptionState
 import com.multiplatform.weather.forecast.WeatherHourlyDescriptionItem
-import com.multiplatform.weather.forecast.today.WeatherHourlyDescriptionState
-import com.multiplatform.weather.forecast.today.WeatherNextDayDescriptionState
 import com.multiplatform.weather.forecast.selectLocalDate
 import com.multiplatform.weather.forecast.selectTemperature
 import com.multiplatform.weather.forecast.selectWeatherDescription
+import com.multiplatform.weather.forecast.today.UiState
+import com.multiplatform.weather.forecast.today.WeatherDescriptionState
+import com.multiplatform.weather.forecast.today.WeatherHourlyDescriptionState
+import com.multiplatform.weather.forecast.today.WeatherNextDayDescriptionState
 import com.multiplatform.weather.forecast.today.rememberForecastComponent
 import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.stringResource
@@ -108,7 +108,7 @@ internal fun ForecastNextDaysSuccessView(
                     dispatch(ForecastNextDaysEvent.OnBackClicked)
                 },
             )
-        }
+        },
     ) {
         val brush = selectDayBackground()
         val scrollState = rememberScrollState()
@@ -119,7 +119,7 @@ internal fun ForecastNextDaysSuccessView(
                 .padding(horizontal = FwTheme.dimens.standard16)
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .verticalScroll(scrollState)
+                .verticalScroll(scrollState),
         ) {
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
             TodayHourlyDescription(
@@ -154,7 +154,7 @@ internal fun TodayHourlyDescription(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = FwTheme.dimens.standard16)
-            .then(modifier)
+            .then(modifier),
     ) {
         val scrollState = rememberLazyListState()
         LazyRow(
@@ -244,7 +244,7 @@ internal fun TodayWeatherDescription(
                 style = FwTheme.typography.bodySecondary.copy(
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
-                )
+                ),
             )
         }
     }
@@ -325,7 +325,7 @@ private fun TodayWeatherDescriptionPreview() {
                 .padding(
                     horizontal = FwTheme.dimens.standard16,
                     vertical = FwTheme.dimens.standard8,
-                )
+                ),
         ) {
             TodayWeatherDescription(
                 state = WeatherDescriptionState(
@@ -365,7 +365,7 @@ private fun NthDayWeatherDescriptionPreview() {
                 .padding(
                     horizontal = FwTheme.dimens.standard16,
                     vertical = FwTheme.dimens.standard8,
-                )
+                ),
         ) {
             NthDayWeatherDescription(
                 state = WeatherNextDayDescriptionState(

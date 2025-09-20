@@ -20,7 +20,7 @@ import kotlin.time.ExperimentalTime
 
 internal data class ForecastNextDaysState(
     val uiState: UiState = UiState.Loading,
-    val forecast : Forecast = Forecast.Defaults,
+    val forecast: Forecast = Forecast.Defaults,
     val settings: Settings = Settings.Defaults,
     val city: City = City.Defaults,
     val currentLocalDateTime: LocalDateTime = Clock.System.now().toLocalDateTime(

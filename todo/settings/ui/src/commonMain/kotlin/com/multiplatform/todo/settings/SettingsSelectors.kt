@@ -20,7 +20,7 @@ import kotlin.time.ExperimentalTime
 internal fun selectSecondaryTitle(
     // may be provide this outside
     dateTime: LocalDateTime = Clock.System.now().toLocalDateTime(
-        timeZone = TimeZone.currentSystemDefault()
+        timeZone = TimeZone.currentSystemDefault(),
     ),
 ): String {
     val dateFormat = remember {

@@ -35,7 +35,7 @@ internal class SplashViewModel(
         val result = getOnboardingUseCase()
         result.fold(
             onSuccess = { navigateToHomeOrOnboarding(it) },
-            onFailure = { navigateToHomeOrOnboarding(false) }
+            onFailure = { navigateToHomeOrOnboarding(false) },
         )
     }
 

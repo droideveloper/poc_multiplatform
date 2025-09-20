@@ -12,10 +12,10 @@ import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
+import com.multiplatform.weather.city.CityWidget
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
 import com.multiplatform.weather.core.ui.selectDayBackground
-import com.multiplatform.weather.city.CityWidget
 import com.multiplatform.weather.onboarding.ContinueButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
 import com.multiplatform.weather.onboarding.OnboardingLayout
@@ -82,7 +82,7 @@ private fun SelectCitySuccessView(
                     stringRes = Res.string.onboarding_ui_select_city_title,
                 ),
             )
-        }
+        },
     ) {
         OnboardingLayout(
             modifier = Modifier

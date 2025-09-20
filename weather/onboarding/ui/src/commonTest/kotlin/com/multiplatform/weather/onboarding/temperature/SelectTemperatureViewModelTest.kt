@@ -33,7 +33,7 @@ internal class SelectTemperatureViewModelTest : AbstractDispatcherTest() {
         everySuspend { save(setting) } returns Result.success(Unit)
     }
 
-    private val getSettingsUseCase by lazy {  GetSettingsUseCase(repository) }
+    private val getSettingsUseCase by lazy { GetSettingsUseCase(repository) }
     private val saveSettingsUseCase by lazy { SaveSettingsUseCase(repository) }
     private val featureRouter = mock<FeatureRouter> {
         every { navigate(OnboardingRoute.SelectWindSpeed) } returns Unit
