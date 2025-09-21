@@ -15,6 +15,7 @@ abstract class CityDatabase : RoomDatabase() {
     internal abstract fun cityDao(): CityDao
 }
 
+@Suppress("KotlinNoActualForExpect")
 expect object CityDatabaseConstructor : RoomDatabaseConstructor<CityDatabase> {
     override fun initialize(): CityDatabase
 }
