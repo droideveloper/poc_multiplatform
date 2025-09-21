@@ -19,6 +19,7 @@ abstract class TodoDatabase : RoomDatabase() {
     internal abstract fun categoryDao(): CategoryDao
 }
 
+@Suppress("KotlinNoActualForExpect")
 expect object TodoDatabaseConstructor : RoomDatabaseConstructor<TodoDatabase> {
     override fun initialize(): TodoDatabase
 }
