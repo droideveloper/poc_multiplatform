@@ -52,18 +52,23 @@ internal fun Project.configureCommonMetadataCompiler(
     configuration: DependencyHandlerScope.() -> Unit,
 ) {
     extensions.getByType<KotlinMultiplatformExtension>().apply {
+        val disabledTargets = targets.filter { it.publishable.not() }
+
         sourceSets.commonMain.configure {
             kotlin.srcDirs("${projectDir.path}/build/generated/ksp/metadata/commonMain/kotlin")
+        }
+
+        tasks.withType(BaseKtLintCheckTask::class).configureEach {
+            dependsOn("kspCommonMainKotlinMetadata")
+
+            val shouldIgnore = disabledTargets.any { name.contains(it.name, ignoreCase = true) }
+            enabled = shouldIgnore.not()
         }
 
         tasks.withType(KspAATask::class).configureEach {
             if (name != "kspCommonMainKotlinMetadata") {
                 dependsOn("kspCommonMainKotlinMetadata")
             }
-        }
-
-        tasks.withType(BaseKtLintCheckTask::class).configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
         }
     }
 

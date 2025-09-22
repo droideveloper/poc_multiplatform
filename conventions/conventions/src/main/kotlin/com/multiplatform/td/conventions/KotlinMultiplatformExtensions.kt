@@ -6,6 +6,8 @@ import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.compose.ExperimentalComposeLibrary
@@ -99,13 +101,20 @@ internal fun applyTargetKspMetadataDependencies(
 ) {
     // Fix KSP task dependencies (https://github.com/google/ksp/issues/963)
     target.afterEvaluate {
+        target.extensions.getByType(KotlinMultiplatformExtension::class).apply {
+            val disabledTargets = targets.filter { it.publishable.not() }
+
+            tasks.withType(BaseKtLintCheckTask::class).configureEach {
+                dependsOn("kspCommonMainKotlinMetadata")
+
+                val shouldIgnore = disabledTargets.any { name.contains(it.name, ignoreCase = true) }
+                enabled = shouldIgnore.not()
+            }
+        }
+
         taskNames.forEach { taskName ->
             val task = target.tasks.find { it.name == taskName }
             task?.dependsOn("kspCommonMainKotlinMetadata")
-        }
-
-        tasks.withType(BaseKtLintCheckTask::class).configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
         }
     }
 }

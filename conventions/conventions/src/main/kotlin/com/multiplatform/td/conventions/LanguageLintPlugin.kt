@@ -17,6 +17,7 @@ class LanguageLintPlugin : Plugin<Project> {
 
         configure<KtlintExtension> {
             version.set("1.7.1")
+            debug.set(true)
             enableExperimentalRules.set(true)
             filter {
                 exclude { element ->

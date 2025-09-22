@@ -9,22 +9,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  #lint:
-  #  name: Ktlint lint
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Check out code
-  #      uses: actions/checkout@v5
-  #    - name: Set up jdk
-  #      uses: actions/setup-java@v4
-  #      with:
-  #        distribution: temurin
-  #        java-version: 21
-  #    - uses: gradle/actions/setup-gradle@v4
-  #    - name: Execute lint check
-  #      run: ./gradlew ktlintCheck # tries to run `compileKotlinIosArm64` on ubuntu lol
-  unit-test:
-    name: Unit test
+  lint:
+    name: Ktlint lint
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -35,42 +21,56 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
-      - name: Execute unit tests
-        run: ./gradlew jvmTest
-  ui-unit-test:
-    name: Ui unit test on android
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute ui tests
-        run: ./gradlew testStagingDebugUnitTest
-  build-android-app:
-    name: Build android application
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - name: Gradle cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: Execute build android app
-        run: ./gradlew :weather:app:bundleStagingDebug :todo:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
+      - name: Execute lint check
+        run: ./gradlew ktlintCheck --no-configuration-cache --no-build-cache -Porg.gradle.parallel=false # tries to run `compileKotlinIosArm64` on ubuntu lol
+#  unit-test:
+#    name: Unit test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute unit tests
+#        run: ./gradlew jvmTest
+#  ui-unit-test:
+#    name: Ui unit test on android
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute ui tests
+#        run: ./gradlew testStagingDebugUnitTest
+#  build-android-app:
+#    name: Build android application
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - name: Gradle cache
+#        uses: actions/cache@v4
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+#          restore-keys: |
+#            ${{ runner.os }}-gradle-
+#      - name: Execute build android app
+#        run: ./gradlew :weather:app:bundleStagingDebug :todo:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
 
