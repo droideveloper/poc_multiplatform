@@ -49,6 +49,9 @@ class DataMultiplatformPlugin: Plugin<Project> {
                     implementation(ktorClientDarwin.asDependency())
                 }
             }
+
+            val disabledTargets = targets.filter { it.publishable.not() }.toList()
+            println("${target.name}/disabled -> ${disabledTargets.joinToString { it.name }}")
         }
 
         dependencies {

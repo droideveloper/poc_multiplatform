@@ -26,6 +26,9 @@ class LibraryMultiplatformPlugin : Plugin<Project> {
 
        extensions.getByType<KotlinMultiplatformExtension>().apply {
             configureMultiplatformLibrary()
+
+           val disabledTargets = targets.filter { it.publishable.not() }.toList()
+           println("${target.name}/disabled -> ${disabledTargets.joinToString { it.name }}")
         }
 
         dependencies {}

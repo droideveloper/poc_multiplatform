@@ -34,6 +34,9 @@ class UiMultiplatformPlugin : Plugin<Project> {
                 configureMultiplatformLibrary()
                 applyCommonCompose(compose, project)
                 applyAndroidCompose(compose, project)
+
+                val disabledTargets = targets.filter { it.publishable.not() }.toList()
+                println("${target.name}/disabled -> ${disabledTargets.joinToString { it.name }}")
             }
 
             dependencies {
