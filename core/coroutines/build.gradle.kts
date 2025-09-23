@@ -4,7 +4,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain{
+        commonMain {
             dependencies {
                 implementation(projects.core.injection)
                 implementation(libs.kotlin.coroutines.core)

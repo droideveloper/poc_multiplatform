@@ -4,13 +4,15 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            implementation(projects.core.coroutines)
+        commonMain {
+            dependencies {
+                implementation(projects.core.coroutines)
 
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.androidx.lifecycle.runtime.compose)
 
-            implementation(libs.kotlin.datetime)
+                implementation(libs.kotlin.datetime)
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ class MokkeryMultiplatformPlugin : Plugin<Project> {
         }
 
         extensions.getByType<KotlinMultiplatformExtension>().apply {
-            sourceSets.commonMain.configure {
+            sourceSets.commonTest.configure {
                 dependencies {
                     implementation(kotlinTest.asDependency())
                     implementation(kotlinCoroutinesTest.asDependency())

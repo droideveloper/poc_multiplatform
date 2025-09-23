@@ -4,12 +4,14 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            implementation(compose.animation)
-            implementation(compose.material3)
+        commonMain {
+            dependencies {
+                implementation(compose.animation)
+                implementation(compose.material3)
 
-            implementation(libs.compose.material.icons)
-            implementation(libs.navigation.compose)
+                implementation(libs.compose.material.icons)
+                implementation(libs.navigation.compose)
+            }
         }
     }
 }

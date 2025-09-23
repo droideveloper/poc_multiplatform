@@ -6,10 +6,12 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            implementation(projects.core.environment.gateway)
+        commonMain {
+            dependencies {
+                implementation(projects.core.environment.gateway)
 
-            implementation(projects.core.injection)
+                implementation(projects.core.injection)
+            }
         }
     }
     compilerOptions {

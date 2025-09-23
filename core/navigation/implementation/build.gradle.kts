@@ -7,14 +7,16 @@ plugins {
 
 kotlin {
     sourceSets {
-        commonMain.dependencies {
-            implementation(projects.core.navigation.gateway)
-            implementation(projects.core.injection)
+        commonMain {
+            dependencies {
+                implementation(projects.core.navigation.gateway)
+                implementation(projects.core.injection)
 
-            implementation(projects.core.app)
+                implementation(projects.core.app)
 
-            implementation(libs.navigation.compose)
-            implementation(compose.runtime)
+                implementation(libs.navigation.compose)
+                implementation(compose.runtime)
+            }
         }
     }
 
