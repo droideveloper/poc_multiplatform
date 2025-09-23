@@ -25,11 +25,12 @@ buildkonfig = "0.17.1"
 datastore = "1.1.7"
 okio = "3.16.0"
 mokkery = "2.10.0"
-android-compose = "1.9.1"
+android-compose = "1.9.2"
 robol-ectiric = "4.16"
 kotlin-inject = "0.8.0"
 coil = "3.3.0"
 ktlint = "13.1.0"
+ktlint-cli = "1.7.1"
 
 # android app values
 android-compileSdk = "36"

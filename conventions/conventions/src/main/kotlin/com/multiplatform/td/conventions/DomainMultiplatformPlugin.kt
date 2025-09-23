@@ -10,6 +10,7 @@ class DomainMultiplatformPlugin: Plugin<Project> {
         with(pluginManager) {
             apply(CommonMultiplatformPlugin::class)
             apply(LanguageLintPlugin::class)
+            apply(AfterKtlintPlugin::class)
         }
     }
 }

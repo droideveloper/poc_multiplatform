@@ -16,8 +16,11 @@ class LanguageLintPlugin : Plugin<Project> {
         }
 
         configure<KtlintExtension> {
-            version.set("1.7.1")
+            version.set(ktlintCliVersion.asString())
+            verbose.set(true)
+            outputToConsole.set(true)
             enableExperimentalRules.set(true)
+            ignoreFailures.set(true)
             filter {
                 exclude { element ->
                     val path = element.file.path

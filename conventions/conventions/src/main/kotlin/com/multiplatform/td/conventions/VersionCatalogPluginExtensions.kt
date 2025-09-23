@@ -25,12 +25,18 @@ internal val Project.targetSdkVersion
 internal val Project.minSdkVersion
     get() = libs.findVersion("android.minSdk")
 
+internal val Project.ktlintCliVersion
+    get() = libs.findVersion("ktlint-cli")
+
 internal fun Optional<Provider<MinimalExternalModuleDependency>>.asDependency() =
     this.get()
 
-internal fun Optional<VersionConstraint>.asInt() =
+internal fun Optional<VersionConstraint>.asString() =
     this.get()
         .displayName
+
+internal fun Optional<VersionConstraint>.asInt() =
+    this.asString()
         .toInt()
 
 // library dependencies
