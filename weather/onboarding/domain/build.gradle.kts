@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.td.multiplatform.domain)
+    alias(libs.plugins.td.multiplatform.mokkery)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -14,6 +15,11 @@ kotlin {
 
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.kotlin.serialization.json)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(projects.core.testing.gateway)
             }
         }
     }
