@@ -85,3 +85,8 @@ internal fun Project.configureKspTargetMetadataDependencies() {
     }
 }
 
+internal fun buildRunningOnCiEnvironment(): Boolean {
+    val ci = System.getenv("CI") ?: "false"
+    return ci.toBoolean()
+}
+
