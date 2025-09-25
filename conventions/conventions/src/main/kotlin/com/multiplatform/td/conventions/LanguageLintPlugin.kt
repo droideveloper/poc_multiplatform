@@ -20,16 +20,6 @@ class LanguageLintPlugin : Plugin<Project> {
             verbose.set(true)
             outputToConsole.set(true)
             enableExperimentalRules.set(true)
-            ignoreFailures.set(true)
-            filter {
-                exclude { element ->
-                    val path = element.file.path
-                    path.contains("\\generated\\")
-                        || path.contains("/generated/")
-                        || path.contains("\\buildkonfig\\")
-                        || path.contains("/buildkonfig/")
-                }
-            }
         }
 
         dependencies {}

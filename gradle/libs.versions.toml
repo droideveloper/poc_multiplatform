@@ -158,4 +158,3 @@ td-multiplatform-ksp = { id = "td.multiplatform.ksp", version = "unspecified" }
 td-multiplatform-kotlin-inject = { id = "td.multiplatform.kotlin.inject", version = "unspecified" }
 td-multiplatform-kotlin-inject-common = { id = "td.multiplatform.kotlin.inject.common", version = "unspecified" }
 td-build-konfig = { id = "td.build.konfig", version = "unspecified" }
-td-ktlint = { id = "td.multiplatform.kotlin.lint", version = "unspecified" }

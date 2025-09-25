@@ -15,10 +15,10 @@ class DataMultiplatformPlugin: Plugin<Project> {
         with(pluginManager) {
             apply(MultiplatformPlugin::class)
             apply(KspMultiplatformPlugin::class)
-            apply(LanguageLintPlugin::class)
             apply(SerializationGradleSubplugin::class)
             apply(KtorfitGradlePlugin::class)
             apply(MetadataPlugin::class)
+            apply(LanguageLintPlugin::class)
         }
 
         extensions.getByType<KotlinMultiplatformExtension>().apply {
