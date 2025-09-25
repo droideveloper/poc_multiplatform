@@ -126,7 +126,13 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformDefaults(
         languageVersion.set(JavaLanguageVersion.of(17))
     }
     config(this)
-    iosTargets()
+    val ciTask: String? = System.getenv("CI")
+    val ci = ciTask?.toBooleanStrictOrNull() ?: false
+
+    println("[KotlinMultiplatformExtension]: CI env: $ci")
+
+    if (ci.not())
+        iosTargets()
 }
 
 internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {
