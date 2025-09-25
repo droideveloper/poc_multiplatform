@@ -31,7 +31,7 @@ dependencies {
     implementation(libs.buildkonfig.gradle.plugin)
     implementation(libs.buildkonfig.compiler.gradle.plugin)
     implementation(libs.mokkery.gradle.plugin)
-    implementation(libs.ktlint.gradle.plugin)
+    implementation(files("libs/ktlint-gradle-13.2.0-dev.8.uncommitted+7fd6621.jar"))
 }
 
 tasks {
