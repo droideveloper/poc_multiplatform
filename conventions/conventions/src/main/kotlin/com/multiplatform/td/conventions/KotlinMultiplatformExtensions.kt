@@ -104,9 +104,9 @@ internal fun applyTargetKspMetadataDependencies(
             task?.dependsOn("kspCommonMainKotlinMetadata")
         }
 
-        tasks.withType(BaseKtLintCheckTask::class).configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
-        }
+        //tasks.withType(BaseKtLintCheckTask::class).configureEach {
+        //    dependsOn("kspCommonMainKotlinMetadata")
+        //}
     }
 }
 

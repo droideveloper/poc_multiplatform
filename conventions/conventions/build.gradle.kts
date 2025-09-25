@@ -95,5 +95,9 @@ gradlePlugin {
             id = "td.multiplatform.kotlin.inject.common"
             implementationClass = "com.multiplatform.td.conventions.KotlinInjectCommonMultiplatformPlugin"
         }
+        register("TdMultiplatformKotlinLint") {
+            id = "td.multiplatform.kotlin.lint"
+            implementationClass = "com.multiplatform.td.conventions.LanguageLintPlugin"
+        }
     }
 }

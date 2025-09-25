@@ -62,9 +62,9 @@ internal fun Project.configureCommonMetadataCompiler(
             }
         }
 
-        tasks.withType(BaseKtLintCheckTask::class).configureEach {
-            dependsOn("kspCommonMainKotlinMetadata")
-        }
+        //tasks.withType(BaseKtLintCheckTask::class).configureEach {
+        //    dependsOn("kspCommonMainKotlinMetadata")
+        //}
     }
 
     dependencies {
