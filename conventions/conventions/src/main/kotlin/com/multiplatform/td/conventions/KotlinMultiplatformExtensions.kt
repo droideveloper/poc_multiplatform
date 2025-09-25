@@ -126,9 +126,7 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformDefaults(
         languageVersion.set(JavaLanguageVersion.of(17))
     }
     config(this)
-
-    if (buildRunningOnCiEnvironment().not())
-        iosTargets()
+    iosTargets()
 }
 
 internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {

@@ -12,6 +12,3 @@ internal fun KotlinTargetContainerWithPresetFunctions.iosArches(): List<IosArch>
     this::iosSimulatorArm64,
     this::iosX64,
 )
-
-internal fun KotlinTargetContainerWithPresetFunctions.iosArchNames(): MutableSet<String> = iosArches().map { it().targetName }.toMutableSet()
-
