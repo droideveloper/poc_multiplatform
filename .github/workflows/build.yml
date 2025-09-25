@@ -22,7 +22,7 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute lint check
-        run: ./gradlew ktlintCheck # tries to run `compileKotlinIosArm64` on ubuntu lol
+        run: ./gradlew ktlintCheck --no-configuration-cache # tries to run `compileKotlinIosArm64` on ubuntu lol
 #  unit-test:
 #    name: Unit test
 #    runs-on: ubuntu-latest
