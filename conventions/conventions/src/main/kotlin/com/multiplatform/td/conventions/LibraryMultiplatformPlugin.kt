@@ -18,7 +18,6 @@ class LibraryMultiplatformPlugin : Plugin<Project> {
             apply(LibraryPlugin::class)
             apply(LanguageLintPlugin::class)
             apply(MetadataPlugin::class)
-            apply(AfterKtlintPlugin::class)
         }
 
         extensions.getByType<LibraryExtension>().apply {

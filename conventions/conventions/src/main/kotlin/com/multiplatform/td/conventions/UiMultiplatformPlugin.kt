@@ -23,7 +23,6 @@ class UiMultiplatformPlugin : Plugin<Project> {
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
                 apply(MetadataPlugin::class)
-                apply(AfterKtlintPlugin::class)
             }
             val compose = project.dependencies.extensions.getByType<ComposePlugin.Dependencies>()
 
