@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.ui.effects.OnScreenStart
+import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.city.rememberOnboardingComponent
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SplashScreen() {
@@ -34,4 +36,14 @@ internal fun SplashUi(
         )
     }
     OnScreenStart { dispatch(SplashEvent.OnScreenViewed) }
+}
+
+@Preview
+@Composable
+private fun SplashUiPreview() {
+    FwTheme {
+        SplashUi(
+            dispatch = {},
+        )
+    }
 }

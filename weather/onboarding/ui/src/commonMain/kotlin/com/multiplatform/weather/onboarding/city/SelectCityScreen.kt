@@ -3,6 +3,7 @@ package com.multiplatform.weather.onboarding.city
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.composable.LocalComponentStore
@@ -15,6 +16,7 @@ import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.weather.city.CityWidget
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.ContinueButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
@@ -23,6 +25,7 @@ import com.multiplatform.weather.onboarding.UiState
 import com.multiplatform.weather.onboarding.inject.OnboardingComponent
 import com.multiplatform.weather.onboarding.inject.createOnboardingComponent
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.onboarding.ui.generated.resources.Res
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city_body
@@ -71,9 +74,15 @@ private fun SelectCityUi(
 }
 
 @Composable
-private fun SelectCitySuccessView(
+internal fun SelectCitySuccessView(
     isEnabled: Boolean,
     dispatch: (SelectCityEvent) -> Unit,
+    widget: @Composable () -> Unit = @Composable {
+        CityWidget(
+            onCitySelect = { city -> dispatch(SelectCityEvent.Operation.Add(city)) },
+            onCityRemoved = { city -> dispatch(SelectCityEvent.Operation.Remove(city)) },
+        )
+    },
 ) {
     Scaffold(
         topBar = {
@@ -96,10 +105,20 @@ private fun SelectCitySuccessView(
                 }
             },
         ) {
-            CityWidget(
-                onCitySelect = { city -> dispatch(SelectCityEvent.Operation.Add(city)) },
-                onCityRemoved = { city -> dispatch(SelectCityEvent.Operation.Remove(city)) },
-            )
+            widget()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SelectCitySuccessViewPreview() {
+    FwTheme {
+        SelectCitySuccessView(
+            isEnabled = false,
+            dispatch = {},
+        ) {
+            Text("Widget Placeholder")
         }
     }
 }

@@ -101,7 +101,7 @@ internal class SettingsRepositoryImplTest {
         val repo = SettingsRepositoryImpl(dataStore)
         repo.asFlow()
             .collect { result ->
-                val actual =  result.getOrThrow()
+                val actual = result.getOrThrow()
                 assertEquals(settings, actual)
             }
 
@@ -109,7 +109,6 @@ internal class SettingsRepositoryImplTest {
             dataStore.getSerializableFlow<JsonSettings>(dataStoreKey, typeOf<JsonSettings>())
         }
     }
-
 
     @Test
     fun `given write from datastore than returns error result`() = runTest {
@@ -153,5 +152,4 @@ internal class SettingsRepositoryImplTest {
             dataStore.getSerializable<JsonSettings>(dataStoreKey, typeOf<JsonSettings>())
         }
     }
-
 }

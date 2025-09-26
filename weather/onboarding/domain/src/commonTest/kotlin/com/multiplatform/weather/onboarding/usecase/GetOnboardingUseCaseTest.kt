@@ -14,7 +14,7 @@ import kotlin.test.assertTrue
 internal class GetOnboardingUseCaseTest {
 
     @Test
-    fun `given read onboarding status, will return result`() = runTest {
+    fun `given read onboarding status than will return result`() = runTest {
         val repository = mock<OnboardingRepository> {
             everySuspend { get() } returns Result.success(true)
         }
@@ -31,7 +31,7 @@ internal class GetOnboardingUseCaseTest {
     }
 
     @Test
-    fun `given read onboarding status, will return failure`() = runTest {
+    fun `given read onboarding status than will return failure`() = runTest {
         val error = Exception()
         val repository = mock<OnboardingRepository> {
             everySuspend { get() } returns Result.failure(error)

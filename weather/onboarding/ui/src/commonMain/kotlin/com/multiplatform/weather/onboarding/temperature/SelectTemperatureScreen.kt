@@ -11,6 +11,7 @@ import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.ContinueButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
@@ -19,6 +20,7 @@ import com.multiplatform.weather.onboarding.UiState
 import com.multiplatform.weather.onboarding.city.rememberOnboardingComponent
 import com.multiplatform.weather.settings.TemperatureSection
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.onboarding.ui.generated.resources.Res
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_temperature_title
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_temperature_unit
@@ -88,5 +90,17 @@ internal fun SelectTemperatureSuccessView(
                 dispatch(SelectTemperatureEvent.OnChanged(temperature))
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun SelectTemperatureSuccessViewPreview() {
+    FwTheme {
+        SelectTemperatureSuccessView(
+            isEnabled = false,
+            temperature = Temperature.Celsius,
+            dispatch = {},
+        )
     }
 }

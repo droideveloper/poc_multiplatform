@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.AppComponent
@@ -32,6 +33,7 @@ import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
+import com.multiplatform.td.core.environment.AppVersion
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
@@ -48,6 +50,7 @@ import com.multiplatform.weather.settings.inject.SettingsComponent
 import com.multiplatform.weather.settings.inject.createSettingsComponent
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.settings.ui.generated.resources.Res
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_decrement
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_increment
@@ -67,6 +70,7 @@ internal fun SettingsScreen() {
 
 @Composable
 private fun rememberSettingsComponent(): SettingsComponent {
+    val appComponent = LocalAppComponent.current
     val navigationComponent = LocalNavigationComponent.current
     val dataStoreComponent = LocalDataSoreComponent.current
 
@@ -76,6 +80,7 @@ private fun rememberSettingsComponent(): SettingsComponent {
         createSettingsComponent(
             dataStoreComponent = dataStoreComponent,
             navigationComponent = navigationComponent,
+            version = appComponent.version,
         )
     }
 }
@@ -90,6 +95,7 @@ private fun SettingsUi(
         is UiState.Failure -> SettingsFailureView(uiState, dispatch)
         is UiState.Success -> SettingsSuccessView(
             settings = uiState.settings.value,
+            version = uiState.version,
             dispatch = dispatch,
         )
     }
@@ -112,9 +118,17 @@ private fun SettingsFailureView(
 }
 
 @Composable
-private fun SettingsSuccessView(
+internal fun SettingsSuccessView(
     settings: Settings,
+    version: AppVersion,
     dispatch: (SettingsEvent) -> Unit,
+    widget: @Composable () -> Unit = @Composable {
+        CityWidget(
+            allowLastSelectionRemoval = false,
+            onCityRemoved = { dispatch(SettingsEvent.Operation.Remove(it)) },
+            onCitySelect = { dispatch(SettingsEvent.Operation.Add(it)) },
+        )
+    },
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -153,13 +167,9 @@ private fun SettingsSuccessView(
                 onClickDecrement = { dispatch(SettingsEvent.OnDays.Decrement) },
             )
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
-            SettingsVersion()
+            SettingsVersion(version = version)
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard32))
-            CityWidget(
-                allowLastSelectionRemoval = false,
-                onCityRemoved = { dispatch(SettingsEvent.Operation.Remove(it)) },
-                onCitySelect = { dispatch(SettingsEvent.Operation.Add(it)) },
-            )
+            widget()
         }
     }
 }
@@ -255,6 +265,7 @@ fun NumberOfDaysSection(
                         ),
                         shape = RoundedCornerShape(FwTheme.dimens.standard12),
                     )
+                    .testTag("decrement_icon_button")
                     .padding(FwTheme.dimens.standard4),
                 onClick = onClickDecrement,
                 enabled = numberOfDays > 2,
@@ -283,6 +294,7 @@ fun NumberOfDaysSection(
                         ),
                         shape = RoundedCornerShape(FwTheme.dimens.standard12),
                     )
+                    .testTag("increment_icon_button")
                     .padding(FwTheme.dimens.standard4),
                 onClick = onClickIncrement,
                 enabled = numberOfDays < 10,
@@ -312,19 +324,16 @@ private fun SettingLabel(
 }
 
 @Composable
-private fun SettingsVersion() {
-    val appComponent: AppComponent = LocalAppComponent.current
-
-    val environment = remember { appComponent.environment }
-
-    val version = "${appComponent.version.value} - ${environment.flavorName}"
+private fun SettingsVersion(
+    version: AppVersion,
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             modifier = Modifier.padding(top = FwTheme.dimens.standard16),
-            text = version,
+            text = version.value,
             style = FwTheme.typography.titleSecondary.copy(
                 fontWeight = FontWeight.SemiBold,
             ),
@@ -343,4 +352,18 @@ private fun SettingRowLabel(
             fontWeight = FontWeight.SemiBold,
         ),
     )
+}
+
+@Preview
+@Composable
+private fun SettingsSuccessViewPreview() {
+    FwTheme {
+        SettingsSuccessView(
+            settings = Settings.Defaults,
+            version = AppVersion("N/A"),
+            dispatch = {},
+        ) {
+            Text("Widget Placeholder")
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.multiplatform.weather.settings
 
 import androidx.lifecycle.viewModelScope
 import com.multiplatform.td.core.datastore.KeyedValueDataStoreException
+import com.multiplatform.td.core.environment.AppVersion
 import com.multiplatform.td.core.injection.binding.ContributesViewModel
 import com.multiplatform.td.core.injection.scopes.FeatureScope
 import com.multiplatform.td.core.mvi.MviViewModel
@@ -18,11 +19,12 @@ internal class SettingsViewModel(
     private val saveSettingsUseCase: SaveSettingsUseCase,
     private val getSelectedCitiesUseCase: GetSelectedCitiesUseCase,
     private val featureRouter: FeatureRouter,
+    private val version: AppVersion,
 ) : MviViewModel<SettingsEvent, SettingsState>(
     initialState = SettingsState(),
 ) {
 
-    private var selectedCities = emptyList<City>()
+    internal var selectedCities = emptyList<City>()
 
     init {
         on<SettingsEvent.OnScreenViewed> {
@@ -81,12 +83,16 @@ internal class SettingsViewModel(
         val result = getSettingsUseCase()
         result.fold(
             onSuccess = {
-                val uiState = UiState.Success().also { state -> state.update(it) }
+                val uiState = UiState.Success(
+                    version = version,
+                ).also { state ->
+                    state.update(it)
+                }
                 state = state.copy(uiState = uiState)
             },
             onFailure = {
                 if (it is KeyedValueDataStoreException.NotFoundException) {
-                    state = state.copy(uiState = UiState.Success())
+                    state = state.copy(uiState = UiState.Success(version = version))
                 } else {
                     it.printStackTrace()
                 }
