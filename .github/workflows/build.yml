@@ -9,20 +9,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  #lint:
-  #  name: Ktlint lint
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Check out code
-  #      uses: actions/checkout@v5
-  #    - name: Set up jdk
-  #      uses: actions/setup-java@v4
-  #      with:
-  #        distribution: temurin
-  #        java-version: 21
-  #    - uses: gradle/actions/setup-gradle@v4
-  #    - name: Execute lint check
-  #      run: ./gradlew ktlintCheck # tries to run `compileKotlinIosArm64` on ubuntu lol
+  lint:
+    name: Ktlint lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Execute lint check
+        run: ./gradlew ktlintAndroidStagingDebugSourceSetCheck --no-configuration-cache
   unit-test:
     name: Unit test
     runs-on: ubuntu-latest
