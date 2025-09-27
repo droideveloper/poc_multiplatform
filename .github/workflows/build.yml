@@ -51,6 +51,31 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute ui tests
         run: ./gradlew testStagingDebugUnitTest
+  test-kover:
+    name: Report coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Execute ui tests
+        run: ./gradlew :weather:app:koverXmlReport
+      - name: Add coverage report to PR
+        id: kover
+        uses: mi-kas/kover-report@v1
+        with:
+          path: |
+            ${{ github.workspace }}/weather/app/build/reports/kover/report.xml
+          title: Code Coverage
+          update-comment: true
+          min-coverage-overall: 50
+          min-coverage-changed-files: 80
+          coverage-counter-type: LINE
   build-android-app:
     name: Build android application
     runs-on: ubuntu-latest

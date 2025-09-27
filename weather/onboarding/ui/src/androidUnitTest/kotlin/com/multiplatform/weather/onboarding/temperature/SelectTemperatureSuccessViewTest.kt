@@ -33,12 +33,23 @@ internal class SelectTemperatureSuccessViewTest : AbstractAndroidUnitTest() {
             }
 
             onNodeWithTag("nav_bar_title", useUnmergedTree = true).assertTextEquals("Temperature")
+
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true).isDisplayed()
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true).performClick()
+
+            verify { dispatch(SelectTemperatureEvent.OnBackClicked) }
+
             onNodeWithText("Let's select a temperature unit", useUnmergedTree = true).isDisplayed()
             onNodeWithText("You could select your desired temperature unit below", useUnmergedTree = true).isDisplayed()
+
             val temperatures = arrayOf(Temperature.Celsius, Temperature.Fahrenheit)
             temperatures.forEach { temperature ->
                 onNodeWithText(temperature.toString(), useUnmergedTree = true).isDisplayed()
             }
+
+            onNodeWithText(Temperature.Fahrenheit.toString(), useUnmergedTree = true).performClick()
+
+            verify { dispatch(SelectTemperatureEvent.OnChanged(Temperature.Fahrenheit)) }
 
             onNodeWithText("Continue").isDisplayed()
             onNodeWithText("Continue").performClick()

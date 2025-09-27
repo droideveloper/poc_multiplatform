@@ -1,11 +1,15 @@
 plugins {
     alias(libs.plugins.td.multiplatform.app)
+    alias(libs.plugins.td.kover)
 }
 
 kotlin {
     iosTargets(
         named = "Weather",
         isShared = false,
+        options = mapOf(
+            "bundleId" to "com.multiplatform.weather",
+        ),
     )
 
     sourceSets {
@@ -59,6 +63,23 @@ kotlin {
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+}
+
+kover {
+    currentProject {
+        createVariant("custom") {
+            add("stagingDebug")
+        }
+    }
+    dependencies {
+        kover(projects.weather.onboarding.data)
+        kover(projects.weather.onboarding.domain)
+        kover(projects.weather.onboarding.ui)
+
+        kover(projects.weather.settings.data)
+        kover(projects.weather.settings.domain)
+        kover(projects.weather.settings.ui)
     }
 }
 

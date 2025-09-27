@@ -60,6 +60,11 @@ kotlin {
 }
 
 kover {
+    currentProject {
+        createVariant("custom") {
+            add("stagingDebug")
+        }
+    }
     dependencies {
         kover(projects.weather.settings.data)
         kover(projects.weather.settings.ui)

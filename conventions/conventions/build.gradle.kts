@@ -96,5 +96,9 @@ gradlePlugin {
             id = "td.multiplatform.kotlin.inject.common"
             implementationClass = "com.multiplatform.td.conventions.KotlinInjectCommonMultiplatformPlugin"
         }
+        register("TdMultiplatformKover") {
+            id = "td.multiplatform.kover"
+            implementationClass = "com.multiplatform.td.conventions.MultiplatformKoverPlugin"
+        }
     }
 }
