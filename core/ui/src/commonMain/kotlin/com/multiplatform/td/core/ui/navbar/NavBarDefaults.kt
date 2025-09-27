@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import com.multiplatform.td.core.ui.TdTheme
 import org.jetbrains.compose.resources.StringResource
@@ -40,7 +41,9 @@ object NavBarDefaults {
 
             @Composable
             override fun Content() {
-                Box {
+                Box(
+                    modifier = Modifier.testTag("nav_bar_action"),
+                ) {
                     IconButton(
                         onClick = onClick,
                     ) {

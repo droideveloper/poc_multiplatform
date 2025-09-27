@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.buildkonfig.compiler.gradle.plugin)
     implementation(libs.mokkery.gradle.plugin)
     implementation(libs.ktlint.gradle.plugin)
+    implementation(libs.kover.gradle.plugin)
 }
 
 tasks {

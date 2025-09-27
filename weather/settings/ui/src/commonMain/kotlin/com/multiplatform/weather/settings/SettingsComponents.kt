@@ -12,6 +12,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRowScope
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import com.multiplatform.weather.core.measure.Speed
 import com.multiplatform.weather.core.ui.FwTheme
@@ -20,7 +21,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SingleChoiceSegmentedButtonRowScope.FwSegmentedButton(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.testTag("segmented_button"),
     index: Int,
     count: Int,
     isSelected: Boolean,
@@ -36,6 +37,7 @@ internal fun SingleChoiceSegmentedButtonRowScope.FwSegmentedButton(
         colors = colors,
     ) {
         Text(
+            modifier = Modifier.testTag("button_text"),
             text = text,
             style = FwTheme.typography.bodySecondary.copy(
                 fontWeight = FontWeight.SemiBold,

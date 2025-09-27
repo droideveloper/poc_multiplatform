@@ -19,7 +19,7 @@ internal class SelectCityViewModel(
     initialState = SelectCityState(),
 ) {
 
-    private var selectedCities = emptyList<City>()
+    internal var selectedCities = emptyList<City>()
 
     init {
         on<SelectCityEvent.OnScreenViewed> { }

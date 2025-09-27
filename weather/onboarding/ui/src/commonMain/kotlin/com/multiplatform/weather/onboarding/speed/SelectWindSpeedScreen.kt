@@ -11,6 +11,7 @@ import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.weather.core.measure.Speed
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
+import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.DoneButton
 import com.multiplatform.weather.onboarding.OnboardingFailureView
@@ -19,6 +20,7 @@ import com.multiplatform.weather.onboarding.UiState
 import com.multiplatform.weather.onboarding.city.rememberOnboardingComponent
 import com.multiplatform.weather.settings.WindSpeedSection
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.onboarding.ui.generated.resources.Res
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_title
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_unit
@@ -88,5 +90,17 @@ internal fun SelectWindSpeedSuccessView(
                 dispatch(SelectWindSpeedEvent.OnChanged(it))
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun SelectWindSpeedSuccessViewPreview() {
+    FwTheme {
+        SelectWindSpeedSuccessView(
+            isEnabled = false,
+            speed = Speed.KilometersPerHour,
+            dispatch = {},
+        )
     }
 }

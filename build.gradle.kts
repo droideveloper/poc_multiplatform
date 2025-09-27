@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.mokkery) apply false
     alias(libs.plugins.ktlint) apply false
+    alias(libs.plugins.kover) apply false
 }
 
 tasks.register("clean", Delete::class.java) {

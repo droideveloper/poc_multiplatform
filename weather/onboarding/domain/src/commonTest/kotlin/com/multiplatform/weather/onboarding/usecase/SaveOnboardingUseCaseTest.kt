@@ -13,7 +13,7 @@ import kotlin.test.assertFails
 internal class SaveOnboardingUseCaseTest {
 
     @Test
-    fun `given write onboarding status, will return success`() = runTest {
+    fun `given write onboarding status than will return success`() = runTest {
         val repository = mock<OnboardingRepository> {
             everySuspend { save(isCompleted = true) } returns Result.success(Unit)
         }
@@ -30,7 +30,7 @@ internal class SaveOnboardingUseCaseTest {
     }
 
     @Test
-    fun `given write onboarding status, will return failure`() = runTest {
+    fun `given write onboarding status than will return failure`() = runTest {
         val error = Exception()
         val repository = mock<OnboardingRepository> {
             everySuspend { save(isCompleted = true) } returns Result.failure(error)

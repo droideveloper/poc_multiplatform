@@ -1,10 +1,21 @@
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
+    alias(libs.plugins.td.multiplatform.mokkery)
 }
 
 kotlin {
     sourceSets {
+        androidUnitTest {
+            dependencies {
+                implementation(projects.core.testing.implementation)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(projects.core.testing.gateway)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(projects.weather.settings.data)
@@ -45,6 +56,13 @@ kotlin {
                 implementation(libs.navigation.compose)
             }
         }
+    }
+}
+
+kover {
+    dependencies {
+        kover(projects.weather.settings.data)
+        kover(projects.weather.settings.ui)
     }
 }
 

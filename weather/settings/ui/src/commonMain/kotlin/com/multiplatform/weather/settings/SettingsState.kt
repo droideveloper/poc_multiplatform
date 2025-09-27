@@ -2,6 +2,7 @@ package com.multiplatform.weather.settings
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import com.multiplatform.td.core.environment.AppVersion
 import org.jetbrains.compose.resources.StringResource
 
 data class SettingsState(
@@ -14,6 +15,7 @@ sealed interface UiState {
 
     data class Success(
         val settings: MutableState<Settings> = mutableStateOf(Settings.Defaults),
+        val version: AppVersion = AppVersion("N/A"),
     ) : UiState {
 
         fun update(settings: Settings) {
