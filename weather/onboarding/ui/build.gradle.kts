@@ -65,6 +65,11 @@ kotlin {
 }
 
 kover {
+    currentProject {
+        createVariant("custom") {
+            add("stagingDebug")
+        }
+    }
     dependencies {
         kover(projects.weather.onboarding.data)
         kover(projects.weather.onboarding.domain)
