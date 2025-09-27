@@ -69,8 +69,7 @@ jobs:
         id: kover
         uses: mi-kas/kover-report@v1
         with:
-          path: |
-            ${{ github.workspace }}/weather/app/build/reports/kover/report.xml
+          path: /home/runner/work/poc_multiplatform/weather/app/build/reports/kover/report.xml
           title: Code Coverage
           update-comment: true
           min-coverage-overall: 50
