@@ -148,11 +148,15 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {
 internal fun KotlinMultiplatformExtension.iosTargets(
     named: String,
     isShared: Boolean = true,
+    options: Map<String, String> = emptyMap()
 ) {
     iosArches().forEach { target ->
         target().binaries.framework {
             baseName = named
             isStatic = isShared.not()
+            options.forEach { opt ->
+                binaryOption(opt.key, opt.value)
+            }
         }
     }
 }

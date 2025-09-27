@@ -6,6 +6,9 @@ kotlin {
     iosTargets(
         named = "Todo",
         isShared = false,
+        options = mapOf(
+            "bundleId" to "com.multiplatform.todo",
+        ),
     )
 
     sourceSets {
