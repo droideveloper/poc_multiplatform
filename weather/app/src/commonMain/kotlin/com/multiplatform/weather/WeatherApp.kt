@@ -9,12 +9,14 @@ import com.multiplatform.td.core.app.AppComponent
 import com.multiplatform.td.core.app.composable.AppContext
 import com.multiplatform.td.core.datastore.composable.DataStoreContext
 import com.multiplatform.td.core.navigation.composable.NavigationContext
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.forecast.forecastGraph
 import com.multiplatform.weather.onboarding.Onboarding
 import com.multiplatform.weather.onboarding.onboardingGraph
 import com.multiplatform.weather.settings.settingsGraph
 
+@KoverIgnore
 @Composable
 fun WeatherApp(
     component: AppComponent,

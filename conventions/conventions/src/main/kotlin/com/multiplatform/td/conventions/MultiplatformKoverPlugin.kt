@@ -23,7 +23,12 @@ class MultiplatformKoverPlugin : Plugin<Project> {
             reports {
                 filters {
                     excludes {
-                        annotatedBy("**.Composable", "**.preview.Preview")
+                        annotatedBy(
+                            "org.jetbrains.compose.ui.tooling.preview.Preview",
+                            "com.multiplatform.td.core.ui.KoverIgnore",
+                            "**.Database",
+                            "**.Dao",
+                        )
                         packages("**.inject", "**.inject.binder", "**.generated.*", "**.testing")
                         classes(
                             "**.*Graph*",
@@ -34,6 +39,11 @@ class MultiplatformKoverPlugin : Plugin<Project> {
                             "**.*Activity",
                             "**.*ActivityKt",
                             "**.*Application",
+                            "**.Mock*",
+                            "**.*Mock",
+                            "**.*Dao*",
+                            "**.*Database*",
+                            "**.*Route",
                         )
                     }
                 }

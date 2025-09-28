@@ -25,12 +25,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import com.multiiplatform.td.core.database.composable.LocalDatabaseComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.button.TdTextLinkBlue
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.weather.city.inject.CityComponent
@@ -50,6 +52,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
 
+@KoverIgnore
 @Composable
 fun CityWidget(
     onCitySelect: (City) -> Unit = {},
@@ -69,6 +72,7 @@ fun CityWidget(
     )
 }
 
+@KoverIgnore
 @Composable
 private fun rememberCityComponent(): CityComponent {
     val databaseComponent = LocalDatabaseComponent.current
@@ -84,6 +88,7 @@ private fun rememberCityComponent(): CityComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun CityUi(
     state: CityState,
@@ -111,7 +116,7 @@ private fun CityUi(
 }
 
 @Composable
-private fun CityLoadingView() {
+internal fun CityLoadingView() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -124,6 +129,8 @@ private fun CityLoadingView() {
                 ),
                 shape = RoundedCornerShape(FwTheme.dimens.standard8),
             )
+            .testTag("shimmer_space")
+
         Box(Modifier.fillMaxWidth(0.50f).then(placeholderModifier)) { SimmerEffect() }
         Spacer(Modifier.height(FwTheme.dimens.standard4))
         Box(Modifier.fillMaxWidth(0.75f).then(placeholderModifier)) { SimmerEffect() }
@@ -189,7 +196,7 @@ private fun BoxScope.SimmerEffect(
 }
 
 @Composable
-private fun CityFailureView(
+internal fun CityFailureView(
     modifier: Modifier = Modifier,
     uiState: UiState.Failure,
     dispatch: (CityEvent) -> Unit,
@@ -234,7 +241,7 @@ private fun CityFailureView(
 }
 
 @Composable
-private fun CitySuccessView(
+internal fun CitySuccessView(
     allowLastSelectionRemoval: Boolean,
     cities: List<City>,
     selectedCities: List<City>,

@@ -5,7 +5,6 @@ import com.multiplatform.td.core.datastore.KeyedValueDataStore
 import com.multiplatform.td.core.datastore.KeyedValueDataStoreImpl
 import com.multiplatform.td.core.datastore.Serializer
 import com.multiplatform.td.core.injection.Binder
-import kotlinx.coroutines.CoroutineScope
 import me.tatarka.inject.annotations.Inject
 
 @Inject

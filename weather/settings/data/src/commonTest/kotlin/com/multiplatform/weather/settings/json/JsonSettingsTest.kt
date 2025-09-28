@@ -7,6 +7,8 @@ import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.settings.Settings
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
+import kotlin.test.assertTrue
 
 internal class JsonSettingsTest {
 
@@ -54,10 +56,26 @@ internal class JsonSettingsTest {
     }
 
     @Test
+    fun `given invalid temperature string will throw IllegalArgumentException`() {
+        val actual = assertFails { selectTemperatureUnit("X") }
+
+        assertTrue { actual is IllegalArgumentException }
+        assertEquals("X is not valid temperature unit", actual.message)
+    }
+
+    @Test
     fun `given valid pressure string will return Pressure`() = pressureUnits.forEach { (input, expected) ->
         val actual = selectPressureUnit(input)
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `given invalid pressure string will throw IllegalArgumentException`() {
+        val actual = assertFails { selectPressureUnit("X") }
+
+        assertTrue { actual is IllegalArgumentException }
+        assertEquals("X is not valid pressure unit", actual.message)
     }
 
     @Test
@@ -68,10 +86,26 @@ internal class JsonSettingsTest {
     }
 
     @Test
+    fun `given invalid humidity string will throw IllegalArgumentException`() {
+        val actual = assertFails { selectHumidityUnit("X") }
+
+        assertTrue { actual is IllegalArgumentException }
+        assertEquals("X is not valid humidity unit", actual.message)
+    }
+
+    @Test
     fun `given valid wind speed string will return Wind Speed`() = windUnits.forEach { (input, expected) ->
         val actual = selectSpeedUnit(input)
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `given invalid wind speed string will throw IllegalArgumentException`() {
+        val actual = assertFails { selectSpeedUnit("X") }
+
+        assertTrue { actual is IllegalArgumentException }
+        assertEquals("X is not valid speed unit", actual.message)
     }
 
     @Test

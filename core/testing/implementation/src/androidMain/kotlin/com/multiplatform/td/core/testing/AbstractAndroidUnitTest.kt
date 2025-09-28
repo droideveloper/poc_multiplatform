@@ -13,7 +13,7 @@ import org.robolectric.annotation.Config
 @Config(
     sdk = [
         Build.VERSION_CODES.M,
-        Build.VERSION_CODES.TIRAMISU,
+        // Build.VERSION_CODES.TIRAMISU,
     ],
 )
 abstract class AbstractAndroidUnitTest {

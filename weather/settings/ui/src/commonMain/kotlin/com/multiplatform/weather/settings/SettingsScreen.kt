@@ -20,14 +20,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.multiplatform.td.core.app.AppComponent
 import com.multiplatform.td.core.app.composable.LocalAppComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
@@ -35,6 +33,7 @@ import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
 import com.multiplatform.td.core.environment.AppVersion
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.td.core.ui.overlay.TdErrorScreen
@@ -59,6 +58,7 @@ import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_speed
 import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_temperature_unit
 import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_title
 
+@KoverIgnore
 @Composable
 internal fun SettingsScreen() {
     val component = rememberSettingsComponent()
@@ -68,6 +68,7 @@ internal fun SettingsScreen() {
     SettingsUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 private fun rememberSettingsComponent(): SettingsComponent {
     val appComponent = LocalAppComponent.current
@@ -85,6 +86,7 @@ private fun rememberSettingsComponent(): SettingsComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun SettingsUi(
     state: SettingsState,

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.td.multiplatform.domain)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.td.multiplatform.mokkery)
 }
 
 kotlin {

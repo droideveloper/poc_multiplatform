@@ -1,7 +1,6 @@
 package com.multiplatform.weather.onboarding.speed
 
 import com.multiplatform.weather.core.measure.Speed
-import com.multiplatform.weather.onboarding.temperature.SelectTemperatureEvent
 
 internal interface SelectWindSpeedEvent {
 
