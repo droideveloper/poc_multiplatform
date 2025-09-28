@@ -33,6 +33,12 @@ internal class SelectSpeedSuccessViewTest : AbstractAndroidUnitTest() {
             }
 
             onNodeWithTag("nav_bar_title", useUnmergedTree = true).assertTextEquals("Wind Speed")
+
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true).isDisplayed()
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true).performClick()
+
+            verify { dispatch(SelectWindSpeedEvent.OnBackClicked) }
+
             onNodeWithText("Let's select a wind speed unit", useUnmergedTree = true).isDisplayed()
             onNodeWithText("You could select your desired wind speed unit below", useUnmergedTree = true).isDisplayed()
             val speeds = arrayOf(
@@ -44,6 +50,10 @@ internal class SelectSpeedSuccessViewTest : AbstractAndroidUnitTest() {
             speeds.forEach { speed ->
                 onNodeWithText(speed.toString(), useUnmergedTree = true).isDisplayed()
             }
+
+            onNodeWithText(Speed.MilesPerHour.toString(), useUnmergedTree = true).performClick()
+
+            verify { dispatch(SelectWindSpeedEvent.OnChanged(Speed.MilesPerHour)) }
 
             onNodeWithText("Done").isDisplayed()
             onNodeWithText("Done").performClick()
