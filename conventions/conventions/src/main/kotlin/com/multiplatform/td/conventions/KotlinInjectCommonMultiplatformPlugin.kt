@@ -14,14 +14,13 @@ class KotlinInjectCommonMultiplatformPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(KotlinMultiplatformPluginWrapper::class)
-            apply(KspGradleSubplugin::class)
             apply(ContributeKspPlugin::class)
         }
 
         extensions.getByType<KotlinMultiplatformExtension>().apply {
             sourceSets.commonMain.configure {
                 dependencies {
-                    api(kotlinInjectRuntime.asDependency())
+                    implementation(kotlinInjectRuntime.asDependency())
                 }
             }
         }

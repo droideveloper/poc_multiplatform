@@ -100,6 +100,7 @@ internal fun applyTargetKspMetadataDependencies(
     // Fix KSP task dependencies (https://github.com/google/ksp/issues/963)
     target.afterEvaluate {
         taskNames.forEach { taskName ->
+
             val task = target.tasks.find { it.name == taskName }
             task?.dependsOn("kspCommonMainKotlinMetadata")
         }

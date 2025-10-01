@@ -1,6 +1,8 @@
 package com.multiplatform.td.conventions
 
+import org.gradle.internal.extensions.stdlib.capitalized
 import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
+import org.jetbrains.kotlin.konan.target.HostManager
 
 internal val uiTargets = arrayOf(
     "Android",
@@ -17,21 +19,35 @@ internal val libraryTargets = arrayOf(
 )
 
 internal fun KotlinTargetContainerWithPresetFunctions.kotlinLibraryMetadataTargets() =
-    uiTargets.map {
-        "kspKotlin$it"
+    buildIosKspTaskIfHostAvailable { targetName ->
+        "kspKotlin$targetName"
     }
+        .apply { add("kspKotlinAndroid") }
 
 internal fun KotlinTargetContainerWithPresetFunctions.kotlinJvmMetadataTargets() =
-    libraryTargets.map {
-        "kspKotlin$it"
+    buildIosKspTaskIfHostAvailable { targetName ->
+        "kspKotlin$targetName"
     }
+        .apply { add("kspKotlinJvm") }
 
 internal fun KotlinTargetContainerWithPresetFunctions.kotlinLibraryTargets() =
-    uiTargets.map {
-        "ksp$it"
+    buildIosKspTaskIfHostAvailable { targetName ->
+        "ksp$targetName"
     }
+        .apply { add("kspAndroid") }
 
 internal fun KotlinTargetContainerWithPresetFunctions.kotlinJvmTargets() =
-    libraryTargets.map {
-        "ksp$it"
+    buildIosKspTaskIfHostAvailable { targetName ->
+        "ksp$targetName"
     }
+        .apply { add("kspJvm") }
+
+internal fun KotlinTargetContainerWithPresetFunctions.buildIosKspTaskIfHostAvailable(
+    applyPrefix: (String) -> String,
+): MutableList<String> =
+    iosArches()
+        .map { it() }
+        .filter { HostManager.hostIsMac }
+        .map { it.name.capitalized() }
+        .map { applyPrefix(it) }
+        .toMutableList()
