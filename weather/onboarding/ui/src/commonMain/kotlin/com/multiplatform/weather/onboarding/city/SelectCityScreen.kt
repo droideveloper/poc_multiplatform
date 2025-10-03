@@ -11,6 +11,7 @@ import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.weather.city.CityWidget
@@ -31,6 +32,7 @@ import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_s
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city_body
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city_title
 
+@KoverIgnore
 @Composable
 internal fun SelectCityScreen() {
     val component = rememberOnboardingComponent()
@@ -40,6 +42,7 @@ internal fun SelectCityScreen() {
     SelectCityUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 internal fun rememberOnboardingComponent(): OnboardingComponent {
     val navigationComponent = LocalNavigationComponent.current
@@ -55,6 +58,7 @@ internal fun rememberOnboardingComponent(): OnboardingComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun SelectCityUi(
     state: SelectCityState,

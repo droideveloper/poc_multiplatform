@@ -8,12 +8,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.onboarding.city.rememberOnboardingComponent
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@KoverIgnore
 @Composable
 internal fun SplashScreen() {
     val component = rememberOnboardingComponent()

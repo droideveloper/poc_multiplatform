@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.td.multiplatform.data)
-    alias(libs.plugins.td.multiplatform.kotlin.inject.common)
     alias(libs.plugins.td.multiplatform.room)
 }
 

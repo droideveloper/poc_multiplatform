@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.weather.core.measure.Speed
@@ -26,6 +27,7 @@ import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_s
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_unit
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_unit_body
 
+@KoverIgnore
 @Composable
 internal fun SelectWindSpeedScreen() {
     val component = rememberOnboardingComponent()
@@ -35,6 +37,7 @@ internal fun SelectWindSpeedScreen() {
     SelectWindSpeedUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 internal fun SelectWindSpeedUi(
     state: SelectWindSpeedState,

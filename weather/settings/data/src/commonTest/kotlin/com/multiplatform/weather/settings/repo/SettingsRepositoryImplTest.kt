@@ -3,7 +3,6 @@ package com.multiplatform.weather.settings.repo
 import com.multiplatform.td.core.datastore.DataStoreKey
 import com.multiplatform.td.core.datastore.KeyedValueDataStore
 import com.multiplatform.td.core.datastore.KeyedValueDataStoreException
-import com.multiplatform.weather.settings.Setting
 import com.multiplatform.weather.settings.Settings
 import com.multiplatform.weather.settings.json.JsonSettings
 import com.multiplatform.weather.settings.json.toData

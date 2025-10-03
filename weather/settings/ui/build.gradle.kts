@@ -62,7 +62,7 @@ kotlin {
 kover {
     dependencies {
         kover(projects.weather.settings.data)
-        kover(projects.weather.settings.ui)
+        kover(projects.weather.settings.domain)
     }
 }
 

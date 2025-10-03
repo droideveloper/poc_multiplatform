@@ -35,6 +35,7 @@ kotlin {
                 implementation(projects.core.kotlin)
                 implementation(projects.core.coroutines)
                 implementation(projects.core.mvi)
+                implementation(projects.core.ui)
 
                 implementation(projects.core.environment.gateway)
                 implementation(projects.core.environment.implementation)
@@ -68,6 +69,10 @@ kotlin {
 
 kover {
     dependencies {
+        kover(projects.weather.city.data)
+        kover(projects.weather.city.domain)
+        kover(projects.weather.city.ui)
+
         kover(projects.weather.onboarding.data)
         kover(projects.weather.onboarding.domain)
         kover(projects.weather.onboarding.ui)

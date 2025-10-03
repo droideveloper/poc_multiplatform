@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.td.multiplatform.data)
     alias(libs.plugins.td.multiplatform.room)
+    alias(libs.plugins.td.multiplatform.mokkery)
 }
 
 kotlin {

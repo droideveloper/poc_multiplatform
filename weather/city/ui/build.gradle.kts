@@ -2,10 +2,21 @@ plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
+    alias(libs.plugins.td.multiplatform.mokkery)
 }
 
 kotlin {
     sourceSets {
+        androidUnitTest {
+            dependencies {
+                implementation(projects.core.testing.implementation)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(projects.core.testing.gateway)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(projects.weather.city.data)
@@ -50,6 +61,13 @@ kotlin {
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+}
+
+kover {
+    dependencies {
+        kover(projects.weather.city.data)
+        kover(projects.weather.city.domain)
     }
 }
 
