@@ -34,6 +34,8 @@ internal fun Optional<VersionConstraint>.asInt() =
         .toInt()
 
 // library dependencies
+internal val Project.kotlinSerializationCore
+    get() = libs.findLibrary("kotlin.serialization.core")
 internal val Project.kotlinSerializationJson
     get() = libs.findLibrary("kotlin.serialization.json")
 internal val Project.kotlinCoroutinesCore

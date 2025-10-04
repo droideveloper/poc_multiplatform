@@ -9,12 +9,15 @@ import com.multiplatform.td.core.datastore.setSerializable
 import com.multiplatform.td.core.repository.Cache
 import com.multiplatform.td.core.repository.CacheException
 import com.multiplatform.weather.forecast.ForecastDto
-import kotlin.time.Clock
+import com.multiplatform.weather.forecast.LocalDateTimeProvider
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
 internal class ForecastDataStoreCache(
     private val dataStore: KeyedValueDataStore,
+    private val localDateTimeProvider: LocalDateTimeProvider,
     key: String,
 ) : Cache<ForecastDto> {
 
@@ -40,9 +43,11 @@ internal class ForecastDataStoreCache(
     }
 
     override suspend fun put(value: ForecastDto) {
-        dataStore.setSerializable(dataStoreKey, InstantValue.now(value))
+        dataStore.setSerializable(dataStoreKey, InstantValue.now(value, localDateTimeProvider))
             .getOrThrow()
     }
 
-    private fun now() = Clock.System.now()
+    private fun now() = localDateTimeProvider().toInstant(
+        timeZone = TimeZone.UTC,
+    )
 }

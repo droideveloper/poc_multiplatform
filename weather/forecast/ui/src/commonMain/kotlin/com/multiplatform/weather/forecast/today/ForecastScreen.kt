@@ -27,6 +27,7 @@ import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
 import com.multiplatform.td.core.network.Url
 import com.multiplatform.td.core.network.inject.NetworkComponent
 import com.multiplatform.td.core.network.inject.create
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
@@ -39,9 +40,16 @@ import com.multiplatform.weather.forecast.WeatherHourlyDescription
 import com.multiplatform.weather.forecast.WeatherNextDayDescriptionItem
 import com.multiplatform.weather.forecast.inject.ForecastComponent
 import com.multiplatform.weather.forecast.inject.createForecastComponent
+import com.multiplatform.weather.forecast.nextdays.city
+import com.multiplatform.weather.forecast.nextdays.forecast
 import com.multiplatform.weather.forecast.selectCurrentDateTime
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.Duration.Companion.seconds
 
+@KoverIgnore
 @Composable
 internal fun ForecastScreen() {
     val component = rememberForecastComponent()
@@ -51,6 +59,7 @@ internal fun ForecastScreen() {
     ForecastUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 internal fun rememberForecastComponent(): ForecastComponent {
     val navigationComponent = LocalNavigationComponent.current
@@ -80,6 +89,7 @@ internal fun rememberForecastComponent(): ForecastComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun ForecastUi(
     state: ForecastState,
@@ -88,7 +98,10 @@ private fun ForecastUi(
     when (val uiState = state.uiState) {
         UiState.Loading -> FwLoadingOverlay()
         UiState.Success -> ForecastSuccessView(state, dispatch)
-        else -> Unit // TODO implement this
+        is UiState.Failure -> when (uiState) {
+            is UiState.Failure.Text -> Unit // TODO implement text error
+            is UiState.Failure.Res -> Unit // TODO implement res error
+        }
     }
     OnScreenStart { dispatch(ForecastEvent.OnScreenViewed) }
     TickEffect(
@@ -98,7 +111,7 @@ private fun ForecastUi(
 }
 
 @Composable
-private fun ForecastSuccessView(
+internal fun ForecastSuccessView(
     state: ForecastState,
     dispatch: (ForecastEvent) -> Unit,
 ) {
@@ -159,5 +172,27 @@ private fun ForecastSuccessView(
             }
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard32))
         }
+    }
+}
+
+internal val forecastState = ForecastState(
+    uiState = UiState.Success,
+    forecast = forecast,
+    selectedCities = listOf(city),
+    city = city,
+    currentLocalDateTime = LocalDateTime(
+        date = LocalDate(2025, 7, 1),
+        time = LocalTime(9, 30),
+    ),
+)
+
+@Preview
+@Composable
+private fun ForecastSuccessViewPreview() {
+    FwTheme {
+        ForecastSuccessView(
+            state = forecastState,
+            dispatch = {},
+        )
     }
 }

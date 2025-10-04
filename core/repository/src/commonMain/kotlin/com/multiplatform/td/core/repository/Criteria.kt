@@ -28,6 +28,13 @@ sealed interface Criteria {
         fun ofTimed(duration: Duration): Timed = object : Timed {
             override val maxAge: Duration
                 get() = duration
+
+            override fun equals(other: Any?): Boolean {
+                if (other is Timed) {
+                    return maxAge == other.maxAge
+                }
+                return false
+            }
         }
     }
 }

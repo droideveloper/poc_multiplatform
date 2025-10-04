@@ -4,7 +4,9 @@ import com.multiplatform.td.core.datastore.KeyedValueDataStore
 import com.multiplatform.td.core.injection.scopes.FeatureScope
 import com.multiplatform.weather.city.inject.binder.SelectedCityRepositoryBinder
 import com.multiplatform.weather.city.repo.SelectedCityRepository
+import com.multiplatform.weather.forecast.LocalDateTimeProvider
 import com.multiplatform.weather.forecast.inject.binder.ForecastRepositoryBinder
+import com.multiplatform.weather.forecast.inject.binder.LocalDateTimeProviderBinder
 import com.multiplatform.weather.forecast.repo.ForecastRepository
 import com.multiplatform.weather.settings.inject.binder.SettingsRepositoryBinder
 import com.multiplatform.weather.settings.repo.SettingsRepository
@@ -17,6 +19,8 @@ interface ForecastDataModule {
     val selectedCityRepository: SelectedCityRepository
     val dataStore: KeyedValueDataStore
 
+    val localDateTimeProvider: LocalDateTimeProvider
+
     @FeatureScope
     @Provides
     fun bindSelectedCityRepository(binder: SelectedCityRepositoryBinder): SelectedCityRepository = binder()
@@ -28,4 +32,8 @@ interface ForecastDataModule {
     @FeatureScope
     @Provides
     fun bindForecastRepository(binder: ForecastRepositoryBinder): ForecastRepository = binder()
+
+    @FeatureScope
+    @Provides
+    fun bindLocalDateTimeProvider(binder: LocalDateTimeProviderBinder): LocalDateTimeProvider = binder()
 }

@@ -353,9 +353,9 @@ internal fun SelectedCityToolbar(
                 onCityChangeClicked = onCityChangeClicked,
             )
             IconButton(
-                modifier = Modifier.padding(
-                    FwTheme.dimens.standard4,
-                ),
+                modifier = Modifier
+                    .padding(FwTheme.dimens.standard4)
+                    .testTag("nav_bar_action"),
                 onClick = onPrimaryClicked,
             ) {
                 Icon(

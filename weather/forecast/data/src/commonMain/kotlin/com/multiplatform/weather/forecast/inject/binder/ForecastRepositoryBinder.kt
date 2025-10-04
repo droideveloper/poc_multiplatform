@@ -8,6 +8,7 @@ import com.multiplatform.td.core.repository.DataTransformer
 import com.multiplatform.weather.city.City
 import com.multiplatform.weather.forecast.Forecast
 import com.multiplatform.weather.forecast.ForecastDto
+import com.multiplatform.weather.forecast.LocalDateTimeProvider
 import com.multiplatform.weather.forecast.repo.ForecastDataSource
 import com.multiplatform.weather.forecast.repo.ForecastRepository
 import com.multiplatform.weather.forecast.repo.ForecastRepositoryImpl
@@ -20,6 +21,7 @@ import me.tatarka.inject.annotations.Inject
 class ForecastRepositoryBinder(
     private val dataStore: KeyedValueDataStore,
     private val network: Network,
+    private val localDateTimeProvider: LocalDateTimeProvider,
 ) : Binder<ForecastRepository> {
 
     override fun invoke(): ForecastRepository =
@@ -27,6 +29,7 @@ class ForecastRepositoryBinder(
             dataStore = dataStore,
             dataSource = createDataSource(),
             transformer = createDataTransformer(),
+            localDateTimeProvider = localDateTimeProvider,
         )
 
     private fun createDataSource(): DataSource<City, ForecastDto> =
