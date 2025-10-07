@@ -10,15 +10,13 @@ import com.multiplatform.td.core.navigation.FeatureRouter
 import com.multiplatform.weather.city.City
 import com.multiplatform.weather.city.usecase.GetSelectedCitiesUseCase
 import com.multiplatform.weather.forecast.ForecastRoute
+import com.multiplatform.weather.forecast.LocalDateTimeProvider
 import com.multiplatform.weather.forecast.usecase.GetForecastUseCase
 import com.multiplatform.weather.settings.SettingRoute
 import com.multiplatform.weather.settings.usecase.GetSettingsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @ContributesViewModel(scope = FeatureScope::class)
@@ -27,6 +25,7 @@ internal class ForecastViewModel(
     private val getForecastUseCase: GetForecastUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val featureRouter: FeatureRouter,
+    private val localDateTimeProvider: LocalDateTimeProvider,
 ) : MviViewModel<ForecastEvent, ForecastState>(
     initialState = ForecastState(),
 ) {
@@ -114,7 +113,5 @@ internal class ForecastViewModel(
             .launchIn(viewModelScope)
     }
 
-    private fun currentLocalDateTime() = Clock.System.now().toLocalDateTime(
-        timeZone = TimeZone.currentSystemDefault(),
-    )
+    private fun currentLocalDateTime() = localDateTimeProvider()
 }

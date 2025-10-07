@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.composable.TickEffect
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.card.TdCard
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
@@ -40,24 +41,34 @@ import com.multiplatform.weather.city.City
 import com.multiplatform.weather.city.Country
 import com.multiplatform.weather.city.CountryCode
 import com.multiplatform.weather.city.Location
+import com.multiplatform.weather.core.measure.HumidityAmount
+import com.multiplatform.weather.core.measure.PressureAmount
 import com.multiplatform.weather.core.measure.Temperature
 import com.multiplatform.weather.core.measure.TemperatureAmount
+import com.multiplatform.weather.core.measure.UvIndexAmount
+import com.multiplatform.weather.core.measure.WindAmount
 import com.multiplatform.weather.core.ui.FwImage
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
+import com.multiplatform.weather.forecast.Average
+import com.multiplatform.weather.forecast.Forecast
+import com.multiplatform.weather.forecast.Weather
 import com.multiplatform.weather.forecast.WeatherCode
 import com.multiplatform.weather.forecast.WeatherHourlyDescriptionItem
 import com.multiplatform.weather.forecast.selectLocalDate
 import com.multiplatform.weather.forecast.selectTemperature
 import com.multiplatform.weather.forecast.selectWeatherDescription
 import com.multiplatform.weather.forecast.today.UiState
+import com.multiplatform.weather.forecast.today.WeatherData
 import com.multiplatform.weather.forecast.today.WeatherDescriptionState
 import com.multiplatform.weather.forecast.today.WeatherHourlyDescriptionState
 import com.multiplatform.weather.forecast.today.WeatherNextDayDescriptionState
 import com.multiplatform.weather.forecast.today.rememberForecastComponent
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -66,6 +77,7 @@ import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_numbe
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_today
 import kotlin.time.Duration.Companion.seconds
 
+@KoverIgnore
 @Composable
 internal fun ForecastNextDaysScreen(cityId: Long) {
     val component = rememberForecastComponent()
@@ -76,6 +88,7 @@ internal fun ForecastNextDaysScreen(cityId: Long) {
     ForecastNextDaysUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 internal fun ForecastNextDaysUi(
     state: ForecastNextDaysState,
@@ -84,7 +97,10 @@ internal fun ForecastNextDaysUi(
     when (val uiState = state.uiState) {
         UiState.Loading -> FwLoadingOverlay()
         UiState.Success -> ForecastNextDaysSuccessView(state, dispatch)
-        else -> Unit // TODO implement this
+        is UiState.Failure -> when (uiState) {
+            is UiState.Failure.Res -> Unit // TODO handle error res state
+            is UiState.Failure.Text -> Unit // TODO handle error text state
+        }
     }
     OnScreenStart { dispatch(ForecastNextDaysEvent.OnScreenViewed) }
     TickEffect(
@@ -314,6 +330,128 @@ internal fun NthDayWeatherDescription(
     }
 }
 
+internal val weatherDescriptionState = WeatherDescriptionState(
+    temperature = TemperatureAmount(
+        amount = 32.0,
+        unit = Temperature.Celsius,
+    ),
+    weatherCode = WeatherCode.getOrThrow(92),
+)
+
+internal val weatherNextDayDescriptionState = WeatherNextDayDescriptionState(
+    temperature = TemperatureAmount(
+        amount = 32.0,
+        unit = Temperature.Celsius,
+    ),
+    weatherCode = WeatherCode.getOrThrow(92),
+    date = LocalDate.parse("2025-07-29"),
+)
+
+internal val weatherData = WeatherData(
+    temperature = TemperatureAmount(
+        amount = 32.0,
+        unit = Temperature.Celsius,
+    ),
+    code = WeatherCode.getOrThrow(92),
+    time = LocalTime.parse("00:00"),
+)
+
+internal val weatherHourlyDescriptionState = WeatherHourlyDescriptionState(
+    time = LocalTime.parse("04:00"),
+    hourlyWeather = (0 until 10).map { index ->
+        weatherData.copy(
+            time = LocalTime.parse("0$index:00"),
+        )
+    }.toList(),
+)
+
+internal val city = City(
+    id = 0,
+    name = "Istanbul",
+    displayName = "Istanbul",
+    country = Country(
+        name = "Turkey",
+        code = CountryCode.getOrThrow("TR"),
+    ),
+    location = Location(
+        latitude = 0.0,
+        longitude = 0.0,
+    ),
+)
+
+internal val forecast = Forecast(
+    weather = (0 until 7).associate { day ->
+        LocalDate(2025, 7, day + 1) to (0 until 24).map { hour ->
+            Weather(
+                time = LocalTime(hour, 0),
+                temperature = TemperatureAmount.celsius(32.0),
+                apparentTemperature = TemperatureAmount.celsius(24.0),
+                humidity = HumidityAmount.of(75),
+                wind = WindAmount.kmh(35.7),
+                pressure = PressureAmount.of(30.0),
+                code = WeatherCode.getOrThrow(92),
+            )
+        }.toList()
+    },
+    average = (0 until 7).map { day ->
+        val date = LocalDate(2025, 7, day + 1)
+        Average(
+            time = date,
+            sunset = LocalDateTime(date, time = LocalTime(17 + day, 30 - day)),
+            sunrise = LocalDateTime(date, time = LocalTime(5 + day, day)),
+            minTemperature = TemperatureAmount.celsius(14.0),
+            maxTemperature = TemperatureAmount.celsius(32.0),
+            minApparentTemperature = TemperatureAmount.celsius(8.0),
+            maxApparentTemperature = TemperatureAmount.celsius(24.0),
+            minWindSpeed = WindAmount.kmh(12.0),
+            maxWindSpeed = WindAmount.kmh(35.7),
+            uvIndex = UvIndexAmount.of(3.9),
+        )
+    },
+)
+
+internal val forecastNextDayState = ForecastNextDaysState(
+    uiState = UiState.Success,
+    currentLocalDateTime = LocalDateTime(
+        date = LocalDate(2025, 7, 1),
+        time = LocalTime(9, 30),
+    ),
+    city = city,
+    forecast = forecast,
+)
+
+@Preview
+@Composable
+private fun ForecastNextDaysSuccessViewPreview() {
+    FwTheme {
+        ForecastNextDaysSuccessView(
+            state = forecastNextDayState,
+            dispatch = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun TodayHourlyDescriptionPreview() {
+    FwTheme {
+        Column(
+            modifier = Modifier
+                .background(color = Color.White)
+                .fillMaxWidth()
+                .padding(
+                    horizontal = FwTheme.dimens.standard16,
+                    vertical = FwTheme.dimens.standard8,
+                ),
+        ) {
+            TodayHourlyDescription(
+                state = weatherHourlyDescriptionState,
+                unit = Temperature.Celsius,
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
 private fun TodayWeatherDescriptionPreview() {
@@ -328,26 +466,8 @@ private fun TodayWeatherDescriptionPreview() {
                 ),
         ) {
             TodayWeatherDescription(
-                state = WeatherDescriptionState(
-                    temperature = TemperatureAmount(
-                        amount = 32.0,
-                        unit = Temperature.Celsius,
-                    ),
-                    weatherCode = WeatherCode.getOrThrow(92),
-                ),
-                city = City(
-                    id = 0,
-                    name = "Istanbul",
-                    displayName = "Istanbul",
-                    country = Country(
-                        name = "Turkey",
-                        code = CountryCode.getOrThrow("TR"),
-                    ),
-                    location = Location(
-                        latitude = 0.0,
-                        longitude = 0.0,
-                    ),
-                ),
+                state = weatherDescriptionState,
+                city = city,
                 unit = Temperature.Celsius,
             )
         }
@@ -368,14 +488,7 @@ private fun NthDayWeatherDescriptionPreview() {
                 ),
         ) {
             NthDayWeatherDescription(
-                state = WeatherNextDayDescriptionState(
-                    temperature = TemperatureAmount(
-                        amount = 32.0,
-                        unit = Temperature.Celsius,
-                    ),
-                    weatherCode = WeatherCode.getOrThrow(92),
-                    date = LocalDate.parse("2025-07-29"),
-                ),
+                state = weatherNextDayDescriptionState,
                 unit = Temperature.Celsius,
             )
         }

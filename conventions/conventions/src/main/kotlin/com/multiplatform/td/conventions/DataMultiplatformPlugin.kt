@@ -25,6 +25,7 @@ class DataMultiplatformPlugin: Plugin<Project> {
             sourceSets.commonMain.configure {
                 dependencies {
                     implementation(kotlinCoroutinesCore.asDependency())
+                    implementation(kotlinSerializationCore.asDependency())
                     implementation(kotlinSerializationJson.asDependency())
 
                     implementation(kotlinDatetime.asDependency())

@@ -49,6 +49,7 @@ internal class InMemoryDataStore(
         return transform(preferences).also {
             dataStore.clear()
             dataStore.putAll(it.asMap())
+            internalState.tryEmit(it)
         }
     }
 

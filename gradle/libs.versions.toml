@@ -11,7 +11,7 @@ compose-multiplatform = "1.9.0"
 android-desugar-jdk-libs = "2.1.5"
 junit = "4.13.2"
 kotlin = "2.2.20"
-kotlin-serilization-json = "1.9.0"
+kotlin-serilization = "1.9.0"
 kotlin-datetime = "0.7.1"
 kotlin-coroutines = "1.10.2"
 navigation-compose = "2.9.0"
@@ -78,8 +78,9 @@ androidx-datastore-preferences-core = { group = "androidx.datastore", name = "da
 androidx-datastore-core-okio = { group = "androidx.datastore", name = "datastore-core-okio", version.ref = "datastore" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 
-kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serilization-json" }
-kotlin-serialization-json-okio = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json-okio", version.ref = "kotlin-serilization-json" }
+kotlin-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlin-serilization" }
+kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serilization" }
+kotlin-serialization-json-okio = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json-okio", version.ref = "kotlin-serilization" }
 kotlin-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlin-datetime" }
 
 kotlin-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }

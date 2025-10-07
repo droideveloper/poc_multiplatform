@@ -44,6 +44,7 @@ class MultiplatformKoverPlugin : Plugin<Project> {
                             "**.*Dao*",
                             "**.*Database*",
                             "**.*Route",
+                            "**._*",
                         )
                     }
                 }

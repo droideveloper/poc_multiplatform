@@ -8,14 +8,12 @@ import com.multiplatform.td.core.injection.scopes.FeatureScope
 import com.multiplatform.td.core.mvi.MviViewModel
 import com.multiplatform.td.core.navigation.FeatureRouter
 import com.multiplatform.weather.city.usecase.GetSelectedCitiesUseCase
+import com.multiplatform.weather.forecast.LocalDateTimeProvider
 import com.multiplatform.weather.forecast.today.UiState
 import com.multiplatform.weather.forecast.usecase.GetForecastUseCase
 import com.multiplatform.weather.settings.usecase.GetSettingsUseCase
 import kotlinx.coroutines.launch
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import me.tatarka.inject.annotations.Assisted
-import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @ContributesViewModel(scope = FeatureScope::class)
@@ -24,6 +22,7 @@ internal class ForecastNextDaysViewModel(
     private val getForecastUseCase: GetForecastUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val featureRouter: FeatureRouter,
+    private val localDateTimeProvider: LocalDateTimeProvider,
     @Assisted private val selectedCityId: Long,
 ) : MviViewModel<ForecastNextDaysEvent, ForecastNextDaysState>(
     initialState = ForecastNextDaysState(),
@@ -59,7 +58,5 @@ internal class ForecastNextDaysViewModel(
         )
     }
 
-    private fun now() = Clock.System.now().toLocalDateTime(
-        timeZone = TimeZone.currentSystemDefault(),
-    )
+    private fun now() = localDateTimeProvider()
 }
