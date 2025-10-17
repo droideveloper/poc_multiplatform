@@ -61,6 +61,7 @@ kotlin {
                 implementation(libs.ktorfit.lib.light)
                 implementation(libs.kotlin.datetime)
                 implementation(libs.navigation.compose)
+                implementation(libs.compose.material.icons)
             }
         }
     }
