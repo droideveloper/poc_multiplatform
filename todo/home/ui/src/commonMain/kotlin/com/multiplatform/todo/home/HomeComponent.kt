@@ -40,6 +40,7 @@ import com.multiplatform.todo.home.home.HomeEvent
 import com.multiplatform.todo.home.home.MenuItem
 import com.multiplatform.todo.home.home.selectNewButtonDescription
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.home.ui.generated.resources.Res
 import tdmultiplatform.todo.home.ui.generated.resources.ic_add
 
@@ -86,6 +87,7 @@ internal fun TdBottomTabBar(
             color = TdTheme.colors.greys.light,
             thickness = TdTheme.dimens.standard1,
         )
+        // Todo use material3 version yet they did remove tabPositions from their indicator composable callback, so may be implement what they have in the library
         TabRow(
             modifier = Modifier.sizeIn(minHeight = TdTheme.dimens.standard64),
             selectedTabIndex = index,
@@ -162,3 +164,40 @@ private val TabRowIndicatorSpec: AnimationSpec<Dp> =
 
 private fun Placeable.toSeventhOfEightHeightMargin() =
     height * 7 / 8
+
+@Preview
+@Composable
+private fun TdFabButtonPreview() {
+    TdTheme {
+        TdFabButton(
+            selectedItem = MenuItem.Home(),
+            dispatch = { },
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun TdBottomTabBarPreview() {
+    TdTheme {
+        TdBottomTabBar(
+            selectedItem = MenuItem.Calender(),
+            menuItems = listOf(
+                MenuItem.Home(),
+                MenuItem.Task(),
+                MenuItem.Calender(),
+                MenuItem.Settings(),
+            ),
+            isSelected = { item -> item == MenuItem.Calender() },
+            dispatch = { },
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun SecondaryIndicatorPreview() {
+    TdTheme {
+        SecondaryIndicator(modifier = Modifier.fillMaxWidth())
+    }
+}
