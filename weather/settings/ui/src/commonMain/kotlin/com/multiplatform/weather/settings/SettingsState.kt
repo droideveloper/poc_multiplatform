@@ -16,6 +16,7 @@ sealed interface UiState {
     data class Success(
         val settings: MutableState<Settings> = mutableStateOf(Settings.Defaults),
         val version: AppVersion = AppVersion("N/A"),
+        val flavorName: String = "N/A",
     ) : UiState {
 
         fun update(settings: Settings) {

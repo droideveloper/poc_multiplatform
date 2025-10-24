@@ -15,8 +15,12 @@ internal class SettingsViewModel(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val saveSettingsUseCase: SaveSettingsUseCase,
     version: AppVersion,
+    flavorName: String,
 ) : MviViewModel<SettingsEvent, SettingsState>(
-    initialState = SettingsState(version = version),
+    initialState = SettingsState(
+        version = version,
+        flavorName = flavorName,
+    ),
 ) {
 
     init {

@@ -59,7 +59,8 @@ internal class SettingsViewModelTest : AbstractDispatcherTest() {
             saveSettingsUseCase = saveSettingsUseCase,
             getSelectedCitiesUseCase = getSelectedCitiesUseCase,
             featureRouter = featureRouter,
-            version = AppVersion("NA"),
+            version = AppVersion("1.0.0"),
+            flavorName = "staging",
         )
     }
 

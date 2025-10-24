@@ -2,6 +2,7 @@ package com.multiplatform.weather.settings.inject
 
 import com.multiplatform.td.core.datastore.inject.DataStoreComponent
 import com.multiplatform.td.core.environment.AppVersion
+import com.multiplatform.td.core.environment.Environment
 import com.multiplatform.td.core.injection.scopes.FeatureScope
 import com.multiplatform.td.core.navigation.inject.NavigationComponent
 import com.multiplatform.weather.settings.GeneratedViewModelModule
@@ -14,9 +15,14 @@ import me.tatarka.inject.annotations.Provides
 abstract class SettingsComponent(
     @Component val dataStoreComponent: DataStoreComponent,
     @Component val navigationComponent: NavigationComponent,
-    @get:Provides val version: AppVersion,
 ) : GeneratedViewModelModule(), SettingsDataModule {
     companion object;
+
+    abstract val version: AppVersion
+
+    @Provides
+    @FeatureScope
+    fun provideFlavorName(env: Environment): String = env.flavorName
 }
 
 @Suppress("KotlinNoActualForExpect")
@@ -24,5 +30,4 @@ abstract class SettingsComponent(
 expect fun createSettingsComponent(
     dataStoreComponent: DataStoreComponent,
     navigationComponent: NavigationComponent,
-    version: AppVersion,
 ): SettingsComponent

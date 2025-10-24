@@ -24,13 +24,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.multiplatform.td.core.app.composable.LocalAppComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.datastore.composable.LocalDataSoreComponent
 import com.multiplatform.td.core.environment.AppVersion
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.controls.TdToggle
 import com.multiplatform.td.core.ui.effects.OnScreenStart
@@ -39,6 +40,7 @@ import com.multiplatform.todo.settings.inject.SettingsComponent
 import com.multiplatform.todo.settings.inject.createSettingsComponent
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.settings.ui.generated.resources.Res
 import tdmultiplatform.todo.settings.ui.generated.resources.ic_decrement
 import tdmultiplatform.todo.settings.ui.generated.resources.ic_increment
@@ -47,8 +49,10 @@ import tdmultiplatform.todo.settings.ui.generated.resources.settings_notify_befo
 import tdmultiplatform.todo.settings.ui.generated.resources.settings_notify_before_title
 import tdmultiplatform.todo.settings.ui.generated.resources.settings_title
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.DurationUnit
 
+@KoverIgnore
 @Composable
 fun SettingsScreen() {
     val component = rememberSettingsComponent()
@@ -58,6 +62,7 @@ fun SettingsScreen() {
     SettingsUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 private fun rememberSettingsComponent(): SettingsComponent {
     val dataStoreComponent = LocalDataSoreComponent.current
@@ -71,6 +76,7 @@ private fun rememberSettingsComponent(): SettingsComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun SettingsUi(
     state: SettingsState,
@@ -85,7 +91,7 @@ private fun SettingsUi(
 }
 
 @Composable
-private fun SettingsSuccessView(
+internal fun SettingsSuccessView(
     state: SettingsState,
     dispatch: (SettingsEvent) -> Unit,
 ) {
@@ -118,14 +124,14 @@ private fun SettingsSuccessView(
                 },
             )
             Spacer(modifier = Modifier.weight(1f))
-            SettingsVersionFooter(state.version)
+            SettingsVersionFooter(state.version, state.flavorName)
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard36))
         }
     }
 }
 
 @Composable
-private fun SettingsNotificationSection(
+internal fun SettingsNotificationSection(
     isChecked: Boolean,
     dispatch: (SettingsEvent) -> Unit,
 ) {
@@ -141,7 +147,7 @@ private fun SettingsNotificationSection(
 }
 
 @Composable
-private fun SettingsNotifyBeforeSection(
+internal fun SettingsNotifyBeforeSection(
     isEnabled: Boolean,
     duration: Duration,
     onClickIncrement: () -> Unit,
@@ -205,7 +211,7 @@ private fun SettingsNotifyBeforeSection(
 }
 
 @Composable
-private fun SettingsSectionLayout(
+internal fun SettingsSectionLayout(
     modifier: Modifier = Modifier,
     title: String,
     content: @Composable () -> Unit,
@@ -230,8 +236,9 @@ private fun SettingsSectionLayout(
 }
 
 @Composable
-private fun SettingsVersionFooter(
+internal fun SettingsVersionFooter(
     version: AppVersion,
+    flavorName: String,
 ) {
     Row(
         modifier = Modifier
@@ -239,11 +246,8 @@ private fun SettingsVersionFooter(
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
     ) {
-        val appComponent = LocalAppComponent.current
-        val env = remember { appComponent.environment }
-
         Text(
-            text = "v${version.value} - ${env.flavorName}",
+            text = "v${version.value} - $flavorName",
             style = TextStyle.Default.copy(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
@@ -257,4 +261,67 @@ private fun SettingsVersionFooter(
 internal fun selectCheckStateColor(checked: Boolean) = when {
     checked -> TdTheme.colors.deepOranges.primary
     else -> TdTheme.colors.greys.primary
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun SettingsSuccessViewPreview() {
+    TdTheme {
+        SettingsSuccessView(
+            state = SettingsState(
+                uiState = UiState.Success,
+                version = AppVersion("1.0.0"),
+                flavorName = "staging",
+            ),
+            dispatch = { },
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun SettingsNotifyBeforeSectionPreview() {
+    TdTheme {
+        SettingsNotifyBeforeSection(
+            isEnabled = true,
+            duration = 30.minutes,
+            onClickDecrement = { },
+            onClickIncrement = { },
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun SettingsSectionLayoutPreview() {
+    TdTheme {
+        SettingsSectionLayout(
+            title = "Title",
+        ) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.End,
+                text = "Content",
+            )
+        }
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun SettingsVersionFooterPreview() {
+    TdTheme {
+        SettingsVersionFooter(
+            version = AppVersion("1.0.0"),
+            flavorName = "staging",
+        )
+    }
 }

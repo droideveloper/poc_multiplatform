@@ -20,19 +20,23 @@ import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.todo.core.ui.TdNavBar
 import com.multiplatform.todo.tasks.TaskItemView
+import com.multiplatform.todo.tasks.detail.task
 import com.multiplatform.todo.tasks.inject.TasksComponent
 import com.multiplatform.todo.tasks.inject.createTasksComponent
 import com.multiplatform.todo.tasks.selectSecondaryTitle
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.tasks.ui.generated.resources.Res
 import tdmultiplatform.todo.tasks.ui.generated.resources.ic_filter
 import tdmultiplatform.todo.tasks.ui.generated.resources.tasks_title
 
+@KoverIgnore
 @Composable
 fun TasksScreen() {
     val component = rememberTaskComponent()
@@ -42,6 +46,7 @@ fun TasksScreen() {
     TasksUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 internal fun rememberTaskComponent(): TasksComponent {
     val databaseComponent = LocalDatabaseComponent.current
@@ -57,6 +62,7 @@ internal fun rememberTaskComponent(): TasksComponent {
     }
 }
 
+@KoverIgnore
 @Composable
 private fun TasksUi(
     state: TasksState,
@@ -70,7 +76,7 @@ private fun TasksUi(
 }
 
 @Composable
-private fun TasksSuccessView(
+internal fun TasksSuccessView(
     state: TasksState,
     dispatch: (TasksEvent) -> Unit,
 ) {
@@ -114,5 +120,21 @@ private fun TasksSuccessView(
                 }
             }
         }
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TasksSuccessViewPreview() {
+    TdTheme {
+        TasksSuccessView(
+            state = TasksState(
+                uiState = UiState.Success,
+                tasks = listOf(task),
+            ),
+            dispatch = { },
+        )
     }
 }

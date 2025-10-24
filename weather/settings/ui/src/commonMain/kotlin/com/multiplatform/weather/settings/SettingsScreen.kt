@@ -26,7 +26,6 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.multiplatform.td.core.app.composable.LocalAppComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
@@ -71,7 +70,6 @@ internal fun SettingsScreen() {
 @KoverIgnore
 @Composable
 private fun rememberSettingsComponent(): SettingsComponent {
-    val appComponent = LocalAppComponent.current
     val navigationComponent = LocalNavigationComponent.current
     val dataStoreComponent = LocalDataSoreComponent.current
 
@@ -81,7 +79,6 @@ private fun rememberSettingsComponent(): SettingsComponent {
         createSettingsComponent(
             dataStoreComponent = dataStoreComponent,
             navigationComponent = navigationComponent,
-            version = appComponent.version,
         )
     }
 }
@@ -98,6 +95,7 @@ private fun SettingsUi(
         is UiState.Success -> SettingsSuccessView(
             settings = uiState.settings.value,
             version = uiState.version,
+            flavorName = uiState.flavorName,
             dispatch = dispatch,
         )
     }
@@ -123,6 +121,7 @@ private fun SettingsFailureView(
 internal fun SettingsSuccessView(
     settings: Settings,
     version: AppVersion,
+    flavorName: String,
     dispatch: (SettingsEvent) -> Unit,
     widget: @Composable () -> Unit = @Composable {
         CityWidget(
@@ -169,7 +168,7 @@ internal fun SettingsSuccessView(
                 onClickDecrement = { dispatch(SettingsEvent.OnDays.Decrement) },
             )
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
-            SettingsVersion(version = version)
+            SettingsVersion(version = version, flavorName = flavorName)
             Spacer(modifier = Modifier.height(FwTheme.dimens.standard32))
             widget()
         }
@@ -328,6 +327,7 @@ private fun SettingLabel(
 @Composable
 private fun SettingsVersion(
     version: AppVersion,
+    flavorName: String,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -335,7 +335,7 @@ private fun SettingsVersion(
     ) {
         Text(
             modifier = Modifier.padding(top = FwTheme.dimens.standard16),
-            text = version.value,
+            text = "v${version.value} - $flavorName",
             style = FwTheme.typography.titleSecondary.copy(
                 fontWeight = FontWeight.SemiBold,
             ),
@@ -362,7 +362,8 @@ private fun SettingsSuccessViewPreview() {
     FwTheme {
         SettingsSuccessView(
             settings = Settings.Defaults,
-            version = AppVersion("N/A"),
+            version = AppVersion("1.0.0"),
+            flavorName = "staging",
             dispatch = {},
         ) {
             Text("Widget Placeholder")

@@ -7,6 +7,7 @@ internal data class SettingsState(
     val uiState: UiState = UiState.Loading,
     val settings: Settings = Settings.Default,
     val version: AppVersion,
+    val flavorName: String,
 )
 
 internal interface UiState {
