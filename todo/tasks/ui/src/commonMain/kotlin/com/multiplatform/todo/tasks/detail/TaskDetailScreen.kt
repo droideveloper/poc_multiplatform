@@ -217,7 +217,7 @@ private fun TaskDetailsHeaderPreview() {
         TaskDetailsHeader(
             category = category,
             title = "Doctor Appointment",
-            description = "Actually it is dental appointment"
+            description = "Actually it is dental appointment",
         )
     }
 }

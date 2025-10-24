@@ -132,7 +132,7 @@ private fun TasksSuccessViewPreview() {
         TasksSuccessView(
             state = TasksState(
                 uiState = UiState.Success,
-                tasks = listOf(task)
+                tasks = listOf(task),
             ),
             dispatch = { },
         )

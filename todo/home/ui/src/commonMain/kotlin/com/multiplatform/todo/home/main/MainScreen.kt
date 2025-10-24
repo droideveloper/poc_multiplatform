@@ -266,7 +266,7 @@ internal val task = Task(
 
 private val tasks = listOf(
     task.copy(
-        id = 0
+        id = 0,
     ),
     task.copy(
         id = 1,
@@ -274,8 +274,8 @@ private val tasks = listOf(
     ),
     task.copy(
         id = 1,
-        dueDateTime = LocalDateTime(date, LocalTime(14, 0 ,0)),
-    )
+        dueDateTime = LocalDateTime(date, LocalTime(14, 0, 0)),
+    ),
 )
 
 internal fun Task.asSubTask(): TaskSubTasks = TaskSubTasks(task = this, tasks = emptyList())
