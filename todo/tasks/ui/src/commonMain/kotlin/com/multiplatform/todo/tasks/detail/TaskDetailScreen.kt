@@ -17,18 +17,27 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.effects.OnScreenStart
 import com.multiplatform.td.core.ui.navbar.NavBarDefaults
 import com.multiplatform.todo.core.ui.TdNavBar
 import com.multiplatform.todo.tasks.Category
+import com.multiplatform.todo.tasks.CategoryColor
 import com.multiplatform.todo.tasks.Task
 import com.multiplatform.todo.tasks.TaskStatus
 import com.multiplatform.todo.tasks.selectContainerColor
 import com.multiplatform.todo.tasks.selectLocalDate
 import com.multiplatform.todo.tasks.task.rememberTaskComponent
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
+import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
+import kotlin.time.Duration.Companion.minutes
 
+@KoverIgnore
 @Composable
 fun TaskDetailScreen(taskId: Long) {
     val component = rememberTaskComponent()
@@ -39,6 +48,7 @@ fun TaskDetailScreen(taskId: Long) {
     TaskDetailUi(viewModel.state, viewModel::dispatch)
 }
 
+@KoverIgnore
 @Composable
 private fun TaskDetailUi(
     state: TaskDetailState,
@@ -53,7 +63,7 @@ private fun TaskDetailUi(
 }
 
 @Composable
-private fun TaskDetailSuccessView(
+internal fun TaskDetailSuccessView(
     task: Task,
     dispatch: (TaskDetailEvent) -> Unit,
 ) {
@@ -79,13 +89,13 @@ private fun TaskDetailSuccessView(
         ) {
             TaskDetailsHeader(task.category, task.title, task.description)
             Spacer(modifier = Modifier.height(TdTheme.dimens.standard16))
-            TaskStatusDetails(task.dueDateTime, task.status)
+            TaskStatusDetails(task.dueDateTime.date, task.dueDateTime.time, task.status)
         }
     }
 }
 
 @Composable
-private fun TaskDetailsHeader(
+internal fun TaskDetailsHeader(
     category: Category,
     title: String,
     description: String,
@@ -126,8 +136,9 @@ private fun TaskDetailsHeader(
 }
 
 @Composable
-private fun TaskStatusDetails(
-    date: LocalDateTime,
+internal fun TaskStatusDetails(
+    date: LocalDate,
+    time: LocalTime,
     status: TaskStatus,
 ) {
     Column(
@@ -145,12 +156,81 @@ private fun TaskStatusDetails(
         Spacer(modifier = Modifier.height(TdTheme.dimens.standard8))
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = selectLocalDate(date.date),
+            text = selectLocalDate(date),
             style = TextStyle.Default.copy(
                 color = TdTheme.colors.blacks.light,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
             ),
+        )
+    }
+}
+
+private class TaskStatusParameterProvider : PreviewParameterProvider<TaskStatus> {
+    override val values: Sequence<TaskStatus> = sequenceOf(
+        TaskStatus.Progress,
+        TaskStatus.Done,
+        TaskStatus.OverDue,
+        TaskStatus.Open,
+    )
+}
+
+internal val date = LocalDate(2025, 10, 21)
+internal val time = LocalTime(10, 0, 0)
+
+internal val category = Category(
+    id = 0,
+    name = "Health",
+    description = "Health and related stuff on wel-being",
+    color = CategoryColor.getOrThrow(-6440513913749504),
+    iconRes = null,
+)
+
+internal val task = Task(
+    id = 0,
+    category = category,
+    title = "Doctor Appointment",
+    description = "Actually it is dental appointment",
+    dueDateTime = LocalDateTime(date, time),
+    duration = 45.minutes,
+    status = TaskStatus.OverDue,
+)
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TaskStatusDetailsPreview(
+    @PreviewParameter(TaskStatusParameterProvider::class) status: TaskStatus,
+) {
+    TdTheme {
+        TaskStatusDetails(date, time, status)
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TaskDetailsHeaderPreview() {
+    TdTheme {
+        TaskDetailsHeader(
+            category = category,
+            title = "Doctor Appointment",
+            description = "Actually it is dental appointment"
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TaskDetailSuccessViewPreview() {
+    TdTheme {
+        TaskDetailSuccessView(
+            task = task,
+            dispatch = { },
         )
     }
 }

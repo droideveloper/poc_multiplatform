@@ -165,7 +165,9 @@ private val TabRowIndicatorSpec: AnimationSpec<Dp> =
 private fun Placeable.toSeventhOfEightHeightMargin() =
     height * 7 / 8
 
-@Preview
+@Preview(
+    showBackground = true,
+)
 @Composable
 private fun TdFabButtonPreview() {
     TdTheme {
@@ -176,7 +178,9 @@ private fun TdFabButtonPreview() {
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+)
 @Composable
 private fun TdBottomTabBarPreview() {
     TdTheme {
@@ -194,7 +198,9 @@ private fun TdBottomTabBarPreview() {
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+)
 @Composable
 private fun SecondaryIndicatorPreview() {
     TdTheme {

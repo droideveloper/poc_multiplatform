@@ -22,6 +22,7 @@ import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.composable.LocalNavController
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.todo.calendar.CalendarScreen
 import com.multiplatform.todo.home.Route
 import com.multiplatform.todo.home.TdBottomTabBar
@@ -32,6 +33,7 @@ import com.multiplatform.todo.home.main.MainScreen
 import com.multiplatform.todo.settings.SettingsScreen
 import com.multiplatform.todo.tasks.task.TasksScreen
 
+@KoverIgnore
 @Composable
 fun HomeScreen() {
     val component = rememberHomeComponent(
@@ -44,10 +46,11 @@ fun HomeScreen() {
         val viewModel = kotlinInjectViewModel(
             create = component.homeViewModelFactory,
         )
-        HomeSuccessView(viewModel.state, viewModel::dispatch)
+        HomeSuccessView(viewModel.state, dispatch = viewModel::dispatch)
     }
 }
 
+@KoverIgnore
 @Composable
 internal fun rememberHomeComponent(
     navHostController: NavHostController,
@@ -65,8 +68,9 @@ internal fun rememberHomeComponent(
 }
 
 @Composable
-private fun HomeSuccessView(
+internal fun HomeSuccessView(
     state: HomeState,
+    startDestination: Route = Route.Main,
     dispatch: (HomeEvent) -> Unit,
 ) {
     Scaffold(
@@ -95,7 +99,7 @@ private fun HomeSuccessView(
         ) {
             val navController = LocalNavController.current
             NavHost(navController = navController, startDestination = Route.Graph) {
-                navigation<Route.Graph>(startDestination = Route.Main) {
+                navigation<Route.Graph>(startDestination = startDestination) {
                     composable<Route.Main> {
                         MainScreen(
                             onViewMoreClick = { dispatch(HomeEvent.OnMenuItemSelected(MenuItem.Task())) },

@@ -20,6 +20,7 @@ internal class SettingsViewModel(
     private val getSelectedCitiesUseCase: GetSelectedCitiesUseCase,
     private val featureRouter: FeatureRouter,
     private val version: AppVersion,
+    private val flavorName: String,
 ) : MviViewModel<SettingsEvent, SettingsState>(
     initialState = SettingsState(),
 ) {
@@ -85,6 +86,7 @@ internal class SettingsViewModel(
             onSuccess = {
                 val uiState = UiState.Success(
                     version = version,
+                    flavorName = flavorName,
                 ).also { state ->
                     state.update(it)
                 }
@@ -92,7 +94,7 @@ internal class SettingsViewModel(
             },
             onFailure = {
                 if (it is KeyedValueDataStoreException.NotFoundException) {
-                    state = state.copy(uiState = UiState.Success(version = version))
+                    state = state.copy(uiState = UiState.Success(version = version, flavorName = flavorName))
                 } else {
                     it.printStackTrace()
                 }

@@ -29,6 +29,7 @@ import com.multiplatform.td.core.app.composable.LocalNavController
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.navigation.composable.LocalNavigationComponent
 import com.multiplatform.td.core.navigation.composable.NavigationContext
+import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.button.TdTextLinkButton
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
@@ -39,10 +40,17 @@ import com.multiplatform.todo.core.ui.rememberLocalTimeItems
 import com.multiplatform.todo.home.TodayTask
 import com.multiplatform.todo.home.home.rememberHomeComponent
 import com.multiplatform.todo.home.home.selectSecondaryTitle
+import com.multiplatform.todo.tasks.Category
+import com.multiplatform.todo.tasks.CategoryColor
 import com.multiplatform.todo.tasks.Task
+import com.multiplatform.todo.tasks.TaskStatus
 import com.multiplatform.todo.tasks.TaskSubTasks
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.home.ui.generated.resources.Res
 import tdmultiplatform.todo.home.ui.generated.resources.ic_filter
 import tdmultiplatform.todo.home.ui.generated.resources.main_tasks_for_today_title
@@ -50,7 +58,9 @@ import tdmultiplatform.todo.home.ui.generated.resources.main_title
 import tdmultiplatform.todo.home.ui.generated.resources.main_today_schedule_title
 import tdmultiplatform.todo.home.ui.generated.resources.main_view_calendar_title
 import tdmultiplatform.todo.home.ui.generated.resources.main_view_more_title
+import kotlin.time.Duration.Companion.minutes
 
+@KoverIgnore
 @Composable
 internal fun MainScreen(
     onViewMoreClick: () -> Unit,
@@ -69,6 +79,7 @@ internal fun MainScreen(
     }
 }
 
+@KoverIgnore
 @Composable
 private fun MainUi(
     state: MainState,
@@ -88,7 +99,7 @@ private fun MainUi(
 }
 
 @Composable
-private fun MainSuccessView(
+internal fun MainSuccessView(
     state: MainState,
     dispatch: (MainEvent) -> Unit,
     onViewMoreClick: () -> Unit,
@@ -228,6 +239,92 @@ private fun TodayTasksSection(
                 onTaskClick = { dispatch(MainEvent.OnTaskClicked(it)) },
                 onCategoryClick = { dispatch(MainEvent.OnCategoryClicked(it)) },
             ),
+        )
+    }
+}
+
+internal val date = LocalDate(2025, 10, 21)
+internal val time = LocalTime(10, 0, 0)
+
+internal val category = Category(
+    id = 0,
+    name = "Health",
+    description = "Health and related stuff on wel-being",
+    color = CategoryColor.getOrThrow(-6440513913749504),
+    iconRes = null,
+)
+
+internal val task = Task(
+    id = 0,
+    category = category,
+    title = "Doctor Appointment",
+    description = "Actually it is dental appointment",
+    dueDateTime = LocalDateTime(date, time),
+    duration = 45.minutes,
+    status = TaskStatus.OverDue,
+)
+
+private val tasks = listOf(
+    task.copy(
+        id = 0
+    ),
+    task.copy(
+        id = 1,
+        dueDateTime = LocalDateTime(date, LocalTime(12, 0, 0)),
+    ),
+    task.copy(
+        id = 1,
+        dueDateTime = LocalDateTime(date, LocalTime(14, 0 ,0)),
+    )
+)
+
+internal fun Task.asSubTask(): TaskSubTasks = TaskSubTasks(task = this, tasks = emptyList())
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TodayScheduleSectionPreview() {
+    TdTheme {
+        TodayScheduleSection(
+            todayTasks = tasks.map { it.asSubTask() },
+            dispatch = { },
+            onViewMoreClick = { },
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TodayTasksSectionPreview() {
+    TdTheme {
+        TodayTasksSection(
+            todayScheduleTask = tasks,
+            dispatch = { },
+            onViewCalendarClick = { },
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun MainSuccessViewPreview() {
+    TdTheme {
+        MainSuccessView(
+            state = MainState(
+                uiState = UiState.Success,
+                todayTasks = tasks.map { it.asSubTask() },
+                todayScheduleTasks = tasks,
+                date = date,
+                time = LocalTime(8, 0, 0),
+            ),
+            dispatch = { },
+            onViewMoreClick = { },
+            onViewCalendarClick = { },
         )
     }
 }

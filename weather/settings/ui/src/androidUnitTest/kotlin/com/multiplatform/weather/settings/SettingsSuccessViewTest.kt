@@ -31,6 +31,7 @@ internal class SettingsSuccessViewTest : AbstractAndroidUnitTest() {
                 SettingsSuccessView(
                     settings = Settings.Defaults.copy(days = 5),
                     version = AppVersion("1,0,0"),
+                    flavorName = "staging",
                     dispatch = dispatch,
                 ) {
                     Text("Widget Placeholder")
@@ -75,7 +76,7 @@ internal class SettingsSuccessViewTest : AbstractAndroidUnitTest() {
 
             verify { dispatch(SettingsEvent.OnDays.Decrement) }
 
-            onNodeWithText("1.0.0", useUnmergedTree = true).isDisplayed()
+            onNodeWithText("v1.0.0 - staging", useUnmergedTree = true).isDisplayed()
             onNodeWithText("Widget Placeholder", useUnmergedTree = true).isDisplayed()
         }
     }
