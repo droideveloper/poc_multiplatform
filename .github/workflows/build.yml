@@ -67,13 +67,13 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute kover report on tests
-        run: ./gradlew :weather:app:koverXmlReport # koverXmlReportStagingDebug does not cover jvm since it does not have flavor
+        run: ./gradlew :weather:app:koverXmlReportCustom
       - name: Add coverage report to PR
         id: kover
         uses: mi-kas/kover-report@v1
         with:
           path: |
-            ${{ github.workspace }}/weather/app/build/reports/kover/report.xml
+            ${{ github.workspace }}/weather/app/build/reports/kover/reportCustom.xml
           title: Code Coverage
           update-comment: true
           min-coverage-overall: 50

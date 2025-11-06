@@ -68,19 +68,25 @@ kotlin {
 }
 
 kover {
-    dependencies {
-        kover(projects.weather.city.data)
-        kover(projects.weather.city.domain)
-        kover(projects.weather.city.ui)
-
-        kover(projects.weather.onboarding.data)
-        kover(projects.weather.onboarding.domain)
-        kover(projects.weather.onboarding.ui)
-
-        kover(projects.weather.settings.data)
-        kover(projects.weather.settings.domain)
-        kover(projects.weather.settings.ui)
+    currentProject {
+        createVariant("custom") {
+            add("mockDebug")
+        }
     }
+}
+
+dependencies {
+    kover(projects.weather.city.data)
+    kover(projects.weather.city.domain)
+    kover(projects.weather.city.ui)
+
+    kover(projects.weather.onboarding.data)
+    kover(projects.weather.onboarding.domain)
+    kover(projects.weather.onboarding.ui)
+
+    kover(projects.weather.settings.data)
+    kover(projects.weather.settings.domain)
+    kover(projects.weather.settings.ui)
 }
 
 android {

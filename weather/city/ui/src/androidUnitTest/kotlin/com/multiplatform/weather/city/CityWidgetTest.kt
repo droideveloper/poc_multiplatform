@@ -1,15 +1,11 @@
 package com.multiplatform.weather.city
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertCountEquals
-import androidx.compose.ui.test.filterToOne
-import androidx.compose.ui.test.isDisplayed
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -29,7 +25,7 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
     @Test
     fun testLoadingView() {
         with(testRule) {
-            setScreen { CityLoadingView() }
+            setScreen { FwTheme { CityLoadingView() } }
 
             val matcher = SemanticsMatcher.expectValue(
                 key = SemanticsPropertyKey("fraction"),
@@ -37,9 +33,6 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
             )
 
             val nodes = onAllNodesWithTag("shimmer_space", useUnmergedTree = true)
-
-            val half = nodes.filterToOne(matcher)
-            half.isDisplayed()
 
             nodes.assertCountEquals(4)
         }
@@ -50,18 +43,24 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
         val dispatch = spy<(CityEvent) -> Unit>({})
         with(testRule) {
             setScreen {
-                CityFailureView(
-                    modifier = Modifier.fillMaxWidth(),
-                    uiState = UiState.Failure.Text("Sorry we could not fetch cities now!"),
-                    dispatch = dispatch,
-                )
+                FwTheme {
+                    CityFailureView(
+                        modifier = Modifier.fillMaxWidth(),
+                        uiState = UiState.Failure.Text("Sorry we could not fetch cities now!"),
+                        dispatch = dispatch,
+                    )
+                }
             }
 
-            onNodeWithText("Failed to load cities", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Sorry we could not fetch cities now!", useUnmergedTree = true).isDisplayed()
+            onNodeWithText("Failed to load cities", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Sorry we could not fetch cities now!", useUnmergedTree = true)
+                .assertIsDisplayed()
 
-            onNodeWithText("Try Again", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Try Again", useUnmergedTree = true).performClick()
+            onNodeWithText("Try Again", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Try Again", useUnmergedTree = true)
+                .performClick()
 
             verify { dispatch(CityEvent.OnTryAgainClicked) }
         }
@@ -82,23 +81,30 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
 
         with(testRule) {
             setScreen {
-                CitySuccessView(
-                    allowLastSelectionRemoval = false,
-                    cities = cities,
-                    selectedCities = emptyList(),
-                    onCitySelect = onCitySelect,
-                    onCityRemoved = {},
-                    dispatch = dispatch,
-                )
+                FwTheme {
+                    CitySuccessView(
+                        allowLastSelectionRemoval = false,
+                        cities = cities,
+                        selectedCities = emptyList(),
+                        onCitySelect = onCitySelect,
+                        onCityRemoved = onCityRemoved,
+                        dispatch = dispatch,
+                    )
+                }
             }
 
-            onNodeWithTag("text_input").isDisplayed()
-            onNodeWithTag("text_input").performTextInput("Istanbul")
+            onNodeWithTag("text_input")
+                .assertIsDisplayed()
+            onNodeWithTag("text_input")
+                .performTextInput("Istanbul")
 
-            onNodeWithTag("text_input_suggestions").isDisplayed()
+            onNodeWithTag("text_input_suggestions")
+                .assertIsDisplayed()
 
-            onNodeWithText("Istanbul, TR", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Istanbul, TR", useUnmergedTree = true).performClick()
+            onNodeWithText("Istanbul, TR", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Istanbul, TR", useUnmergedTree = true)
+                .performClick()
 
             verify {
                 dispatch(CityEvent.Operation.Add(city))
@@ -121,32 +127,26 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
 
         with(testRule) {
             setScreen {
-                CitySuccessView(
-                    allowLastSelectionRemoval = true,
-                    cities = cities,
-                    selectedCities = listOf(city),
-                    onCitySelect = {},
-                    onCityRemoved = onCityRemoved,
-                    dispatch = dispatch,
-                )
+                FwTheme {
+                    CitySuccessView(
+                        allowLastSelectionRemoval = true,
+                        cities = cities,
+                        selectedCities = listOf(city),
+                        onCitySelect = {},
+                        onCityRemoved = onCityRemoved,
+                        dispatch = dispatch,
+                    )
+                }
             }
 
-            onNodeWithText("Istanbul, TR", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Istanbul, TR", useUnmergedTree = true).performClick()
+            onNodeWithText("Istanbul, TR", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Istanbul, TR", useUnmergedTree = true)
+                .performClick()
 
             verify {
                 dispatch(CityEvent.Operation.Remove(city))
                 onCityRemoved(city)
-            }
-        }
-    }
-
-    private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
-        if (this is ComposeContentTestRule) {
-            setContent {
-                FwTheme {
-                    content()
-                }
             }
         }
     }

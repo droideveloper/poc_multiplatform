@@ -59,11 +59,9 @@ kotlin {
     }
 }
 
-kover {
-    dependencies {
-        kover(projects.weather.settings.data)
-        kover(projects.weather.settings.domain)
-    }
+dependencies {
+    kover(projects.weather.settings.data)
+    kover(projects.weather.settings.domain)
 }
 
 android {
