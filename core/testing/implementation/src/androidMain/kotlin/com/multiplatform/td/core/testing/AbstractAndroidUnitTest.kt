@@ -3,6 +3,8 @@ package com.multiplatform.td.core.testing
 import android.content.ContentProvider
 import android.os.Build
 import androidx.activity.ComponentActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.Before
@@ -38,6 +40,14 @@ abstract class AbstractAndroidUnitTest {
             Class.forName(providerClassName) as Class<ContentProvider>
         } catch (_: ClassNotFoundException) {
             null
+        }
+    }
+
+    fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
+        if (this is ComposeContentTestRule) {
+            setContent {
+                content()
+            }
         }
     }
 }

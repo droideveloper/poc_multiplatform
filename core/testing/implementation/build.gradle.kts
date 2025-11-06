@@ -1,6 +1,5 @@
 plugins {
-    alias(libs.plugins.td.multiplatform.library)
-    alias(libs.plugins.td.multiplatform.mokkery)
+    alias(libs.plugins.td.multiplatform.ui)
 }
 
 kotlin {

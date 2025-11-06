@@ -11,6 +11,7 @@ import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradleSubplugin
+import kotlin.apply
 
 class AndroidAppPlugin : Plugin<Project> {
 

@@ -1,10 +1,7 @@
 package com.multiplatform.weather.onboarding.temperature
 
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.isDisplayed
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -25,46 +22,47 @@ internal class SelectTemperatureSuccessViewTest : AbstractAndroidUnitTest() {
         with(testRule) {
             val dispatch: (SelectTemperatureEvent) -> Unit = spy({})
             setScreen {
-                SelectTemperatureSuccessView(
-                    isEnabled = true,
-                    temperature = Temperature.Celsius,
-                    dispatch = dispatch,
-                )
+                FwTheme {
+                    SelectTemperatureSuccessView(
+                        isEnabled = true,
+                        temperature = Temperature.Celsius,
+                        dispatch = dispatch,
+                    )
+                }
             }
 
-            onNodeWithTag("nav_bar_title", useUnmergedTree = true).assertTextEquals("Temperature")
+            onNodeWithTag("nav_bar_title", useUnmergedTree = true)
+                .assertTextEquals("Temperature")
 
-            onNodeWithTag("nav_bar_action", useUnmergedTree = true).isDisplayed()
-            onNodeWithTag("nav_bar_action", useUnmergedTree = true).performClick()
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithTag("nav_bar_action", useUnmergedTree = true)
+                .performClick()
 
             verify { dispatch(SelectTemperatureEvent.OnBackClicked) }
 
-            onNodeWithText("Let's select a temperature unit", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("You could select your desired temperature unit below", useUnmergedTree = true).isDisplayed()
+            onNodeWithText("Let's select a temperature unit", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("You could select your desired temperature unit below", useUnmergedTree = true)
+                .assertIsDisplayed()
 
             val temperatures = arrayOf(Temperature.Celsius, Temperature.Fahrenheit)
             temperatures.forEach { temperature ->
-                onNodeWithText(temperature.toString(), useUnmergedTree = true).isDisplayed()
+                onNodeWithText(temperature.toString(), useUnmergedTree = true)
+                    .assertIsDisplayed()
             }
 
-            onNodeWithText(Temperature.Fahrenheit.toString(), useUnmergedTree = true).performClick()
+            onNodeWithText(Temperature.Fahrenheit.toString(), useUnmergedTree = true)
+                .performClick()
 
             verify { dispatch(SelectTemperatureEvent.OnChanged(Temperature.Fahrenheit)) }
 
-            onNodeWithText("Continue").isDisplayed()
-            onNodeWithText("Continue").performClick()
+            onNodeWithText("Continue")
+                .assertIsDisplayed()
+            onNodeWithText("Continue")
+                .performClick()
 
             verify { dispatch(SelectTemperatureEvent.OnContinueClicked) }
-        }
-    }
-
-    private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
-        if (this is ComposeContentTestRule) {
-            setContent {
-                FwTheme {
-                    content()
-                }
-            }
         }
     }
 }

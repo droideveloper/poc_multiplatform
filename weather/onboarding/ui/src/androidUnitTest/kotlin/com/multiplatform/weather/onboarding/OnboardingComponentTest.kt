@@ -1,10 +1,7 @@
 package com.multiplatform.weather.onboarding
 
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.isDisplayed
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -23,10 +20,12 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testContinueButton() {
         with(testRule) {
             val onClick = spy<() -> Unit>({})
-            setScreen { ContinueButton(onClick = onClick) }
+            setScreen { FwTheme { ContinueButton(onClick = onClick) } }
 
-            onNodeWithTag("button_text", useUnmergedTree = true).assertTextEquals("Continue")
-            onNodeWithTag("button_continue").performClick()
+            onNodeWithTag("button_text", useUnmergedTree = true)
+                .assertTextEquals("Continue")
+            onNodeWithTag("button_continue")
+                .performClick()
 
             verify { onClick() }
         }
@@ -36,9 +35,12 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testDoneButton() {
         with(testRule) {
             val onClick = spy<() -> Unit>({})
-            setScreen { DoneButton(onClick = onClick) }
-            onNodeWithTag("button_text", useUnmergedTree = true).assertTextEquals("Done")
-            onNodeWithTag("button_done").performClick()
+            setScreen { FwTheme { DoneButton(onClick = onClick) } }
+
+            onNodeWithTag("button_text", useUnmergedTree = true)
+                .assertTextEquals("Done")
+            onNodeWithTag("button_done")
+                .performClick()
 
             verify { onClick() }
         }
@@ -48,16 +50,20 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
     fun testOnboardingLayout() {
         with(testRule) {
             setScreen {
-                OnboardingLayout(
-                    title = "Title",
-                    body = "Body",
-                    content = {},
-                    action = {},
-                )
+                FwTheme {
+                    OnboardingLayout(
+                        title = "Title",
+                        body = "Body",
+                        content = {},
+                        action = {},
+                    )
+                }
             }
 
-            onNodeWithText("Title", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Body", useUnmergedTree = true).isDisplayed()
+            onNodeWithText("Title", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Body", useUnmergedTree = true)
+                .assertIsDisplayed()
         }
     }
 
@@ -67,26 +73,22 @@ internal class OnboardingComponentTest : AbstractAndroidUnitTest() {
             val onClick = spy<() -> Unit>({})
             val state = UiState.Failure.Text("Error body")
             setScreen {
-                OnboardingFailureView(state, onClick)
-            }
-
-            onNodeWithText("Encountered an error", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Error body", useUnmergedTree = true).isDisplayed()
-
-            onNodeWithText("Try again", useUnmergedTree = true).isDisplayed()
-            onNodeWithText("Try again").performClick()
-
-            verify { onClick() }
-        }
-    }
-
-    private fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
-        if (this is ComposeContentTestRule) {
-            setContent {
                 FwTheme {
-                    content()
+                    OnboardingFailureView(state, onClick)
                 }
             }
+
+            onNodeWithText("Encountered an error", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Error body", useUnmergedTree = true)
+                .assertIsDisplayed()
+
+            onNodeWithText("Try again", useUnmergedTree = true)
+                .assertIsDisplayed()
+            onNodeWithText("Try again")
+                .performClick()
+
+            verify { onClick() }
         }
     }
 }
