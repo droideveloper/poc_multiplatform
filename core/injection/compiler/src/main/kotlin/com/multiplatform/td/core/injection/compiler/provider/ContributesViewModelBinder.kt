@@ -8,6 +8,7 @@ import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.multiplatform.td.core.injection.binding.ContributesViewModel
 import com.multiplatform.td.core.injection.compiler.ext.getSymbolsWithAnnotation
+import com.multiplatform.td.core.injection.compiler.ext.sequenceViewModelBinderArgs
 import com.multiplatform.td.core.injection.compiler.spec.Binding
 import com.multiplatform.td.core.injection.compiler.spec.Injection
 
@@ -20,7 +21,13 @@ internal class ContributesViewModelBinder(
         val bindings = resolver
             .getSymbolsWithAnnotation(ContributesViewModel::class)
             .filterIsInstance<KSClassDeclaration>()
-            .map { Binding.ViewModelSpec(it) }
+            .map {
+                val args = it.sequenceViewModelBinderArgs()
+                args.map { bindingArg ->
+                    Binding.ViewModelSpec(it, bindingArg)
+                }.toList()
+            }
+            .flatten()
             .toList()
 
         bindings.forEach { spec ->
@@ -28,7 +35,7 @@ internal class ContributesViewModelBinder(
         }
 
         if (bindings.isNotEmpty()) {
-            val injection = Injection.ViewModel(bindings, logger)
+            val injection = Injection.ViewModel(bindings, logger, resolver)
             injection.codeGenerate(codeGenerator)
         }
         return emptyList()

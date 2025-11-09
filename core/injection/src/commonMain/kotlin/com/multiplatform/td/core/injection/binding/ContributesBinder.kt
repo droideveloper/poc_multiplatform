@@ -14,6 +14,12 @@ annotation class ContributesBinder(
         will provide additional info for binding boundType where you might want to provide specific one when you have multiple inheritance
      */
     val boundType: KClass<*> = Any::class,
+
+    /*
+        will provide additional info for binding boundType where you might want to provide specific one when you have multiple inheritance
+    */
+    val parameterizedBoundType: KClass<*> = Any::class,
+
     /*
         will use property style binding presented in KotlinInject otherwise will generate as method and take as argument instead of extension property
      */

@@ -1,5 +1,6 @@
 package com.multiplatform.td.core.environment.inject
 
+import com.multiplatform.td.core.environment.inject.EnvironmentModule
 import com.multiplatform.td.core.injection.scopes.AppScope
 import me.tatarka.inject.annotations.Component
 

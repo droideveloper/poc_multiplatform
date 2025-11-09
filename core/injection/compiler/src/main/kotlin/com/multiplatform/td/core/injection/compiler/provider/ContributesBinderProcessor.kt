@@ -20,7 +20,8 @@ internal class ContributesBinderProcessor(
         val bindings = resolver
             .getSymbolsWithAnnotation(ContributesBinder::class)
             .filterIsInstance<KSClassDeclaration>()
-            .map { Binding.resolve(it) }
+            .map { Binding.resolve(it, resolver).toList() }
+            .flatten()
             .toList()
 
         bindings.forEach { spec ->
@@ -28,7 +29,7 @@ internal class ContributesBinderProcessor(
         }
 
         if (bindings.isNotEmpty()) {
-            val injection = Injection.Default(bindings, logger)
+            val injection = Injection.Default(bindings, logger, resolver)
             injection.codeGenerate(codeGenerator)
         }
         return emptyList()
