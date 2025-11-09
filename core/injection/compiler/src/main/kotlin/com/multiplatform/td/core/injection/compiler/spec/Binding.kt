@@ -1,12 +1,16 @@
 package com.multiplatform.td.core.injection.compiler.spec
 
 import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSValueParameter
+import com.google.devtools.ksp.symbol.Variance
 import com.multiplatform.td.core.injection.Binder
+import com.multiplatform.td.core.injection.compiler.ext.BinderArgs
 import com.multiplatform.td.core.injection.compiler.ext.asBinderClassName
 import com.multiplatform.td.core.injection.compiler.ext.asBinderFactoryClassName
+import com.multiplatform.td.core.injection.compiler.ext.asBinderTypeName
 import com.multiplatform.td.core.injection.compiler.ext.asFactoryName
 import com.multiplatform.td.core.injection.compiler.ext.isAssisted
 import com.multiplatform.td.core.injection.compiler.ext.isParameterized
@@ -15,7 +19,7 @@ import com.multiplatform.td.core.injection.compiler.ext.requireContainingFile
 import com.multiplatform.td.core.injection.compiler.ext.requireName
 import com.multiplatform.td.core.injection.compiler.ext.requireParameterizedType
 import com.multiplatform.td.core.injection.compiler.ext.requireTypeName
-import com.multiplatform.td.core.injection.compiler.ext.singleBinderBoundKSType
+import com.multiplatform.td.core.injection.compiler.ext.sequenceBinderArgs
 import com.multiplatform.td.core.injection.compiler.ext.singleSuperKSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
@@ -35,24 +39,31 @@ import me.tatarka.inject.annotations.Inject
 
 internal sealed class Binding(
     open val klass: KSClassDeclaration,
+    open val binderArgs: BinderArgs,
 ) {
 
     companion object {
-        fun resolve(klass: KSClassDeclaration): Binding {
-            val superType = klass.singleBinderBoundKSType() ?: klass.singleSuperKSType()
-            return when {
-                superType.isParameterized() -> ParameterizedSpec(klass)
-                else -> InterfaceSpec(klass)
+        fun resolve(klass: KSClassDeclaration, resolver: Resolver): Sequence<Binding> {
+            val superTypes = klass.sequenceBinderArgs()
+            return superTypes.map { binderArgs ->
+                when {
+                    binderArgs.isParameterizedType -> ParameterizedSpec(klass, binderArgs, resolver)
+                    else -> InterfaceSpec(klass, binderArgs)
+                }
             }
         }
     }
 
     data class InterfaceSpec(
         override val klass: KSClassDeclaration,
-    ) : Binding(klass) {
+        override val binderArgs: BinderArgs,
+    ) : Binding(klass, binderArgs) {
 
         override val superType: KSType
-            get() = klass.singleBinderBoundKSType() ?: klass.singleSuperKSType()
+            get() = when {
+                binderArgs.isBoundType -> binderArgs.boundType ?: klass.singleSuperKSType()
+                else -> klass.singleSuperKSType()
+            }
 
         override val typeSpecBuilder: TypeSpec.Builder
             get() = TypeSpec.classBuilder(superType.asBinderClassName(klass))
@@ -63,22 +74,35 @@ internal sealed class Binding(
 
     data class ParameterizedSpec(
         override val klass: KSClassDeclaration,
-    ) : Binding(klass) {
+        override val binderArgs: BinderArgs,
+        private val resolver: Resolver,
+    ) : Binding(klass, binderArgs) {
 
         override val superType: KSType
-            get() = klass.asType(emptyList())
+            get() = requireNotNull(binderArgs.boundType).replace(
+                listOf(
+                    resolver.getTypeArgument(
+                        typeRef = resolver.createKSTypeReferenceFromKSType(
+                            type = requireNotNull(binderArgs.parameterizedBoundType),
+                        ),
+                        variance = Variance.INVARIANT,
+                    )
+                )
+            )
 
         override val typeSpecBuilder: TypeSpec.Builder
-            get() = TypeSpec.classBuilder(klass.asBinderClassName())
-                .addModifiers(requireNotNull(klass.modifiers.single().toKModifier()))
+            get() = TypeSpec.classBuilder(requireNotNull(binderArgs.boundType)
+                .asBinderTypeName(klass, requireNotNull(binderArgs.parameterizedBoundType)))
 
         override val fileSpecBuilder: FileSpec.Builder
-            get() = FileSpec.builder(klass.asBinderClassName())
+            get() = FileSpec.builder(requireNotNull(binderArgs.boundType)
+                .asBinderTypeName(klass, requireNotNull(binderArgs.parameterizedBoundType)))
     }
 
     data class ViewModelSpec(
         override val klass: KSClassDeclaration,
-    ) : Binding(klass) {
+        override val binderArgs: BinderArgs,
+    ) : Binding(klass, binderArgs) {
 
         private val typeAliasSpec: TypeAliasSpec
             get() = TypeAliasSpec.builder(klass.asFactoryName(), lambdaType)

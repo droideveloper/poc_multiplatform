@@ -2,15 +2,13 @@ package com.multiplatform.td.core.injection.compiler.spec
 
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
+import com.google.devtools.ksp.processing.Resolver
 import com.multiplatform.td.core.injection.compiler.ext.asBinderClassName
 import com.multiplatform.td.core.injection.compiler.ext.asBinderFactoryClassName
-import com.multiplatform.td.core.injection.compiler.ext.isParameterized
+import com.multiplatform.td.core.injection.compiler.ext.asBinderReturnTypeName
+import com.multiplatform.td.core.injection.compiler.ext.asBinderTypeName
 import com.multiplatform.td.core.injection.compiler.ext.requireClassName
 import com.multiplatform.td.core.injection.compiler.ext.requireContainingFile
-import com.multiplatform.td.core.injection.compiler.ext.singleBinderScopeKSType
-import com.multiplatform.td.core.injection.compiler.ext.singleBinderUseProperty
-import com.multiplatform.td.core.injection.compiler.ext.singleViewModelScopeKSType
-import com.multiplatform.td.core.injection.compiler.ext.singleViewModelUseProperty
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
@@ -27,11 +25,13 @@ import me.tatarka.inject.annotations.Provides
 internal sealed class Injection(
     open val bindings: List<Binding>,
     open val logger: KSPLogger,
+    open val resolver: Resolver,
 ) {
     data class Default(
         override val bindings: List<Binding>,
         override val logger: KSPLogger,
-    ) : Injection(bindings, logger) {
+        override val resolver: Resolver
+    ) : Injection(bindings, logger, resolver) {
 
         override fun toModuleClassName(bindings: List<Binding>): ClassName {
             val packageNames = bindings.map { it.klass.packageName.asString() }
@@ -43,7 +43,8 @@ internal sealed class Injection(
     data class ViewModel(
         override val bindings: List<Binding>,
         override val logger: KSPLogger,
-    ) : Injection(bindings, logger) {
+        override val resolver: Resolver,
+    ) : Injection(bindings, logger, resolver) {
 
         override fun toModuleClassName(bindings: List<Binding>): ClassName {
             val packageNames = bindings.map { it.klass.packageName.asString() }
@@ -52,7 +53,7 @@ internal sealed class Injection(
         }
 
         override fun scopedFunSpecOrDefault(binding: Binding): FunSpec {
-            val scope = binding.klass.singleViewModelScopeKSType()
+            val scope = binding.binderArgs.scope
             return when {
                 scope == null -> funSpecBuilder.build()
                 else -> funSpecBuilder.addAnnotation(scope.toClassName()).build()
@@ -60,7 +61,7 @@ internal sealed class Injection(
         }
 
         override fun scopeClassNameOrNull(binding: Binding): ClassName? {
-            val scope = binding.klass.singleViewModelScopeKSType()
+            val scope = binding.binderArgs.scope
             return when {
                 scope == null -> null
                 else -> scope.toClassName()
@@ -68,7 +69,7 @@ internal sealed class Injection(
         }
 
         override fun usePropertyOrFun(binding: Binding): Boolean {
-            return binding.klass.singleViewModelUseProperty()
+            return binding.binderArgs.useProperty
         }
 
         override fun binderSuperTypeOrClassName(binding: Binding): ClassName {
@@ -101,7 +102,7 @@ internal sealed class Injection(
         get() = toModuleClassName(bindings)
 
     private val hasAnyInternalBinding: Boolean
-        get() = bindings.any { it !is Binding.InterfaceSpec }
+        get() = bindings.any { it is Binding.ViewModelSpec }
 
     protected open val typeSpecBuilder: TypeSpec.Builder
         get() = when {
@@ -128,10 +129,16 @@ internal sealed class Injection(
 
     private val funSpecs: List<FunSpec>
         get() = bindings.map { binding ->
-            val builder = FunSpec.builder("bind${superTypeOrClassName(binding).simpleName}")
+            val builder = FunSpec.builder("bind${binderSuperTypeOrClassName(binding).simpleName}")
                 .addOriginatingKSFile(binding.klass.requireContainingFile())
                 .addModifiers(superTypeOrClassNameModifier(binding))
-                .returns(superTypeOrClassName(binding))
+                .returns(
+                    when {
+                        binding.binderArgs.isParameterizedType -> requireNotNull(binding.binderArgs.boundType)
+                            .asBinderReturnTypeName(requireNotNull(binding.binderArgs.parameterizedBoundType), resolver)
+                        else -> superTypeOrClassName(binding)
+                    }
+                )
                 .addAnnotation(Provides::class)
                 .addParameter(
                     ParameterSpec.builder("binder", binderSuperTypeOrClassName(binding))
@@ -147,7 +154,7 @@ internal sealed class Injection(
         }
 
     protected open fun scopedFunSpecOrDefault(binding: Binding): FunSpec {
-        val scope = binding.klass.singleBinderScopeKSType()
+        val scope = binding.binderArgs.scope
         return when {
             scope == null -> funSpecBuilder.build()
             else -> funSpecBuilder.addAnnotation(scope.toClassName()).build()
@@ -155,7 +162,7 @@ internal sealed class Injection(
     }
 
     protected open fun scopeClassNameOrNull(binding: Binding): ClassName? {
-        val scope = binding.klass.singleBinderScopeKSType()
+        val scope = binding.binderArgs.scope
         return when {
             scope == null -> null
             else -> scope.toClassName()
@@ -163,12 +170,12 @@ internal sealed class Injection(
     }
 
     protected open fun usePropertyOrFun(binding: Binding): Boolean {
-        return binding.klass.singleBinderUseProperty()
+        return binding.binderArgs.useProperty
     }
 
     protected fun superTypeOrClassNameModifier(binding: Binding): KModifier {
         return when {
-            binding is Binding.InterfaceSpec -> KModifier.PUBLIC
+            binding is Binding.InterfaceSpec || binding is Binding.ParameterizedSpec -> KModifier.PUBLIC
             else -> requireNotNull(binding.klass.modifiers.single().toKModifier())
         }
     }
@@ -176,7 +183,8 @@ internal sealed class Injection(
     protected open fun superTypeOrClassName(binding: Binding): ClassName {
         val superType = binding.superType
         return when {
-            superType.isParameterized() -> binding.klass.toClassName()
+            binding is Binding.ParameterizedSpec -> requireNotNull(binding.binderArgs.boundType)
+                .asBinderTypeName(binding.klass, requireNotNull(binding.binderArgs.parameterizedBoundType))
             else -> superType.requireClassName()
         }
     }
@@ -184,7 +192,8 @@ internal sealed class Injection(
     protected open fun binderSuperTypeOrClassName(binding: Binding): ClassName {
         val superType =  binding.superType
         return when {
-            binding is Binding.ParameterizedSpec -> binding.klass.asBinderClassName()
+            binding is Binding.ParameterizedSpec -> requireNotNull(binding.binderArgs.boundType)
+                .asBinderTypeName(binding.klass, requireNotNull(binding.binderArgs.parameterizedBoundType))
             else -> superType.asBinderClassName(binding.klass)
         }
     }

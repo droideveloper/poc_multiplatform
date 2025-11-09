@@ -1,5 +1,17 @@
 package com.multiplatform.td.core.environment
 
+import com.multiplatform.td.core.injection.binding.ContributesBinder
+import com.multiplatform.td.core.injection.scopes.AppScope
+
+@ContributesBinder(
+    scope = AppScope::class,
+    boundType = Environment::class,
+)
+@ContributesBinder(
+    scope = AppScope::class,
+    boundType = Initializer::class,
+    parameterizedBoundType = Environment::class,
+)
 internal class EnvironmentImpl : Environment, Initializer<Environment> {
 
     override val isDebug: Boolean
