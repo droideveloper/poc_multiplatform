@@ -25,9 +25,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.ui.TdTheme
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.tasks.ui.generated.resources.Res
 import tdmultiplatform.todo.tasks.ui.generated.resources.ic_local_date
+import kotlin.time.Duration.Companion.minutes
 
 @Composable
 internal fun TaskItemView(
@@ -142,6 +146,62 @@ internal fun LocalDateTitle(
                 fontSize = 12.sp,
                 color = TdTheme.colors.blacks.light,
             ),
+        )
+    }
+}
+
+internal val date = LocalDate(2025, 10, 21)
+internal val time = LocalTime(10, 0, 0)
+
+internal val category = Category(
+    id = 0,
+    name = "Health",
+    description = "Health and related stuff on wel-being",
+    color = CategoryColor.getOrThrow(-6440513913749504),
+    iconRes = null,
+)
+
+internal val task = Task(
+    id = 0,
+    category = category,
+    title = "Doctor Appointment",
+    description = "Actually it is dental appointment",
+    dueDateTime = LocalDateTime(date, time),
+    duration = 45.minutes,
+    status = TaskStatus.OverDue,
+)
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TaskItemViewPreview() {
+    TdTheme {
+        TaskItemView(task = task, date = date) { }
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun TodayTaskFooterPreview() {
+    TdTheme {
+        TodayTaskFooter(
+            category = category,
+            date = date,
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+private fun LocalDateTitlePreview() {
+    TdTheme {
+        LocalDateTitle(
+            date = date,
         )
     }
 }
