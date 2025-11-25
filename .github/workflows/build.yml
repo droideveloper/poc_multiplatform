@@ -40,6 +40,9 @@ jobs:
   ui-unit-test:
     name: Ui unit test on android
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ weather ]
     steps:
       - name: Check out code
         uses: actions/checkout@v5
@@ -49,11 +52,14 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
-      - name: Execute ui tests
-        run: ./gradlew testStagingDebugUnitTest
+      - name: Execute ui tests for ${{ matrix.app }}
+        run: ./gradlew :${{ matrix.app }}:app:testStagingDebugUnitTest
   test-kover:
     name: Report coverage
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ weather ]
     permissions:
       contents: read
       pull-requests: write
@@ -66,15 +72,15 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
-      - name: Execute kover report on tests
-        run: ./gradlew :weather:app:koverXmlReportCustom
+      - name: Execute kover report on tests for ${{ matrix.app }}
+        run: ./gradlew :${{ matrix.app }}:app:koverXmlReportCustom
       - name: Add coverage report to PR
         id: kover
         uses: mi-kas/kover-report@v1
         with:
           path: |
-            ${{ github.workspace }}/weather/app/build/reports/kover/reportCustom.xml
-          title: Code Coverage
+            ${{ github.workspace }}/${{ matrix.app }}/app/build/reports/kover/reportCustom.xml
+          title: ${{ matrix.app }} Code Coverage
           update-comment: true
           min-coverage-overall: 50
           min-coverage-changed-files: 80
@@ -82,6 +88,9 @@ jobs:
   build-android-app:
     name: Build android application
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ weather, todo ]
     steps:
       - name: Check out code
         uses: actions/checkout@v5
@@ -99,6 +108,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Execute build android app
-        run: ./gradlew :weather:app:bundleStagingDebug :todo:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
+      - name: Execute build ${{ matrix.app }} android app
+        run: ./gradlew :${{ matrix.app }}:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
 
