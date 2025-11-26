@@ -105,9 +105,9 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-gradle-${{ matrix.app }}
       - name: Execute build ${{ matrix.app }} android app
         run: ./gradlew :${{ matrix.app }}:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
 
