@@ -54,6 +54,27 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute ui tests for ${{ matrix.app }}
         run: ./gradlew :${{ matrix.app }}:app:testStagingDebugUnitTest
+  screenshot-test:
+    name: Screenshot test on android
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ weather ]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+        with:
+          lfs: 'true'
+          submodules: 'recursive'
+          ssh-key: ${{ secrets.git_ssh_key }}
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Execute snapshot tests for ${{ matrix.app }}
+        run: ./gradlew :${{ matrix.app }}:app:verifyRoborazziStagingDebug
   test-kover:
     name: Report coverage
     runs-on: ubuntu-latest

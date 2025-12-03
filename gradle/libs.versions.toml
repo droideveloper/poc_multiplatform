@@ -38,6 +38,9 @@ android-minSdk = "23"
 android-targetSdk = "36"
 material3Android = "1.4.0"
 
+preview-scanner = "0.7.2"
+roborazzi = "1.52.0"
+
 # compiler
 kotlin-poet = "2.2.0"
 auto-service = "1.1.1"
@@ -62,6 +65,12 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "android-compose" }
 androidx-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "android-compose" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectiric" }
+
+preview-scanner = { group = "com.github.sergio-sastre.ComposablePreviewScanner", name = "common", version.ref = "preview-scanner" }
+roborazzi-core = { group = "io.github.takahirom.roborazzi", name = "roborazzi-core", version.ref = "roborazzi" }
+roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
 
 # core libraries
 android-desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "android-desugar-jdk-libs" }
@@ -145,6 +154,7 @@ room = { id = "androidx.room", version.ref = "room" }
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 # compiler
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 # project plugins
