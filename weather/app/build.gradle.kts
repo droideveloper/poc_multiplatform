@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.td.multiplatform.app)
     alias(libs.plugins.td.kover)
+    alias(libs.plugins.roborazzi)
 }
 
 kotlin {
@@ -13,6 +14,29 @@ kotlin {
     )
 
     sourceSets {
+        androidUnitTest {
+            dependencies {
+                implementation(libs.androidx.test.manifest)
+                implementation(libs.androidx.test.junit)
+                implementation(libs.androidx.test.junit4)
+                implementation(libs.androidx.espresso.core)
+                implementation(libs.junit)
+
+                implementation(compose.uiTooling)
+                implementation(compose.preview)
+
+                implementation(libs.preview.scanner)
+
+                implementation(libs.roborazzi.core)
+                implementation(libs.roborazzi.compose)
+                implementation(libs.roborazzi.junit.rule)
+                implementation(libs.roborazzi)
+
+                implementation(libs.robolectric)
+
+                implementation(projects.core.testing.implementation)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(projects.weather.city.domain)
@@ -87,6 +111,12 @@ dependencies {
     kover(projects.weather.settings.data)
     kover(projects.weather.settings.domain)
     kover(projects.weather.settings.ui)
+}
+
+roborazzi {
+    outputDir.set(
+        project.layout.projectDirectory.dir("src/androidUnitTest/snapshots"),
+    )
 }
 
 android {

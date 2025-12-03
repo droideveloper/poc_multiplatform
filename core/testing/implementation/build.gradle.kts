@@ -12,6 +12,15 @@ kotlin {
                 implementation(libs.androidx.espresso.core)
                 implementation(libs.junit)
 
+                implementation(compose.uiTooling)
+                implementation(compose.preview)
+
+                implementation(libs.preview.scanner)
+
+                implementation(libs.roborazzi.core)
+                implementation(libs.roborazzi.compose)
+                implementation(libs.roborazzi)
+
                 implementation(libs.robolectric)
             }
         }
@@ -28,4 +37,7 @@ kotlin {
 
 android {
     namespace = "com.multiplatform.td.core.testing"
+    buildFeatures {
+        compose = true
+    }
 }

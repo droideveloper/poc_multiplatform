@@ -1,28 +1,16 @@
-package com.multiplatform.td.core.testing
+package com.multiplatform.td.core.testing.screenshot
 
 import android.content.ContentProvider
-import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import org.junit.Before
 import org.junit.Rule
 import org.robolectric.Robolectric
-import org.robolectric.annotation.Config
-import org.robolectric.annotation.GraphicsMode
 
-@Config(
-    sdk = [
-        Build.VERSION_CODES.M,
-        // Build.VERSION_CODES.TIRAMISU,
-    ],
-    qualifiers = RobolectricDeviceQualifiers.Pixel5,
-)
-@GraphicsMode(GraphicsMode.Mode.NATIVE)
-abstract class AbstractAndroidUnitTest {
+abstract class AbstractScreenshotTest {
 
     @get:Rule
     val testRule: ComposeTestRule = createAndroidComposeRule<ComponentActivity>()
