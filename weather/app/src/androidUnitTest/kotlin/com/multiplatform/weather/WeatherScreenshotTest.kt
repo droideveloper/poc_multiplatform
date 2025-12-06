@@ -30,8 +30,16 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class WeatherScreenshotTest(
-    private val preview: ComposablePreview<CommonPreviewInfo>,
+    private val suite: ScreenshotTestSuite,
 ) : AbstractScreenshotTest() {
+
+    data class ScreenshotTestSuite(
+        val preview: ComposablePreview<CommonPreviewInfo>,
+        val name: String,
+    ) {
+
+        override fun toString(): String = name
+    }
 
     companion object {
 
@@ -45,8 +53,10 @@ class WeatherScreenshotTest(
         }
 
         @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun values(): List<ComposablePreview<CommonPreviewInfo>> = previews
+        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}")
+        fun values(): List<ScreenshotTestSuite> = previews.map {
+            ScreenshotTestSuite(preview = it, name = it.methodName)
+        }
     }
 
     private fun screenshotNameFor(preview: ComposablePreview<CommonPreviewInfo>): String =
@@ -60,7 +70,7 @@ class WeatherScreenshotTest(
             captureType = RoborazziRule.CaptureType.LastImage(),
             roborazziOptions = RoborazziOptionsMapper.createFor(),
             outputFileProvider = { _, dir, _ ->
-                File(dir, screenshotNameFor(preview))
+                File(dir, screenshotNameFor(suite.preview))
             },
         ),
     )
@@ -68,7 +78,7 @@ class WeatherScreenshotTest(
     @Test
     fun snapshot() {
         with(testRule) {
-            setScreen { preview() }
+            setScreen { suite.preview() }
         }
     }
 }

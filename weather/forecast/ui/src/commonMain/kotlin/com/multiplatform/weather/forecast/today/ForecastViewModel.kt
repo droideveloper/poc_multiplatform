@@ -42,6 +42,13 @@ internal class ForecastViewModel(
         onClick<ForecastEvent.OnNextDaysClicked> {
             featureRouter.navigate(ForecastRoute.NextDays(it.city.id))
         }
+        onClick<ForecastEvent.OnBackClicked> {
+            featureRouter.back()
+        }
+        onClick<ForecastEvent.OnTryAgainClicked> {
+            state = state.copy(uiState = UiState.Loading)
+            collectInitialState()
+        }
         on<ForecastEvent.OnTick> {
             state = state.copy(currentLocalDateTime = currentLocalDateTime())
         }

@@ -47,6 +47,8 @@ import androidx.compose.ui.window.PopupProperties
 import com.multiplatform.td.core.ui.button.TdTextLinkBlue
 import com.multiplatform.td.core.ui.card.TdCard
 import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
+import com.multiplatform.td.core.ui.overlay.TdErrorScreen
+import com.multiplatform.td.core.ui.overlay.TdErrorScreenDefaultActions
 import com.multiplatform.weather.city.City
 import com.multiplatform.weather.city.CityView
 import com.multiplatform.weather.core.measure.Speed
@@ -57,6 +59,7 @@ import com.multiplatform.weather.core.ui.FwImage
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
 import com.multiplatform.weather.forecast.today.SelectedCityState
+import com.multiplatform.weather.forecast.today.UiState
 import com.multiplatform.weather.forecast.today.WeatherData
 import com.multiplatform.weather.forecast.today.WeatherDescriptionState
 import com.multiplatform.weather.forecast.today.WeatherDetailDescriptionState
@@ -82,9 +85,43 @@ import tdmultiplatform.weather.forecast.ui.generated.resources.ic_humidity
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_pin
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_pressure
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_settings
+import tdmultiplatform.weather.forecast.ui.generated.resources.ic_sunnyrainy
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_sunrise
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_sunset
 import tdmultiplatform.weather.forecast.ui.generated.resources.ic_wind
+
+@Composable
+internal fun ForecastErrorView(
+    uiState: UiState.Failure,
+    onPrimaryClick: () -> Unit,
+    secondaryButtonText: String,
+    onSecondaryClick: () -> Unit,
+) {
+    val message = when (uiState) {
+        is UiState.Failure.Res -> stringResource(uiState.stringResource)
+        is UiState.Failure.Text -> uiState.message
+    }
+    TdErrorScreen(
+        modifier = Modifier.background(selectDayBackground()),
+        message = message,
+        image = { ForecastErrorImage() },
+        actions = {
+            TdErrorScreenDefaultActions(
+                onPrimaryActionClick = onPrimaryClick,
+                secondaryActionText = secondaryButtonText,
+                onSecondaryActionClick = onSecondaryClick,
+            )
+        },
+    )
+}
+
+@Composable
+private fun ForecastErrorImage() {
+    FwImage(
+        resource = vectorResource(Res.drawable.ic_sunnyrainy),
+        modifier = Modifier.size(FwTheme.dimens.standard128),
+    )
+}
 
 @Composable
 internal fun WeatherNextDayDescriptionItem(

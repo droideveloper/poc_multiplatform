@@ -39,4 +39,6 @@
     <string name="forecast_ui_yesterday">Yesterday</string>
     <string name="forecast_ui_next_day">Next Day</string>
     <string name="forecast_ui_number_of_days" formatted="true">Next %1$d Days</string>
+    <string name="forecast_ui_go_home">Go Home</string>
+    <string name="forecast_ui_go_back">Go Back</string>
 </resources>
