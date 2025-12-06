@@ -1,4 +1,4 @@
-package com.multiplatform.weather
+package com.multiplatform.weather.app
 
 import androidx.compose.ui.window.ComposeUIViewController
 import com.multiplatform.td.core.app.createAppComponent

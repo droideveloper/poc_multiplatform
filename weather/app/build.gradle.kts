@@ -1,10 +1,12 @@
 plugins {
-    alias(libs.plugins.td.multiplatform.app)
-    alias(libs.plugins.td.kover)
-    alias(libs.plugins.roborazzi)
+    alias(libs.plugins.td.multiplatform.ui)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.weather.app"
+    }
+
     iosTargets(
         named = "Weather",
         isShared = false,
@@ -14,50 +16,6 @@ kotlin {
     )
 
     sourceSets {
-        androidUnitTest {
-            dependencies {
-                implementation(libs.androidx.test.manifest)
-                implementation(libs.androidx.test.junit)
-                implementation(libs.androidx.test.junit4)
-                implementation(libs.androidx.test.junit4.android)
-                implementation(libs.androidx.espresso.core)
-                implementation(libs.junit)
-
-                implementation(compose.uiTooling)
-                implementation(compose.preview)
-
-                implementation(libs.preview.scanner)
-                implementation(projects.core.testing.implementation)
-
-                implementation(libs.roborazzi.core)
-                implementation(libs.roborazzi.compose)
-                implementation(libs.roborazzi.junit.rule)
-                implementation(libs.roborazzi)
-            }
-        }
-        androidInstrumentedTest {
-            dependencies {
-                implementation(libs.androidx.test.manifest)
-                implementation(libs.androidx.test.runner)
-                implementation(libs.androidx.test.rules)
-                implementation(libs.androidx.test.junit)
-                implementation(libs.androidx.test.junit4)
-                implementation(libs.androidx.test.junit4.android)
-                implementation(libs.junit)
-
-                implementation(projects.weather.core.test)
-
-                implementation(libs.androidx.espresso.core)
-                implementation(libs.androidx.espresso.contrib)
-                implementation(libs.androidx.espresso.intents)
-                implementation(libs.androidx.espresso.accessibility)
-                implementation(libs.androidx.espresso.web)
-                implementation(libs.androidx.espresso.idling)
-                implementation(libs.androidx.espresso.idling.resources)
-            }
-            // for orchestrator to work as expected it needs to be `androidTestUtil` type of dependency :)
-            dependencies.add("androidTestUtil", libs.androidx.test.orchestrator)
-        }
         commonMain {
             dependencies {
                 implementation(projects.weather.city.domain)
@@ -111,45 +69,5 @@ kotlin {
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
-    }
-}
-
-dependencies {
-    kover(projects.weather.city.data)
-    kover(projects.weather.city.domain)
-    kover(projects.weather.city.ui)
-
-    kover(projects.weather.onboarding.data)
-    kover(projects.weather.onboarding.domain)
-    kover(projects.weather.onboarding.ui)
-
-    kover(projects.weather.settings.data)
-    kover(projects.weather.settings.domain)
-    kover(projects.weather.settings.ui)
-}
-
-roborazzi {
-    outputDir.set(
-        project.layout.projectDirectory.dir("src/androidUnitTest/snapshots"),
-    )
-}
-
-android {
-    namespace = "com.multiplatform.weather"
-    defaultConfig {
-        applicationId = "com.multiplatform.weather"
-
-        testBuildType = "debug"
-        testInstrumentationRunner = "com.multiplatform.weather.WeatherTestRunner"
-        testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
-    }
-
-    testOptions {
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
-        unitTests {
-            all {
-                it.systemProperties["robolectric.pixelCopyRenderMode"] = "hardware"
-            }
-        }
     }
 }

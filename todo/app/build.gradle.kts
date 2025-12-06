@@ -1,8 +1,12 @@
 plugins {
-    alias(libs.plugins.td.multiplatform.app)
+    alias(libs.plugins.td.multiplatform.ui)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.todo.app"
+    }
+
     iosTargets(
         named = "Todo",
         isShared = false,
@@ -48,12 +52,5 @@ kotlin {
                 implementation(libs.kotlin.datetime)
             }
         }
-    }
-}
-
-android {
-    namespace = "com.multiplatform.todo"
-    defaultConfig {
-        applicationId = "com.multiplatform.todo"
     }
 }

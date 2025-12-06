@@ -39,15 +39,15 @@ class MokkeryMultiplatformPlugin : Plugin<Project> {
         val isFlavorApplied = extensions.findByType<KotlinMultiplatformAndroidComponentsExtension>() != null
 
         extensions.getByType<KoverProjectExtension>().apply {
-            //currentProject {
-            //    createVariant("custom") {
-            //        val variantName = when {
-            //            isFlavorApplied -> "mockDebug"
-            //            else -> "jvm"
-            //        }
-            //        add(variantName)
-            //    }
-            //}
+            currentProject {
+                createVariant("custom") {
+                    val variantName = when {
+                        isFlavorApplied -> "android"
+                        else -> "jvm"
+                    }
+                    add(variantName)
+                }
+            }
         }
 
         dependencies {}

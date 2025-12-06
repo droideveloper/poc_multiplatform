@@ -20,6 +20,7 @@ class BuildKonfigExtendingPlugin: Plugin<Project> {
         val extension = extensions.getByType<BuildKonfigExtension>()
         extension.defaultConfigs {
             buildConfigField(FieldSpec.Type.STRING, "KONFIG_FLAVOR", "default")
+            buildConfigField(FieldSpec.Type.STRING, "KONFIG_BUILD_TYPE", "debug")
         }
         flavors.keys.forEach { flavor ->
             extension.defaultConfigs(flavor) {

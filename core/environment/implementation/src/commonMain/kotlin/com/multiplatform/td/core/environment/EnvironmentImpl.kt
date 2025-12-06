@@ -15,7 +15,7 @@ import com.multiplatform.td.core.injection.scopes.AppScope
 internal class EnvironmentImpl : Environment, Initializer<Environment> {
 
     override val isDebug: Boolean
-        get() = platformIsDebug
+        get() = BuildKonfig.KONFIG_BUILD_TYPE == "debug"
 
     override val isRelease: Boolean
         get() = isDebug.not()

@@ -53,7 +53,7 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute ui tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:testStagingDebugUnitTest
+        run: ./gradlew :${{ matrix.app }}:androidApp:testStagingDebugUnitTest
   integration-test:
     name: Integration test on android
     if: ${{ github.event.issue.user.login }} != 'dependabot'
@@ -71,9 +71,9 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Build mock apk for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:assembleMockDebug -Pbuildkonfig.flavor=mock
+        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebug -Pbuildkonfig.flavor=mock
       - name: Build mock test apk for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:assembleMockDebugAndroidTest -Pbuildkonfig.flavor=mock
+        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebugAndroidTest -Pbuildkonfig.flavor=mock
       - name: Auth into gcloud for ${{ matrix.app }}
         uses: google-github-actions/auth@v3
         with:
@@ -95,8 +95,8 @@ jobs:
           --device model=MediumPhone.arm,version=33 \
           --client-details=matrixLabel="${{ matrix.app }} tests" \
           --num-flaky-test-attempts=2 \
-          --app ${{ matrix.app }}/app/build/outputs/apk/mock/debug/app-mock-debug.apk \
-          --test ${{ matrix.app }}/app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk
+          --app ${{ matrix.app }}/androidApp/build/outputs/apk/mock/debug/androidApp-mock-debug.apk \
+          --test ${{ matrix.app }}/androidApp/build/outputs/apk/androidTest/mock/debug/androidApp-mock-debug-androidTest.apk
   screenshot-test:
     name: Screenshot test on android
     runs-on: ubuntu-latest
@@ -117,7 +117,7 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute snapshot tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:verifyRoborazziStagingDebug
+        run: ./gradlew :${{ matrix.app }}:androidApp:verifyRoborazziStagingDebug
   test-kover:
     name: Report coverage
     runs-on: ubuntu-latest
@@ -137,13 +137,13 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute kover report on tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:koverXmlReport
+        run: ./gradlew :${{ matrix.app }}:androidApp:koverXmlReportCustom
       - name: Add coverage report to PR
         id: kover
         uses: mi-kas/kover-report@v1
         with:
           path: |
-            ${{ github.workspace }}/${{ matrix.app }}/app/build/reports/kover/report.xml
+            ${{ github.workspace }}/${{ matrix.app }}/androidApp/build/reports/kover/reportCustom.xml
           title: ${{ matrix.app }} Code Coverage
           update-comment: true
           min-coverage-overall: 50
@@ -173,5 +173,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-${{ matrix.app }}
       - name: Execute build ${{ matrix.app }} android app
-        run: ./gradlew :${{ matrix.app }}:app:bundleStagingDebug -Pbuildkonfig.flavor=staging
+        run: ./gradlew :${{ matrix.app }}:androidApp:bundleStagingDebug -Pbuildkonfig.flavor=staging
 

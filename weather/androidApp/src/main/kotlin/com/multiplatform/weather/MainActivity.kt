@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.multiplatform.td.core.app.ComponentProvider
+import com.multiplatform.weather.app.WeatherApp
 
 class MainActivity : ComponentActivity() {
 

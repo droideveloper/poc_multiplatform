@@ -1,4 +1,4 @@
-package com.multiplatform.todo
+package com.multiplatform.todo.app
 
 import androidx.compose.ui.window.ComposeUIViewController
 import com.multiplatform.td.core.app.createAppComponent
