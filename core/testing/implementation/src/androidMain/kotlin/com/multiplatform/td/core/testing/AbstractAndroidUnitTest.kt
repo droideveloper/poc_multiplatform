@@ -1,16 +1,8 @@
 package com.multiplatform.td.core.testing
 
-import android.content.ContentProvider
 import android.os.Build
-import androidx.activity.ComponentActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
-import org.junit.Before
-import org.junit.Rule
-import org.robolectric.Robolectric
+import com.multiplatform.td.core.testing.screenshot.AbstractScreenshotTest
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
@@ -22,36 +14,4 @@ import org.robolectric.annotation.GraphicsMode
     qualifiers = RobolectricDeviceQualifiers.Pixel5,
 )
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-abstract class AbstractAndroidUnitTest {
-
-    @get:Rule
-    val testRule: ComposeTestRule = createAndroidComposeRule<ComponentActivity>()
-
-    @Before
-    fun setup() {
-        setupAndroidContextProvider()
-    }
-
-    private fun setupAndroidContextProvider() {
-        val providerClass = androidContentProviderClass() ?: return
-        Robolectric.setupContentProvider(providerClass)
-    }
-
-    private fun androidContentProviderClass(): Class<ContentProvider>? {
-        val providerClassName = "org.jetbrains.compose.resources.AndroidContextProvider"
-        return try {
-            @Suppress("UNCHECKED_CAST")
-            Class.forName(providerClassName) as Class<ContentProvider>
-        } catch (_: ClassNotFoundException) {
-            null
-        }
-    }
-
-    fun ComposeTestRule.setScreen(content: @Composable () -> Unit) {
-        if (this is ComposeContentTestRule) {
-            setContent {
-                content()
-            }
-        }
-    }
-}
+abstract class AbstractAndroidUnitTest : AbstractScreenshotTest()

@@ -23,8 +23,10 @@ abstract class MviViewModel<Action, State>(
     var state by mutableStateOf(initialState)
         protected set
 
-    fun dispatch(action: Action) = viewModelScope.launch {
-        actions.emit(action)
+    fun dispatch(action: Action) {
+        viewModelScope.launch {
+            actions.emit(action)
+        }
     }
 
     protected inline fun <reified ActionImpl : Action> on(

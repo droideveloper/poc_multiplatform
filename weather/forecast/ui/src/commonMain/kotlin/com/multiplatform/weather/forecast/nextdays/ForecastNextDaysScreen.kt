@@ -377,6 +377,7 @@ internal val city = City(
         latitude = 0.0,
         longitude = 0.0,
     ),
+    adminName = "Istanbul",
 )
 
 internal val forecast = Forecast(

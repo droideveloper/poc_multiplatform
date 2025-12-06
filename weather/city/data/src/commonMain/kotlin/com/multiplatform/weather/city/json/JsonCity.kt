@@ -17,6 +17,7 @@ internal data class JsonCity(
     @SerialName("lng") val longitude: Double,
     @SerialName("country") val countryName: String,
     @SerialName("iso2") val countryCode: String,
+    @SerialName("admin_name") val adminName: String,
 )
 
 internal fun JsonCity.toData() = CityDto(
@@ -27,6 +28,7 @@ internal fun JsonCity.toData() = CityDto(
     longitude = longitude,
     countryCode = countryCode,
     countryName = countryName,
+    adminName = adminName,
 )
 
 internal fun City.toJsonData(): JsonCity {
@@ -40,6 +42,7 @@ internal fun City.toJsonData(): JsonCity {
         countryCode = countryCode.value,
         latitude = latitude,
         longitude = longitude,
+        adminName = adminName,
     )
 }
 
@@ -55,4 +58,5 @@ internal fun JsonCity.toDomain(): City = City(
         name = countryName,
         code = CountryCode.get(countryCode).getOrThrow(),
     ),
+    adminName = adminName,
 )

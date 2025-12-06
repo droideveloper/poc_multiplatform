@@ -17,8 +17,14 @@ internal interface CityDao {
     @Query("SELECT * FROM cities")
     suspend fun cities(): List<CityDto>
 
+    @Query("SELECT * FROM cities WHERE country_code = :countryCode")
+    suspend fun cities(countryCode: String): List<CityDto>
+
     @Query("SELECT COUNT(*) FROM cities")
     suspend fun any(): Boolean
+
+    @Query("SELECT COUNT(*) FROM cities WHERE country_code = :countryCode")
+    suspend fun any(countryCode: String): Boolean
 
     @Delete
     suspend fun delete(dto: CityDto)
@@ -53,7 +59,12 @@ internal object MockDao {
 
             override suspend fun cities(): List<CityDto> = list
 
+            override suspend fun cities(countryCode: String): List<CityDto> =
+                list.filter { it.countryCode == countryCode }
+
             override suspend fun any(): Boolean = list.isNotEmpty()
+
+            override suspend fun any(countryCode: String): Boolean = list.any { it.countryCode == countryCode }
 
             override suspend fun delete(dto: CityDto) {
                 val index = list.indexOfFirst { it.id == dto.id }
@@ -77,6 +88,7 @@ internal object MockDao {
             countryCode = "TR",
             latitude = 41.0136,
             longitude = 28.955,
+            adminName = "Istanbul",
         ),
         CityDto(
             id = 2,
@@ -86,6 +98,7 @@ internal object MockDao {
             countryCode = "TR",
             latitude = 39.93,
             longitude = 32.85,
+            adminName = "Ankara",
         ),
         CityDto(
             id = 3,
@@ -95,6 +108,7 @@ internal object MockDao {
             countryCode = "TR",
             latitude = 38.42,
             longitude = 27.14,
+            adminName = "Izmir",
         ),
     )
 }

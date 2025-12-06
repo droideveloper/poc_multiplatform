@@ -1,6 +1,12 @@
 package com.multiplatform.weather.city.loader
 
-interface JsonDataLoader {
+import com.multiplatform.weather.city.Country
+import com.multiplatform.weather.city.CountryCode
 
-    suspend operator fun invoke(): Result<Unit>
+interface JsonDataLoader<T, R> {
+
+    suspend operator fun invoke(input: T): Result<R>
 }
+
+interface JsonCityDataLoader : JsonDataLoader<CountryCode, Unit>
+interface JsonCountryDataLoader : JsonDataLoader<String, List<Country>>

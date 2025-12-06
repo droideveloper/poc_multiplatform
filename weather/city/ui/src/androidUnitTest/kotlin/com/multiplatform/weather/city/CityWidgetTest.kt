@@ -2,8 +2,6 @@ package com.multiplatform.weather.city
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -26,11 +24,6 @@ internal class CityWidgetTest : AbstractAndroidUnitTest() {
     fun testLoadingView() {
         with(testRule) {
             setScreen { FwTheme { CityLoadingView() } }
-
-            val matcher = SemanticsMatcher.expectValue(
-                key = SemanticsPropertyKey("fraction"),
-                expectedValue = 0.50f,
-            )
 
             val nodes = onAllNodesWithTag("shimmer_space", useUnmergedTree = true)
 
