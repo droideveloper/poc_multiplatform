@@ -59,4 +59,5 @@ internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
 
 internal fun Project.isAndroidResourcesShouldIncluded(): Boolean =
     layout.projectDirectory.dir("src/androidUnitTest").asFile.exists() ||
-        layout.projectDirectory.dir("src/commonTest").asFile.exists()
+        layout.projectDirectory.dir("src/commonTest").asFile.exists() ||
+            layout.projectDirectory.dir("src/androidInstrumentedTest").asFile.exists()

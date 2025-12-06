@@ -6,15 +6,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -26,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
@@ -133,7 +136,6 @@ internal fun SettingsSuccessView(
     },
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
         topBar = {
             FwNavBar(
                 title = NavBarDefaults.Title.Default.Res(
@@ -145,12 +147,15 @@ internal fun SettingsSuccessView(
             )
         },
     ) { padding ->
+        val scrollState = rememberScrollState()
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .wrapContentHeight()
                 .background(selectDayBackground())
                 .padding(horizontal = FwTheme.dimens.standard16)
-                .padding(padding),
+                .padding(padding)
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(
                 space = FwTheme.dimens.standard16,
             ),
@@ -367,7 +372,10 @@ private fun SettingsSuccessViewPreview() {
             flavorName = "staging",
             dispatch = {},
         ) {
-            Text("Widget Placeholder")
+            Column {
+                Text("Widget Placeholder")
+                Spacer(modifier = Modifier.height(480.dp))
+            }
         }
     }
 }

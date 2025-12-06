@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import com.multiplatform.td.core.app.AppComponent
 import com.multiplatform.td.core.app.error.CompositionContextException
 import com.multiplatform.td.core.app.inject.ComponentStore
-import com.multiplatform.td.core.app.inject.ComponentStoreImpl
 
 val LocalAppComponent: ProvidableCompositionLocal<AppComponent> = compositionLocalOf {
     throw CompositionContextException.NotFound(AppComponent::class)
@@ -29,7 +28,7 @@ fun AppContext(
     navHostController: NavHostController,
     content: @Composable () -> Unit,
 ) {
-    val componentStore: ComponentStore = remember { ComponentStoreImpl() }
+    val componentStore: ComponentStore = remember { component.componentStore }
     CompositionLocalProvider(
         LocalAppComponent provides component,
         LocalNavController provides navHostController,

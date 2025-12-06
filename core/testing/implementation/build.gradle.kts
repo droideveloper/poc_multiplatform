@@ -9,6 +9,7 @@ kotlin {
                 implementation(libs.androidx.test.manifest)
                 implementation(libs.androidx.test.junit)
                 implementation(libs.androidx.test.junit4)
+                implementation(libs.androidx.test.junit4.android)
                 implementation(libs.androidx.espresso.core)
                 implementation(libs.junit)
 
