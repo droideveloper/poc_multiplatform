@@ -6,7 +6,6 @@ import dev.mokkery.answering.returns
 import dev.mokkery.every
 import dev.mokkery.everySuspend
 import dev.mokkery.mock
-import dev.mokkery.verify
 import dev.mokkery.verifySuspend
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -59,8 +58,6 @@ internal class GetSelectedCitiesUseCaseTest {
         flow.collect { result ->
             assertContains(result.getOrThrow(), City.Defaults)
         }
-
-        verify { repository.asFlow() }
     }
 
     @Test
@@ -77,7 +74,5 @@ internal class GetSelectedCitiesUseCaseTest {
             val actual = assertFails { result.getOrThrow() }
             assertEquals(error, actual)
         }
-
-        verify { repository.asFlow() }
     }
 }

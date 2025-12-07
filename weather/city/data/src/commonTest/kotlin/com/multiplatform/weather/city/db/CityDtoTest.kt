@@ -17,6 +17,7 @@ internal class CityDtoTest {
         countryCode = "TR",
         latitude = 41.0136,
         longitude = 28.955,
+        adminName = "Istanbul",
     )
 
     private val city = City(
@@ -27,6 +28,7 @@ internal class CityDtoTest {
             latitude = 41.0136,
             longitude = 28.955,
         ),
+        adminName = "Istanbul",
         country = Country(
             name = "Turkey",
             code = CountryCode.get("TR").getOrThrow(),
@@ -40,6 +42,7 @@ internal class CityDtoTest {
         assertEquals(city.id, actual.id)
         assertEquals(city.name, actual.name)
         assertEquals(city.displayName, actual.displayName)
+        assertEquals(city.adminName, actual.adminName)
         assertEquals(city.location.latitude, actual.location.latitude)
         assertEquals(city.location.longitude, actual.location.longitude)
         assertEquals(city.country.name, actual.country.name)
@@ -53,6 +56,7 @@ internal class CityDtoTest {
         assertEquals(cityDto.id, actual.id)
         assertEquals(cityDto.name, actual.name)
         assertEquals(cityDto.asciiName, actual.asciiName)
+        assertEquals(cityDto.adminName, actual.adminName)
         assertEquals(cityDto.countryName, actual.countryName)
         assertEquals(cityDto.countryCode, actual.countryCode)
         assertEquals(cityDto.latitude, actual.latitude)

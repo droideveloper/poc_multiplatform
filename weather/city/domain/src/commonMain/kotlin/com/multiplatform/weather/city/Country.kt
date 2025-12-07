@@ -6,8 +6,8 @@ data class Country(
 ) {
     companion object {
         val Defaults = Country(
-            name = "",
-            code = CountryCode.getOrThrow("US"),
+            name = "Turkey",
+            code = CountryCode.getOrThrow("TR"),
         )
     }
 }

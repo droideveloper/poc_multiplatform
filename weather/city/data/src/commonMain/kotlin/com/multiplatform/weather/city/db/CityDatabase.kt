@@ -7,7 +7,7 @@ import androidx.room.RoomDatabaseConstructor
 
 @Database(
     entities = [CityDto::class],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @ConstructedBy(CityDatabaseConstructor::class)

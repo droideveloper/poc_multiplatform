@@ -15,6 +15,8 @@ class CityDatabaseBinder(
 
     override fun invoke(): CityDatabase {
         val builder = createDatabaseBuilder<CityDatabase>(args = databaseBuilderArgs)
-        return builder.apply(roomDatabaseConfig).build()
+        return builder.apply(roomDatabaseConfig)
+            .fallbackToDestructiveMigration(true)
+            .build()
     }
 }

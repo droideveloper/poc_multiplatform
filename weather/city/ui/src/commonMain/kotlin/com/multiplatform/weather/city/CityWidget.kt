@@ -47,6 +47,7 @@ import tdmultiplatform.weather.city.ui.generated.resources.city_ui_failure_title
 import tdmultiplatform.weather.city.ui.generated.resources.city_ui_select_another_city
 import tdmultiplatform.weather.city.ui.generated.resources.city_ui_select_city
 import tdmultiplatform.weather.city.ui.generated.resources.city_ui_select_city_title
+import tdmultiplatform.weather.city.ui.generated.resources.city_ui_select_country_title
 import tdmultiplatform.weather.city.ui.generated.resources.city_ui_try_again
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -57,19 +58,40 @@ import kotlin.time.DurationUnit
 fun CityWidget(
     onCitySelect: (City) -> Unit = {},
     onCityRemoved: (City) -> Unit = {},
+    onCountrySelect: (Country) -> Unit = {},
     allowLastSelectionRemoval: Boolean = true,
 ) {
     val component = rememberCityComponent()
     val viewModel = kotlinInjectViewModel(
         create = component.cityWidgetViewModelFactory,
     )
-    CityUi(
-        state = viewModel.state,
-        allowLastSelectionRemoval = allowLastSelectionRemoval,
-        onCitySelect = onCitySelect,
-        onCityRemoved = onCityRemoved,
-        dispatch = viewModel::dispatch,
-    )
+    val state = viewModel.state
+    val dispatch = viewModel::dispatch
+    Column(
+        modifier = Modifier
+            .padding(horizontal = FwTheme.dimens.standard8)
+            .fillMaxWidth(),
+    ) {
+        FwAutoCompleteCountryInput(
+            modifier = Modifier.fillMaxWidth(),
+            possibleValues = state.countries,
+            selectedValue = state.country,
+            onValueChange = {
+                dispatch(CityEvent.Operation.SelectCountry(it.value))
+                onCountrySelect(it.value)
+            },
+            label = stringResource(Res.string.city_ui_select_country_title),
+            placeholder = selectCountry(state.country),
+        )
+        Spacer(modifier = Modifier.height(FwTheme.dimens.standard16))
+        CityUi(
+            state = state,
+            allowLastSelectionRemoval = allowLastSelectionRemoval,
+            onCitySelect = onCitySelect,
+            onCityRemoved = onCityRemoved,
+            dispatch = dispatch,
+        )
+    }
 }
 
 @KoverIgnore
@@ -250,9 +272,7 @@ internal fun CitySuccessView(
     dispatch: (CityEvent) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .padding(horizontal = FwTheme.dimens.standard8)
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
     ) {
         FwAutoCompleteCityInput(
             modifier = Modifier.fillMaxWidth(),
@@ -289,7 +309,7 @@ internal fun selectPlaceholderText(cities: List<City>): StringResource {
     }
 }
 
-private val country = Country(
+internal val country = Country(
     name = "Turkey",
     code = CountryCode.getOrThrow("TR"),
 )
@@ -300,6 +320,7 @@ internal val city = City(
     displayName = "Istanbul",
     country = country,
     location = Location(0.0, 0.0),
+    adminName = "Istanbul",
 )
 
 @Preview

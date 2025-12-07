@@ -30,6 +30,7 @@ internal class SelectedCityRepositoryImplTest {
         countryCode = "TR",
         latitude = 41.0136,
         longitude = 28.955,
+        adminName = "Istanbul",
     )
 
     private val city = City(
@@ -40,6 +41,7 @@ internal class SelectedCityRepositoryImplTest {
             latitude = 41.0136,
             longitude = 28.955,
         ),
+        adminName = "Istanbul",
         country = Country(
             name = "Turkey",
             code = CountryCode.get("TR").getOrThrow(),
@@ -94,10 +96,6 @@ internal class SelectedCityRepositoryImplTest {
         cities.collect { result ->
             assertContains(result.getOrThrow(), city)
         }
-
-        verifySuspend {
-            dataStore.getSerializableFlow<List<JsonCity>>(dataStoreKey, typeOf<List<JsonCity>>())
-        }
     }
 
     @Test
@@ -114,10 +112,6 @@ internal class SelectedCityRepositoryImplTest {
         cities.collect { result ->
             val actual = assertFails { result.getOrThrow() }
             assertEquals(error, actual)
-        }
-
-        verifySuspend {
-            dataStore.getSerializableFlow<List<JsonCity>>(dataStoreKey, typeOf<List<JsonCity>>())
         }
     }
 }

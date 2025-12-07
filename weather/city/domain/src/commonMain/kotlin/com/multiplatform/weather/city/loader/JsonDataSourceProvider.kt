@@ -4,5 +4,9 @@ import okio.Source
 
 interface JsonDataSourceProvider {
 
-    operator fun invoke(): Source
+    companion object {
+        const val JsonPath = "composeResources/tdmultiplatform.weather.city.ui.generated.resources/files"
+    }
+
+    operator fun invoke(input: String): Source
 }

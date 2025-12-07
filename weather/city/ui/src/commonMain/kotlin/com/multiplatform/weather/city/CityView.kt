@@ -50,7 +50,7 @@ fun CityView(
 
 @Composable
 internal fun selectCity(city: City): String = remember(city) {
-    "${city.name}, ${city.country.code.value.uppercase()}"
+    "${city.cityName}, ${city.country.code.value.uppercase()}"
 }
 
 @Preview

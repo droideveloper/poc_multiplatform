@@ -4,6 +4,8 @@ import org.jetbrains.compose.resources.StringResource
 
 internal data class CityState(
     val uiState: UiState = UiState.Loading,
+    val country: Country = Country.Defaults,
+    val countries: List<Country> = emptyList(),
 )
 
 sealed interface UiState {

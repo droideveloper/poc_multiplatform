@@ -15,12 +15,18 @@ internal class CityTest {
         )
         val city = City(
             id = 1L,
-            name = "istanbul",
+            name = "Adalar",
             displayName = "Istanbul",
             country = country,
             location = location,
+            adminName = "Istanbul",
         )
 
-        assertEquals("istanbul_turkey", city.createKey())
+        assertEquals("adalar_istanbul_turkey", city.createKey())
+        assertEquals("Adalar, Istanbul", city.cityName)
+
+        val newCity = city.copy(name = "Istanbul")
+        assertEquals("Istanbul", newCity.cityName)
+        assertEquals("istanbul_turkey", newCity.createKey())
     }
 }

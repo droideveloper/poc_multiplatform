@@ -15,6 +15,7 @@ internal data class CityDto(
     @ColumnInfo(name = "ascii_name") val asciiName: String,
     @ColumnInfo(name = "country_name", index = true) val countryName: String,
     @ColumnInfo(name = "country_code") val countryCode: String,
+    @ColumnInfo(name = "admin_name") val adminName: String,
     val latitude: Double,
     val longitude: Double,
 )
@@ -30,6 +31,7 @@ internal fun City.toData(): CityDto {
         countryCode = countryCode.value,
         latitude = latitude,
         longitude = longitude,
+        adminName = adminName,
     )
 }
 
@@ -41,6 +43,7 @@ internal fun CityDto.toDomain(): City = City(
         latitude = latitude,
         longitude = longitude,
     ),
+    adminName = adminName,
     country = Country(
         name = countryName,
         code = CountryCode.get(countryCode).getOrThrow(),

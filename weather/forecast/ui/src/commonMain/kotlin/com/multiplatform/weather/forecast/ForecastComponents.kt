@@ -406,7 +406,7 @@ internal fun RowScope.SelectedCityTitle(
         )
         Spacer(modifier = Modifier.width(FwTheme.dimens.standard4))
         Text(
-            text = "${city.name}, ${city.country.name}",
+            text = "${city.cityName}, ${city.country.name}",
             style = FwTheme.typography.bodySecondary.copy(
                 fontWeight = FontWeight.Bold,
             ),

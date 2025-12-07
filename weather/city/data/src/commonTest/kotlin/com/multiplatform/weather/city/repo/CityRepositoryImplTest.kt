@@ -1,5 +1,6 @@
 package com.multiplatform.weather.city.repo
 
+import com.multiplatform.weather.city.CountryCode
 import com.multiplatform.weather.city.db.CityDao
 import com.multiplatform.weather.city.db.CityDto
 import com.multiplatform.weather.city.db.toDomain
@@ -15,6 +16,8 @@ import kotlin.test.assertTrue
 
 internal class CityRepositoryImplTest {
 
+    private val countryCode = CountryCode.getOrThrow("TR")
+
     private val cityDto = CityDto(
         id = 1,
         name = "Istanbul",
@@ -23,6 +26,7 @@ internal class CityRepositoryImplTest {
         countryCode = "TR",
         latitude = 41.0136,
         longitude = 28.955,
+        adminName = "Istanbul",
     )
 
     private val city by lazy { cityDto.toDomain() }
@@ -32,6 +36,8 @@ internal class CityRepositoryImplTest {
         everySuspend { saveOrUpdate(listOf(cityDto)) } returns Unit
         everySuspend { cities() } returns listOf(cityDto)
         everySuspend { any() } returns true
+        everySuspend { cities("TR") } returns listOf(cityDto)
+        everySuspend { any("TR") } returns true
         everySuspend { delete(cityDto) } returns Unit
         everySuspend { delete(listOf(cityDto)) } returns Unit
     }
@@ -70,6 +76,17 @@ internal class CityRepositoryImplTest {
     }
 
     @Test
+    fun `given cities for country than will return cities`() = runTest {
+        val repo = CityRepositoryImpl(dao)
+
+        val result = repo.cities(countryCode)
+
+        assertContains(result.getOrThrow(), city)
+
+        verifySuspend { dao.cities("TR") }
+    }
+
+    @Test
     fun `given any than will return true`() = runTest {
         val repo = CityRepositoryImpl(dao)
 
@@ -78,6 +95,17 @@ internal class CityRepositoryImplTest {
         assertTrue { result.getOrThrow() }
 
         verifySuspend { dao.any() }
+    }
+
+    @Test
+    fun `given any for country than will return true`() = runTest {
+        val repo = CityRepositoryImpl(dao)
+
+        val result = repo.any(countryCode)
+
+        assertTrue { result.getOrThrow() }
+
+        verifySuspend { dao.any("TR") }
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.multiplatform.weather.city.usecase
 
-import com.multiplatform.weather.city.loader.JsonDataLoader
+import com.multiplatform.weather.city.CountryCode
+import com.multiplatform.weather.city.loader.JsonCityDataLoader
 import dev.mokkery.answering.returns
 import dev.mokkery.everySuspend
 import dev.mokkery.mock
@@ -12,33 +13,35 @@ import kotlin.test.assertFails
 
 internal class PopulateDatabaseUseCaseTest {
 
+    private val countryCode = CountryCode.getOrThrow("TR")
+
     @Test
     fun `given success than will return Unit`() = runTest {
-        val jsonDataLoader = mock<JsonDataLoader> {
-            everySuspend { invoke() } returns Result.success(Unit)
+        val jsonDataLoader = mock<JsonCityDataLoader> {
+            everySuspend { invoke(countryCode) } returns Result.success(Unit)
         }
 
         val useCase = PopulateDatabaseUseCase(jsonDataLoader)
-        val result = useCase()
+        val result = useCase(countryCode)
 
         assertEquals(Unit, result.getOrThrow())
 
-        verifySuspend { jsonDataLoader() }
+        verifySuspend { jsonDataLoader(countryCode) }
     }
 
     @Test
     fun `given failure than will return error`() = runTest {
         val error = Throwable()
-        val jsonDataLoader = mock<JsonDataLoader> {
-            everySuspend { invoke() } returns Result.failure(error)
+        val jsonDataLoader = mock<JsonCityDataLoader> {
+            everySuspend { invoke(countryCode) } returns Result.failure(error)
         }
 
         val useCase = PopulateDatabaseUseCase(jsonDataLoader)
-        val result = useCase()
+        val result = useCase(countryCode)
 
         val actual = assertFails { result.getOrThrow() }
         assertEquals(error, actual)
 
-        verifySuspend { jsonDataLoader() }
+        verifySuspend { jsonDataLoader(countryCode) }
     }
 }
