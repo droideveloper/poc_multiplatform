@@ -1,6 +1,7 @@
 package com.multiplatform.weather
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.multiiplatform.td.core.database.DatabaseName
@@ -22,6 +23,7 @@ fun WeatherApp(
     component: AppComponent,
 ) {
     val navController = rememberNavController()
+    val component = remember { component }
 
     AppContext(component, navController) {
         DatabaseContext(

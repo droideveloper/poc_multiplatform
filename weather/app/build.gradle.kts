@@ -19,6 +19,7 @@ kotlin {
                 implementation(libs.androidx.test.manifest)
                 implementation(libs.androidx.test.junit)
                 implementation(libs.androidx.test.junit4)
+                implementation(libs.androidx.test.junit4.android)
                 implementation(libs.androidx.espresso.core)
                 implementation(libs.junit)
 
@@ -26,16 +27,36 @@ kotlin {
                 implementation(compose.preview)
 
                 implementation(libs.preview.scanner)
+                implementation(projects.core.testing.implementation)
 
                 implementation(libs.roborazzi.core)
                 implementation(libs.roborazzi.compose)
                 implementation(libs.roborazzi.junit.rule)
                 implementation(libs.roborazzi)
-
-                implementation(libs.robolectric)
-
-                implementation(projects.core.testing.implementation)
             }
+        }
+        androidInstrumentedTest {
+            dependencies {
+                implementation(libs.androidx.test.manifest)
+                implementation(libs.androidx.test.runner)
+                implementation(libs.androidx.test.rules)
+                implementation(libs.androidx.test.junit)
+                implementation(libs.androidx.test.junit4)
+                implementation(libs.androidx.test.junit4.android)
+                implementation(libs.junit)
+
+                implementation(projects.weather.core.test)
+
+                implementation(libs.androidx.espresso.core)
+                implementation(libs.androidx.espresso.contrib)
+                implementation(libs.androidx.espresso.intents)
+                implementation(libs.androidx.espresso.accessibility)
+                implementation(libs.androidx.espresso.web)
+                implementation(libs.androidx.espresso.idling)
+                implementation(libs.androidx.espresso.idling.resources)
+            }
+            // for orchestrator to work as expected it needs to be `androidTestUtil` type of dependency :)
+            dependencies.add("androidTestUtil", libs.androidx.test.orchestrator)
         }
         commonMain {
             dependencies {
@@ -82,6 +103,8 @@ kotlin {
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlin.datetime)
+
+                implementation(projects.weather.core.test)
             }
         }
     }
@@ -123,5 +146,13 @@ android {
     namespace = "com.multiplatform.weather"
     defaultConfig {
         applicationId = "com.multiplatform.weather"
+
+        testBuildType = "debug"
+        testInstrumentationRunner = "com.multiplatform.weather.WeatherTestRunner"
+        testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
+    }
+
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
 }

@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.DropdownMenu
@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.PopupProperties
 import com.multiplatform.td.core.ui.input.InputError
 import com.multiplatform.td.core.ui.input.InputValue
@@ -108,10 +109,10 @@ private fun SelectedCities(
                 horizontal = FwTheme.dimens.standard12,
             )
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .height(selectedValues.size * FwTheme.dimens.standard36),
         verticalArrangement = Arrangement.spacedBy(FwTheme.dimens.standard8),
     ) {
-        itemsIndexed(items = selectedValues) { index, item ->
+        itemsIndexed(selectedValues) { index, item ->
             CityView(item, onClick = onValueRemove) {
                 Icon(
                     modifier = Modifier.size(FwTheme.dimens.standard24),

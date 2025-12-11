@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import com.multiiplatform.td.core.database.composable.LocalDatabaseComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
@@ -275,7 +276,9 @@ internal fun CitySuccessView(
         modifier = Modifier.fillMaxWidth(),
     ) {
         FwAutoCompleteCityInput(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .testTag("city_input")
+                .fillMaxWidth(),
             possibleValues = cities,
             selectedValues = selectedCities,
             onValueChange = {
@@ -298,6 +301,7 @@ internal fun CitySuccessView(
             placeholder = stringResource(
                 resource = selectPlaceholderText(selectedCities),
             ),
+            imeAction = ImeAction.Done,
         )
     }
 }

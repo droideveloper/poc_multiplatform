@@ -6,9 +6,10 @@ import com.multiplatform.td.core.app.AppComponent
 import com.multiplatform.td.core.app.ComponentProvider
 import com.multiplatform.td.core.app.create
 
-class WeatherApplication : Application(), ComponentProvider {
+open class WeatherApplication : Application(), ComponentProvider {
 
-    override val component: AppComponent get() = AppComponent.create(this)
+    private val _component: AppComponent = AppComponent.create(this)
+    override val component: AppComponent get() = _component
 
     override fun onCreate() {
         super.onCreate()
