@@ -54,6 +54,48 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute ui tests for ${{ matrix.app }}
         run: ./gradlew :${{ matrix.app }}:app:testStagingDebugUnitTest
+  integration-test:
+    name: Integration test on android
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [ weather ]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+      - name: Set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build mock apk for ${{ matrix.app }}
+        run: ./gradlew :${{ matrix.app }}:app:assembleMockDebug -Pbuildkonfig.flavor=mock
+      - name: Build mock test apk for ${{ matrix.app }}
+        run: ./gradlew :${{ matrix.app }}:app:assembleMockDebugAndroidTest -Pbuildkonfig.flavor=mock
+      - name: Auth into gcloud for ${{ matrix.app }}
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets[format('{0}_gcloud_auth_json', matrix.app)] }}
+      - name: Setup Gcloud for ${{ matrix.app }}
+        uses: google-github-actions/setup-gcloud@v3
+        with:
+          install_components: alpha
+      - name: Setup project for ${{ matrix.app }}
+        shell: bash
+        run: gcloud config set project ${{ vars[format('{0}_testlab_project_id', matrix.app)] }}
+      - name: Run TestLab ${{ matrix.app }}
+        shell: bash
+        run: |
+          gcloud alpha firebase test android run \
+          --quiet \
+          --use-orchestrator \
+          --timeout 30m \
+          --device model=MediumPhone.arm,version=33 \
+          --client-details=matrixLabel="${{ matrix.app }} tests" \
+          --num-flaky-test-attempts=2 \
+          --app ${{ matrix.app }}/app/build/outputs/apk/mock/debug/app-mock-debug.apk \
+          --test ${{ matrix.app }}/app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk
   screenshot-test:
     name: Screenshot test on android
     runs-on: ubuntu-latest
