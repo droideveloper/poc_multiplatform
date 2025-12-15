@@ -30,7 +30,7 @@ robolectiric = "4.16"
 kotlin-inject = "0.8.0"
 coil = "3.3.0"
 ktlint = "14.0.1"
-kover = "0.9.3"
+kover = "0.9.4"
 espresso = "3.7.0"
 orchestrator = "1.6.1"
 
