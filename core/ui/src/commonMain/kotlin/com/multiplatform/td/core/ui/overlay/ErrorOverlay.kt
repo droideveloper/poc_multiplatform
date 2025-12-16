@@ -34,6 +34,7 @@ import tdmultiplatform.core.ui.generated.resources.core_ui_error_title
 
 @Composable
 fun TdErrorScreen(
+    modifier: Modifier = Modifier,
     title: String = stringResource(Res.string.core_ui_error_title),
     message: String,
     image: @Composable () -> Unit = { TdErrorScreenDefaultImage() },
@@ -43,6 +44,7 @@ fun TdErrorScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .then(modifier)
                 .padding(padding)
                 .padding(TdTheme.dimens.standard12),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -127,7 +129,9 @@ private fun ErrorTitle(
 private fun ErrorMessage(message: String) {
     Text(
         text = message,
-        style = TdTheme.typography.bodyMedium,
+        style = TdTheme.typography.bodyMedium.copy(
+            color = TdTheme.typography.titleLarge.color,
+        ),
         textAlign = TextAlign.Center,
     )
 }

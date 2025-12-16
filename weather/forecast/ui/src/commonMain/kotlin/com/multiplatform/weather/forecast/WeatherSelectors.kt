@@ -75,7 +75,9 @@ import tdmultiplatform.weather.forecast.ui.generated.resources.ic_very_cloudy
 
 @Composable
 internal fun rememberMeasureComponent(): MeasureComponent {
-    return remember { MeasureComponent.create() }
+    return remember {
+        MeasureComponent.create()
+    }
 }
 
 @Composable

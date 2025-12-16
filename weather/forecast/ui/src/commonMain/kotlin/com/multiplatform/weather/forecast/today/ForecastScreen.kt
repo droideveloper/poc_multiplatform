@@ -33,6 +33,7 @@ import com.multiplatform.td.core.ui.extensions.ignoreHorizontalPadding
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
+import com.multiplatform.weather.forecast.ForecastErrorView
 import com.multiplatform.weather.forecast.SelectedCityToolbar
 import com.multiplatform.weather.forecast.WeatherDescription
 import com.multiplatform.weather.forecast.WeatherDetailDescription
@@ -46,7 +47,10 @@ import com.multiplatform.weather.forecast.selectCurrentDateTime
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import tdmultiplatform.weather.forecast.ui.generated.resources.Res
+import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_go_back
 import kotlin.time.Duration.Companion.seconds
 
 @KoverIgnore
@@ -98,10 +102,12 @@ private fun ForecastUi(
     when (val uiState = state.uiState) {
         UiState.Loading -> FwLoadingOverlay()
         UiState.Success -> ForecastSuccessView(state, dispatch)
-        is UiState.Failure -> when (uiState) {
-            is UiState.Failure.Text -> Unit // TODO implement text error
-            is UiState.Failure.Res -> Unit // TODO implement res error
-        }
+        is UiState.Failure -> ForecastErrorView(
+            uiState = uiState,
+            onPrimaryClick = { dispatch(ForecastEvent.OnTryAgainClicked) },
+            secondaryButtonText = stringResource(Res.string.forecast_ui_go_back),
+            onSecondaryClick = { dispatch(ForecastEvent.OnBackClicked) },
+        )
     }
     OnScreenStart { dispatch(ForecastEvent.OnScreenViewed) }
     TickEffect(

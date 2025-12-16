@@ -44,6 +44,7 @@ import com.multiplatform.td.core.ui.overlay.TdErrorScreenDefaultActions
 import com.multiplatform.weather.city.CityWidget
 import com.multiplatform.weather.core.measure.Speed
 import com.multiplatform.weather.core.measure.Temperature
+import com.multiplatform.weather.core.ui.FwImage
 import com.multiplatform.weather.core.ui.FwLoadingOverlay
 import com.multiplatform.weather.core.ui.FwNavBar
 import com.multiplatform.weather.core.ui.FwTheme
@@ -56,6 +57,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.settings.ui.generated.resources.Res
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_decrement
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_increment
+import tdmultiplatform.weather.settings.ui.generated.resources.ic_sunnyrainy
+import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_go_home
 import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_number_of_days
 import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_speed_unit
 import tdmultiplatform.weather.settings.ui.generated.resources.settings_ui_temperature_unit
@@ -116,8 +119,24 @@ private fun SettingsFailureView(
         is UiState.Failure.Text -> uiState.message
     }
     TdErrorScreen(
+        modifier = Modifier.background(selectDayBackground()),
         message = message,
-        actions = { TdErrorScreenDefaultActions { dispatch(SettingsEvent.OnTryAgainClicked) } },
+        image = { SettingsErrorImage() },
+        actions = {
+            TdErrorScreenDefaultActions(
+                onPrimaryActionClick = { dispatch(SettingsEvent.OnTryAgainClicked) },
+                secondaryActionText = stringResource(Res.string.settings_ui_go_home),
+                onSecondaryActionClick = { dispatch(SettingsEvent.OnBackClicked) },
+            )
+        },
+    )
+}
+
+@Composable
+private fun SettingsErrorImage() {
+    FwImage(
+        resource = vectorResource(Res.drawable.ic_sunnyrainy),
+        modifier = Modifier.size(FwTheme.dimens.standard128),
     )
 }
 
