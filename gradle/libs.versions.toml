@@ -40,7 +40,7 @@ android-minSdk = "23"
 android-targetSdk = "36"
 material3Android = "1.4.0"
 
-preview-scanner = "0.7.2"
+preview-scanner = "0.8.0"
 roborazzi = "1.52.0"
 
 # compiler
