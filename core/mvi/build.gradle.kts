@@ -1,8 +1,14 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.library)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.td.core.mvi"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -15,8 +21,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "com.multiplatform.td.core.mvi"
 }

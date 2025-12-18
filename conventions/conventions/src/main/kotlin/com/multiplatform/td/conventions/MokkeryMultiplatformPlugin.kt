@@ -1,6 +1,8 @@
 package com.multiplatform.td.conventions
 
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 import dev.mokkery.gradle.MokkeryGradlePlugin
 import dev.mokkery.gradle.mokkery
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
@@ -34,18 +36,18 @@ class MokkeryMultiplatformPlugin : Plugin<Project> {
             }
         }
 
-        val isFlavorApplied = extensions.findByType<LibraryExtension>() != null
+        val isFlavorApplied = extensions.findByType<KotlinMultiplatformAndroidComponentsExtension>() != null
 
         extensions.getByType<KoverProjectExtension>().apply {
-            currentProject {
-                createVariant("custom") {
-                    val variantName = when {
-                        isFlavorApplied -> "mockDebug"
-                        else -> "jvm"
-                    }
-                    add(variantName)
-                }
-            }
+            //currentProject {
+            //    createVariant("custom") {
+            //        val variantName = when {
+            //            isFlavorApplied -> "mockDebug"
+            //            else -> "jvm"
+            //        }
+            //        add(variantName)
+            //    }
+            //}
         }
 
         dependencies {}

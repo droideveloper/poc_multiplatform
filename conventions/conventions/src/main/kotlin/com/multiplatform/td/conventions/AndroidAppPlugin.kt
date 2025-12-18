@@ -2,6 +2,7 @@ package com.multiplatform.td.conventions
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.api.KotlinMultiplatformAndroidPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -32,7 +33,7 @@ class AndroidAppPlugin : Plugin<Project> {
             }
 
             extensions.getByType<KotlinMultiplatformExtension>().apply {
-                configureMultiplatformLibrary()
+                configureMultiplatformApplication()
                 applyCommonCompose(compose, project)
                 applyAndroidCompose(compose, project)
             }

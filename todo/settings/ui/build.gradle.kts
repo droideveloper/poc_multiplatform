@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.kotlin.serialization)
@@ -5,6 +7,10 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.todo.settings"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -39,8 +45,4 @@ kotlin {
 
 dependencies {
     kspCommonMainMetadata(projects.core.injection.compiler)
-}
-
-android {
-    namespace = "com.multiplatform.todo.settings"
 }

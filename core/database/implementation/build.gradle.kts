@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.library)
     alias(libs.plugins.td.multiplatform.room)
@@ -7,6 +9,10 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiiplatform.td.core.database"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -30,8 +36,4 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
-}
-
-android {
-    namespace = "com.multiiplatform.td.core.database"
 }
