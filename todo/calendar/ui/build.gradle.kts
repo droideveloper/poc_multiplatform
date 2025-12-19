@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.kotlin.serialization)
@@ -5,6 +7,10 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.todo.calendar"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -43,8 +49,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "com.multiplatform.todo.calendar"
 }

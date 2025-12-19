@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.kotlin.multiplatform.plugin)
     implementation(libs.android.gradle.plugin)
     implementation(libs.android.tools.common.plugin)
+    implementation(libs.multiplatform.android.library.plugin)
     implementation(libs.compose.gradle.plugin)
     implementation(libs.compose.compiler.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)

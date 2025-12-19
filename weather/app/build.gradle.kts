@@ -114,14 +114,6 @@ kotlin {
     }
 }
 
-kover {
-    currentProject {
-        createVariant("custom") {
-            add("mockDebug")
-        }
-    }
-}
-
 dependencies {
     kover(projects.weather.city.data)
     kover(projects.weather.city.domain)

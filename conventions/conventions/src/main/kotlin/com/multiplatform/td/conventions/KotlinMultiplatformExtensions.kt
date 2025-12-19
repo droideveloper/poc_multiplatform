@@ -1,11 +1,14 @@
 package com.multiplatform.td.conventions
 
 import androidx.room.gradle.RoomExtension
+import com.android.build.api.dsl.androidLibrary
+import com.android.build.gradle.AppPlugin
 import de.jensklingenberg.ktorfit.gradle.KtorfitPluginExtension
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.compose.ExperimentalComposeLibrary
@@ -46,20 +49,38 @@ internal fun KotlinMultiplatformExtension.applyCommonCompose(
                 implementation(androidxLifecycleRuntimeCompose.asDependency())
             }
         }
-        sourceSets.commonTest.configure {
-            dependencies {
-                @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.uiTest)
+        if (isCommonTestEnabled()) {
+            sourceSets.commonTest.configure {
+                dependencies {
+                    @OptIn(ExperimentalComposeLibrary::class)
+                    implementation(compose.uiTest)
+                }
             }
         }
-        sourceSets.androidUnitTest.configure {
-            dependencies {
-                implementation(jUnit.asDependency())
-                implementation(espressoCore.asDependency())
-                implementation(androidxTestJunit.asDependency())
-                implementation(androidxTestJunit4.asDependency())
-                implementation(androidxTestManifest.asDependency())
-                implementation(robolectric.asDependency())
+
+        if (isAndroidUnitTestEnabled()) {
+            if (pluginManager.hasPlugin("com.android.internal.application")) {
+                sourceSets.androidUnitTest.configure {
+                    dependencies {
+                        implementation(jUnit.asDependency())
+                        implementation(espressoCore.asDependency())
+                        implementation(androidxTestJunit.asDependency())
+                        implementation(androidxTestJunit4.asDependency())
+                        implementation(androidxTestManifest.asDependency())
+                        implementation(robolectric.asDependency())
+                    }
+                }
+            } else {
+                sourceSets.getByName("androidHostTest") {
+                    dependencies {
+                        implementation(jUnit.asDependency())
+                        implementation(espressoCore.asDependency())
+                        implementation(androidxTestJunit.asDependency())
+                        implementation(androidxTestJunit4.asDependency())
+                        implementation(androidxTestManifest.asDependency())
+                        implementation(robolectric.asDependency())
+                    }
+                }
             }
         }
     }
@@ -134,14 +155,20 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformDefaults(
 
 internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {
     configureMultiplatformDefaults {
+        androidLibrary {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_11)
+            }
+        }
+    }
+}
+
+internal fun KotlinMultiplatformExtension.configureMultiplatformApplication() {
+    configureMultiplatformDefaults {
         androidTarget {
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_11)
             }
-
-            // means commonMainTest written for composable will be executed on device or emulator, which is expensive way to test
-            @OptIn(ExperimentalKotlinGradlePluginApi::class)
-            instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
         }
     }
 }

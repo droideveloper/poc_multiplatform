@@ -1,9 +1,15 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.td.core.app"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -24,8 +30,4 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
-}
-
-android {
-    namespace = "com.multiplatform.td.core.app"
 }

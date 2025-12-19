@@ -1,7 +1,7 @@
 package com.multiplatform.td.conventions
 
-import com.android.build.api.dsl.LibraryExtension
-import com.android.build.gradle.LibraryPlugin
+import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
+import com.android.build.gradle.api.KotlinMultiplatformAndroidPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -11,6 +11,7 @@ import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradleSubplugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
+import kotlin.apply
 
 class UiMultiplatformPlugin : Plugin<Project> {
 
@@ -18,7 +19,7 @@ class UiMultiplatformPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply(KotlinMultiplatformPluginWrapper::class)
-                apply(LibraryPlugin::class)
+                apply(KotlinMultiplatformAndroidPlugin::class)
                 apply(LanguageLintPlugin::class)
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
@@ -26,8 +27,8 @@ class UiMultiplatformPlugin : Plugin<Project> {
             }
             val compose = project.dependencies.extensions.getByType<ComposePlugin.Dependencies>()
 
-            extensions.getByType<LibraryExtension>().apply {
-                configureAndroidLibrary(target)
+            extensions.getByType<KotlinMultiplatformAndroidComponentsExtension>().apply {
+                configureAndroidLibrary(target, true)
             }
 
             extensions.getByType<KotlinMultiplatformExtension>().apply {
@@ -37,7 +38,7 @@ class UiMultiplatformPlugin : Plugin<Project> {
             }
 
             dependencies {
-                add("debugImplementation", compose.uiTooling)
+                "androidRuntimeClasspath"(compose.uiTooling)
             }
         }
     }

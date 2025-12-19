@@ -1,10 +1,18 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.library)
     alias(libs.plugins.td.multiplatform.kotlin.inject.common)
     alias(libs.plugins.td.build.konfig)
 }
 
+internal val `package` = "com.multiplatform.td.core.environment"
+
 kotlin {
+    androidLibrary {
+        namespace = `package`
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -14,18 +22,9 @@ kotlin {
             }
         }
     }
+
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
-    }
-}
-
-internal val `package` = "com.multiplatform.td.core.environment"
-
-android {
-    namespace = `package`
-
-    buildFeatures {
-        buildConfig = true
     }
 }
 

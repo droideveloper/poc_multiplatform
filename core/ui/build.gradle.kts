@@ -1,8 +1,14 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.td.core.ui"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -14,8 +20,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "com.multiplatform.td.core.ui"
 }

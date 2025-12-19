@@ -1,9 +1,15 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.todo.home"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -48,8 +54,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "com.multiplatform.todo.home"
 }

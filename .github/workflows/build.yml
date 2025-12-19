@@ -137,13 +137,13 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute kover report on tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:app:koverXmlReportCustom
+        run: ./gradlew :${{ matrix.app }}:app:koverXmlReport
       - name: Add coverage report to PR
         id: kover
         uses: mi-kas/kover-report@v1
         with:
           path: |
-            ${{ github.workspace }}/${{ matrix.app }}/app/build/reports/kover/reportCustom.xml
+            ${{ github.workspace }}/${{ matrix.app }}/app/build/reports/kover/report.xml
           title: ${{ matrix.app }} Code Coverage
           update-comment: true
           min-coverage-overall: 50

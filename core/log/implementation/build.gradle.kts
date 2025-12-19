@@ -1,9 +1,15 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.library)
     alias(libs.plugins.td.multiplatform.kotlin.inject.common)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.td.core.log"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -16,8 +22,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "com.multiplatform.td.core.log"
 }

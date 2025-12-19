@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
@@ -5,8 +7,12 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.weather.settings"
+    }
+
     sourceSets {
-        androidUnitTest {
+        getByName("androidHostTest") {
             dependencies {
                 implementation(projects.core.testing.implementation)
             }
@@ -62,8 +68,4 @@ kotlin {
 dependencies {
     kover(projects.weather.settings.data)
     kover(projects.weather.settings.domain)
-}
-
-android {
-    namespace = "com.multiplatform.weather.settings"
 }

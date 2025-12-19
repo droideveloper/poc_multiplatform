@@ -1,8 +1,14 @@
+import com.android.build.api.dsl.androidLibrary
+
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "com.multiplatform.td.core.testing"
+    }
+
     sourceSets {
         androidMain {
             dependencies {
@@ -33,12 +39,5 @@ kotlin {
                 api(libs.androidx.lifecycle.runtime.compose)
             }
         }
-    }
-}
-
-android {
-    namespace = "com.multiplatform.td.core.testing"
-    buildFeatures {
-        compose = true
     }
 }

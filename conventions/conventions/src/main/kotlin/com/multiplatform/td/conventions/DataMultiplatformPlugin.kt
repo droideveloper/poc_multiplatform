@@ -1,10 +1,12 @@
 package com.multiplatform.td.conventions
 
 import de.jensklingenberg.ktorfit.gradle.KtorfitGradlePlugin
+import de.jensklingenberg.ktorfit.gradle.KtorfitPluginExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlinx.serialization.gradle.SerializationGradleSubplugin
@@ -50,6 +52,10 @@ class DataMultiplatformPlugin: Plugin<Project> {
                     implementation(ktorClientDarwin.asDependency())
                 }
             }
+        }
+
+        extensions.getByType<KtorfitPluginExtension>().apply {
+            compilerPluginVersion.set("2.3.3")
         }
 
         dependencies {

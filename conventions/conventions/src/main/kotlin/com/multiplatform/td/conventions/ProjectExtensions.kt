@@ -1,5 +1,6 @@
 package com.multiplatform.td.conventions
 
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.google.devtools.ksp.gradle.KspAATask
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.DependencyHandlerScope
@@ -12,7 +13,7 @@ import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 
 internal fun Project.configureKspDependencies() {
     extensions.getByType<KotlinMultiplatformExtension>().apply {
-        val isAndroidTarget = targets.any { it is KotlinAndroidTarget }
+        val isAndroidTarget = targets.any { it is KotlinAndroidTarget || it is KotlinMultiplatformAndroidLibraryTarget }
         applyTargetKspDependencies(
             target = this@configureKspDependencies,
             targets = when {
@@ -25,7 +26,7 @@ internal fun Project.configureKspDependencies() {
 
 internal fun Project.configureKotlinInjectDependencies() {
     extensions.getByType<KotlinMultiplatformExtension>().apply {
-        val isAndroidTarget = targets.any { it is KotlinAndroidTarget }
+        val isAndroidTarget = targets.any { it is KotlinAndroidTarget || it is KotlinMultiplatformAndroidLibraryTarget }
         applyTargetKotlinInjectDependencies(
             target = this@configureKotlinInjectDependencies,
             targets = when {
