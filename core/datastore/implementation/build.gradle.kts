@@ -27,9 +27,7 @@ kotlin {
 
                 implementation(libs.kotlin.serialization.json)
 
-                implementation(libs.androidx.datastore.core)
-                implementation(libs.androidx.datastore.preferences.core)
-                implementation(libs.androidx.datastore.core.okio)
+                implementation(libs.bundles.datastore)
 
                 implementation(compose.runtime)
             }

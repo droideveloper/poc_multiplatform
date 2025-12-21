@@ -25,8 +25,7 @@ kotlin {
                 implementation(projects.core.environment.gateway)
                 implementation(projects.core.environment.implementation)
 
-                implementation(libs.room.runtime)
-                implementation(libs.sqlite.bundled)
+                implementation(libs.bundles.database)
 
                 implementation(compose.runtime)
             }

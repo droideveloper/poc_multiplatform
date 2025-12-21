@@ -19,9 +19,8 @@ kotlin {
                 implementation(projects.core.environment.gateway)
                 implementation(projects.core.environment.implementation)
 
-                implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(libs.androidx.lifecycle.viewmodel)
-                implementation(libs.androidx.lifecycle.viewmodel.compose)
+                implementation(libs.bundles.androidx.lifecycle)
+
                 implementation(libs.navigation.compose)
             }
         }

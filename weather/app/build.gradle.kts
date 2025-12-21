@@ -61,8 +61,6 @@ kotlin {
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlin.datetime)
-
-                implementation(projects.weather.core.test)
             }
         }
     }

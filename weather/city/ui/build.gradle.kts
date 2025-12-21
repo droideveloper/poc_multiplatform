@@ -51,9 +51,7 @@ kotlin {
 
                 implementation(libs.kotlin.inject.runtime)
 
-                implementation(libs.kotlin.serialization.json.okio)
-                implementation(libs.kotlin.serialization.json)
-                implementation(libs.okio)
+                implementation(libs.bundles.serialization)
 
                 implementation(libs.ktorfit.lib.light)
 

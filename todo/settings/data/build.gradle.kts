@@ -17,9 +17,8 @@ kotlin {
                 implementation(libs.androidx.datastore.core.okio)
 
                 implementation(libs.kotlin.inject.runtime)
-                implementation(libs.kotlin.serialization.json)
-                implementation(libs.kotlin.serialization.json.okio)
-                implementation(libs.okio)
+
+                implementation(libs.bundles.serialization)
 
                 implementation(libs.kotlin.datetime)
             }

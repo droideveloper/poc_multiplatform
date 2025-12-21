@@ -12,21 +12,14 @@ kotlin {
     sourceSets {
         androidMain {
             dependencies {
-                implementation(libs.androidx.test.manifest)
-                implementation(libs.androidx.test.junit)
-                implementation(libs.androidx.test.junit4)
-                implementation(libs.androidx.test.junit4.android)
-                implementation(libs.androidx.espresso.core)
-                implementation(libs.junit)
+                implementation(libs.bundles.ui.testing)
 
                 implementation(compose.uiTooling)
                 implementation(compose.preview)
 
                 implementation(libs.preview.scanner)
 
-                implementation(libs.roborazzi.core)
-                implementation(libs.roborazzi.compose)
-                implementation(libs.roborazzi)
+                implementation(libs.bundles.roborazzi)
 
                 implementation(libs.robolectric)
             }
