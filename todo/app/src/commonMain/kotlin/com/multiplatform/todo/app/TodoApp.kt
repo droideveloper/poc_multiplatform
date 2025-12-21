@@ -1,4 +1,4 @@
-package com.multiplatform.weather
+package com.multiplatform.todo.app
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,16 +10,12 @@ import com.multiplatform.td.core.app.AppComponent
 import com.multiplatform.td.core.app.composable.AppContext
 import com.multiplatform.td.core.datastore.composable.DataStoreContext
 import com.multiplatform.td.core.navigation.composable.NavigationContext
-import com.multiplatform.td.core.ui.KoverIgnore
-import com.multiplatform.weather.core.ui.FwTheme
-import com.multiplatform.weather.forecast.forecastGraph
-import com.multiplatform.weather.onboarding.Onboarding
-import com.multiplatform.weather.onboarding.onboardingGraph
-import com.multiplatform.weather.settings.settingsGraph
+import com.multiplatform.td.core.ui.TdTheme
+import com.multiplatform.todo.home.homeGraph
+import com.multiplatform.todo.tasks.Route
 
-@KoverIgnore
 @Composable
-fun WeatherApp(
+fun TodoApp(
     component: AppComponent,
 ) {
     val navController = rememberNavController()
@@ -27,15 +23,13 @@ fun WeatherApp(
 
     AppContext(component, navController) {
         DatabaseContext(
-            databaseName = DatabaseName.of("city_database"),
+            databaseName = DatabaseName.of("todo_database"),
         ) {
             DataStoreContext {
                 NavigationContext {
-                    FwTheme {
-                        NavHost(navController, startDestination = Onboarding.Graph) {
-                            onboardingGraph()
-                            settingsGraph()
-                            forecastGraph()
+                    TdTheme {
+                        NavHost(navController, startDestination = Route.Graph) {
+                            homeGraph()
                         }
                     }
                 }

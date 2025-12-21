@@ -59,27 +59,14 @@ internal fun KotlinMultiplatformExtension.applyCommonCompose(
         }
 
         if (isAndroidUnitTestEnabled()) {
-            if (pluginManager.hasPlugin("com.android.internal.application")) {
-                sourceSets.androidUnitTest.configure {
-                    dependencies {
-                        implementation(jUnit.asDependency())
-                        implementation(espressoCore.asDependency())
-                        implementation(androidxTestJunit.asDependency())
-                        implementation(androidxTestJunit4.asDependency())
-                        implementation(androidxTestManifest.asDependency())
-                        implementation(robolectric.asDependency())
-                    }
-                }
-            } else {
-                sourceSets.getByName("androidHostTest") {
-                    dependencies {
-                        implementation(jUnit.asDependency())
-                        implementation(espressoCore.asDependency())
-                        implementation(androidxTestJunit.asDependency())
-                        implementation(androidxTestJunit4.asDependency())
-                        implementation(androidxTestManifest.asDependency())
-                        implementation(robolectric.asDependency())
-                    }
+            sourceSets.getByName("androidHostTest") {
+                dependencies {
+                    implementation(jUnit.asDependency())
+                    implementation(espressoCore.asDependency())
+                    implementation(androidxTestJunit.asDependency())
+                    implementation(androidxTestJunit4.asDependency())
+                    implementation(androidxTestManifest.asDependency())
+                    implementation(robolectric.asDependency())
                 }
             }
         }
@@ -157,17 +144,7 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {
     configureMultiplatformDefaults {
         androidLibrary {
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_11)
-            }
-        }
-    }
-}
-
-internal fun KotlinMultiplatformExtension.configureMultiplatformApplication() {
-    configureMultiplatformDefaults {
-        androidTarget {
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_11)
+                jvmTarget.set(JvmTarget.JVM_17)
             }
         }
     }

@@ -2,11 +2,9 @@ package com.multiplatform.td.conventions
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor
-import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.android.build.api.dsl.ProductFlavor
 import com.android.build.api.variant.AndroidComponentsExtension
-import org.gradle.api.Project
 import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 
 internal val flavors = mapOf(
@@ -15,7 +13,7 @@ internal val flavors = mapOf(
     "prod" to null,
 )
 
-internal fun CommonExtension<*, *, *, *, *, *>.configureFlavors() {
+internal fun ApplicationExtension.configureFlavors() {
     flavorDimensions += "default"
     productFlavors {
         flavors.forEach { (name, suffix) ->
@@ -27,19 +25,16 @@ internal fun CommonExtension<*, *, *, *, *, *>.configureFlavors() {
     }
 }
 
-internal fun CommonExtension<*, *, *, *, *, *>.applySuffixIfNeeded(
+internal fun applySuffixIfNeeded(
     productFlavor: ProductFlavor,
     suffix: String? = null,
 ) {
-    val isApplication = this is ApplicationExtension
-    if (suffix != null) {
-        if (isApplication && productFlavor is ApplicationProductFlavor) {
-            productFlavor.applicationIdSuffix = suffix
-        }
+    if (suffix != null && productFlavor is ApplicationProductFlavor) {
+        productFlavor.applicationIdSuffix = suffix
     }
 }
 
-internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtension, *, *>.configureFlavors() {
+internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtension, *, *>.configureFlavorsLibrary() {
     finalizeDsl { extension ->
         with(extension) {
             localDependencySelection {

@@ -69,6 +69,7 @@ include(":weather:onboarding:ui")
 include(":weather:settings:data")
 include(":weather:settings:domain")
 include(":weather:settings:ui")
+include(":weather:androidApp")
 
 // to-do app packages
 include(":todo:app")
@@ -86,6 +87,7 @@ include(":todo:onboarding:ui")
 include(":todo:tasks:data")
 include(":todo:tasks:domain")
 include(":todo:tasks:ui")
+include(":todo:androidApp")
 
 // compiler
 include(":core:injection:compiler")

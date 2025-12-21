@@ -1,66 +1,13 @@
 package com.multiplatform.td.conventions
 
-import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.android.build.api.variant.AndroidComponentsExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.internal.sharedruntime.codegen.sourceNameOfBinaryName
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.utils.`is`
-
-internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
-    target: Project,
-) {
-    val isApplication = this is ApplicationExtension
-
-    compileSdk = target.compileSdkVersion.asInt()
-
-    defaultConfig {
-        minSdk = target.minSdkVersion.asInt()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-        isCoreLibraryDesugaringEnabled = true
-    }
-
-    testOptions {
-        if (isApplication.not()) {
-            targetSdk = target.targetSdkVersion.asInt()
-        }
-        unitTests {
-            isIncludeAndroidResources = target.isAndroidResourcesShouldIncluded()
-            isReturnDefaultValues = true
-        }
-    }
-
-    target.extensions.getByType<KotlinBaseExtension>().apply {
-        jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
-
-    configureFlavors()
-
-    target.dependencies {
-        add("coreLibraryDesugaring", target.coreDesugarLibrary.asDependency())
-        add("debugImplementation", target.androidxTestManifest.asDependency())
-
-        add("androidTestImplementation", target.androidxTestJunit.asDependency())
-        add("androidTestImplementation", target.androidxTestJunit4.asDependency())
-        add("androidTestImplementation", target.espressoCore.asDependency())
-        add("androidTestImplementation", target.jUnit.asDependency())
-    }
-}
 
 internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtension, *, *>.configureAndroidLibrary(
     target: Project,
@@ -91,7 +38,7 @@ internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtensi
         }
     }
 
-    configureFlavors()
+    configureFlavorsLibrary()
 
     target.extensions.getByType<KotlinBaseExtension>().apply {
         jvmToolchain {
@@ -136,11 +83,11 @@ internal fun Project.isAndroidResourcesShouldIncluded(): Boolean =
             isaAndroidInstrumentedTestEnabled()
 
 internal fun Project.isAndroidUnitTestEnabled(): Boolean =
-    layout.projectDirectory.dir("src/androidUnitTest").asFile.exists() ||
+    layout.projectDirectory.dir("src/test").asFile.exists() ||
         layout.projectDirectory.dir("src/androidHostTest").asFile.exists()
 
 internal fun Project.isaAndroidInstrumentedTestEnabled(): Boolean =
-    layout.projectDirectory.dir("src/androidInstrumentedTest").asFile.exists() ||
+    layout.projectDirectory.dir("src/androidTest").asFile.exists() ||
         layout.projectDirectory.dir("src/androidDeviceTest").asFile.exists()
 
 internal fun Project.isCommonTestEnabled(): Boolean =
