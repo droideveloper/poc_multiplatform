@@ -40,7 +40,7 @@ android-minSdk = "23"
 android-targetSdk = "36"
 material3Android = "1.4.0"
 
-preview-scanner = "0.8.0"
+preview-scanner = "0.8.1"
 roborazzi = "1.52.0"
 
 # compiler
@@ -152,6 +152,20 @@ buildkonfig-compiler-gradle-plugin = { group = "com.codingfeline.buildkonfig", n
 mokkery-gradle-plugin = { group = "dev.mokkery", name = "mokkery-gradle", version.ref = "mokkery" }
 ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 kover-gradle-plugin = { group = "org.jetbrains.kotlinx", name = "kover-gradle-plugin", version.ref = "kover" }
+
+[bundles]
+serialization = ["kotlin-serialization-core", "kotlin-serialization-json", "kotlin-serialization-json-okio", "okio"]
+database = ["room-runtime", "sqlite-bundled"]
+datastore = ["androidx-datastore-core", "androidx-datastore-core-okio", "androidx-datastore-preferences-core", "okio"]
+coil = ["coil-compose", "coil-network"]
+androidx-lifecycle = ["androidx-lifecycle-runtime-compose", "androidx-lifecycle-viewmodel", "androidx-lifecycle-viewmodel-compose"]
+
+espresso = ["androidx-espresso-core", "androidx-espresso-contrib", "androidx-espresso-intents", "androidx-espresso-accessibility", "androidx-espresso-web"]
+espresso-idling = ["androidx-espresso-idling", "androidx-espresso-idling-resources"]
+android-activity = ["androidx-core-ktx", "androidx-appcompat", "androidx-activity-compose"]
+roborazzi = ["roborazzi-core", "roborazzi-compose", "roborazzi-junit-rule", "roborazzi"]
+ui-testing = ["androidx-test-junit", "androidx-test-junit4", "androidx-test-junit4-android", "androidx-test-manifest", "junit", "androidx-espresso-core"]
+instrumented-testing = ["androidx-test-junit", "androidx-test-junit4", "androidx-test-junit4-android", "androidx-test-manifest", "junit", "androidx-test-rules", "androidx-test-runner"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

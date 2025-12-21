@@ -18,9 +18,8 @@ kotlin {
                 implementation(projects.core.environment.gateway)
 
                 implementation(libs.kotlin.inject.runtime)
-                implementation(libs.kotlin.serialization.json)
-                implementation(libs.kotlin.serialization.json.okio)
-                implementation(libs.okio)
+
+                implementation(libs.bundles.serialization)
             }
         }
     }

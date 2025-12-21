@@ -71,41 +71,26 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.kotlin.datetime)
 
-    testImplementation(libs.androidx.test.manifest)
-    testImplementation(libs.androidx.test.junit)
-    testImplementation(libs.androidx.test.junit4)
-    testImplementation(libs.androidx.test.junit4.android)
-    testImplementation(libs.androidx.espresso.core)
-    testImplementation(libs.junit)
+    implementation(libs.bundles.coil)
+    implementation(libs.bundles.android.activity)
+
+    testImplementation(libs.bundles.ui.testing)
 
     testImplementation(compose.uiTooling)
     testImplementation(compose.preview)
 
     testImplementation(libs.preview.scanner)
+
+    testImplementation(libs.bundles.roborazzi)
+
     testImplementation(projects.core.testing.implementation)
 
-    testImplementation(libs.roborazzi.core)
-    testImplementation(libs.roborazzi.compose)
-    testImplementation(libs.roborazzi.junit.rule)
-    testImplementation(libs.roborazzi)
-
-    androidTestImplementation(libs.androidx.test.manifest)
-    androidTestImplementation(libs.androidx.test.runner)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(libs.androidx.test.junit4)
-    androidTestImplementation(libs.androidx.test.junit4.android)
-    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.bundles.instrumented.testing)
 
     androidTestImplementation(projects.weather.core.test)
 
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.espresso.contrib)
-    androidTestImplementation(libs.androidx.espresso.intents)
-    androidTestImplementation(libs.androidx.espresso.accessibility)
-    androidTestImplementation(libs.androidx.espresso.web)
-    androidTestImplementation(libs.androidx.espresso.idling)
-    androidTestImplementation(libs.androidx.espresso.idling.resources)
+    androidTestImplementation(libs.bundles.espresso)
+    androidTestImplementation(libs.bundles.espresso.idling)
 
     androidTestUtil(libs.androidx.test.orchestrator)
 }
