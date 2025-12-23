@@ -15,7 +15,7 @@ kotlin-serilization = "1.9.0"
 kotlin-datetime = "0.7.1"
 kotlin-coroutines = "1.10.2"
 navigation-compose = "2.9.1"
-ksp = "2.3.3"
+ksp = "2.3.4"
 room = "2.8.4"
 sqplite-bundled = "2.6.2"
 ktorfit = "2.7.1"
@@ -169,7 +169,6 @@ instrumented-testing = ["androidx-test-junit", "androidx-test-junit4", "androidx
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
 multiplatform-android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
