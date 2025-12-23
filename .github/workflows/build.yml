@@ -56,7 +56,6 @@ jobs:
         run: ./gradlew :${{ matrix.app }}:androidApp:testStagingDebugUnitTest
   integration-test:
     name: Integration test on android
-    if: ${{ github.event.issue.user.login }} != 'dependabot'
     runs-on: ubuntu-latest
     strategy:
       matrix:
