@@ -1,7 +1,5 @@
 package com.multiplatform.td.conventions
 
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
-import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 import dev.mokkery.gradle.MokkeryGradlePlugin
 import dev.mokkery.gradle.mokkery

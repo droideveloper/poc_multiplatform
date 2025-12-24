@@ -2,20 +2,16 @@ package com.multiplatform.td.conventions
 
 import androidx.room.gradle.RoomExtension
 import com.android.build.api.dsl.androidLibrary
-import com.android.build.gradle.AppPlugin
 import de.jensklingenberg.ktorfit.gradle.KtorfitPluginExtension
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 
 internal fun KotlinMultiplatformExtension.applyAndroidCompose(

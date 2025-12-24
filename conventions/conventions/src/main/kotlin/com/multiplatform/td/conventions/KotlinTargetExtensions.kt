@@ -4,20 +4,6 @@ import org.gradle.internal.extensions.stdlib.capitalized
 import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
 import org.jetbrains.kotlin.konan.target.HostManager
 
-internal val uiTargets = arrayOf(
-    "Android",
-    "IosArm64",
-    "IosSimulatorArm64",
-    "IosX64",
-)
-
-internal val libraryTargets = arrayOf(
-    "Jvm",
-    "IosArm64",
-    "IosSimulatorArm64",
-    "IosX64",
-)
-
 internal fun KotlinTargetContainerWithPresetFunctions.kotlinLibraryMetadataTargets() =
     buildIosKspTaskIfHostAvailable { targetName ->
         "kspKotlin$targetName"
