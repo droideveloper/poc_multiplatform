@@ -7,11 +7,11 @@ plugins {
 android {
     namespace = "com.multiplatform.weather"
     defaultConfig {
+        testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
         applicationId = "com.multiplatform.weather"
 
         testBuildType = "debug"
         testInstrumentationRunner = "com.multiplatform.weather.WeatherTestRunner"
-        testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
     }
 
     testOptions {
