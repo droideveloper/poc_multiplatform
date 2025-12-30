@@ -18,22 +18,22 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlin.multiplatform.plugin)
-    implementation(libs.android.gradle.plugin)
-    implementation(libs.android.tools.common.plugin)
-    implementation(libs.multiplatform.android.library.plugin)
-    implementation(libs.compose.gradle.plugin)
-    implementation(libs.compose.compiler.gradle.plugin)
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.kotlin.serialization.plugin)
-    implementation(libs.ksp.gradle.plugin)
-    implementation(libs.room.gradle.plugin)
-    implementation(libs.ktorfit.gradle.plugin)
-    implementation(libs.buildkonfig.gradle.plugin)
-    implementation(libs.buildkonfig.compiler.gradle.plugin)
-    implementation(libs.mokkery.gradle.plugin)
-    implementation(libs.ktlint.gradle.plugin)
-    implementation(libs.kover.gradle.plugin)
+    compileOnly(libs.kotlin.multiplatform.plugin)
+    compileOnly(libs.android.gradle.plugin)
+    compileOnly(libs.android.tools.common.plugin)
+    compileOnly(libs.multiplatform.android.library.plugin)
+    compileOnly(libs.compose.gradle.plugin)
+    compileOnly(libs.compose.compiler.gradle.plugin)
+    compileOnly(libs.kotlin.gradle.plugin)
+    compileOnly(libs.kotlin.serialization.plugin)
+    compileOnly(libs.ksp.gradle.plugin)
+    compileOnly(libs.room.gradle.plugin)
+    compileOnly(libs.ktorfit.gradle.plugin)
+    compileOnly(libs.buildkonfig.gradle.plugin)
+    compileOnly(libs.buildkonfig.compiler.gradle.plugin)
+    compileOnly(libs.mokkery.gradle.plugin)
+    compileOnly(libs.ktlint.gradle.plugin)
+    compileOnly(libs.kover.gradle.plugin)
 }
 
 tasks {
