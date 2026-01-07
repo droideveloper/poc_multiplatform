@@ -1,8 +1,10 @@
 package com.multiplatform.td.core.injection.compiler.ext
 
+import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSValueArgument
 import com.google.devtools.ksp.symbol.KSValueParameter
 import me.tatarka.inject.annotations.Assisted
+import kotlin.reflect.KClass
 
 internal fun KSValueParameter.requireName(): String = requireNotNull(name).asString()
 internal fun KSValueParameter.isAssisted(): Boolean {
@@ -10,3 +12,10 @@ internal fun KSValueParameter.isAssisted(): Boolean {
 }
 
 internal fun KSValueArgument.requireName(): String = requireNotNull(name).asString()
+internal fun KSValueArgument.requireValue(): KSType? {
+    val valueType = requireNotNull(value as? KSType)
+    return when {
+        valueType.declaration.simpleName.asString() == "Any" -> null
+        else -> valueType
+    }
+}

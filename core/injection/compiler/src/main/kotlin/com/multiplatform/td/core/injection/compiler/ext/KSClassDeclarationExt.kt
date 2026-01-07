@@ -38,10 +38,10 @@ internal fun KSClassDeclaration.sequenceBinderArgs(): Sequence<BinderArgs> {
             }?.value as? KSType,
             boundType = annotation.arguments.firstOrNull {
                 it.requireName() == "boundType"
-            }?.value as? KSType,
+            }?.requireValue(),
             parameterizedBoundType = annotation.arguments.firstOrNull {
                 it.requireName() == "parameterizedBoundType"
-            }?.value as? KSType,
+            }?.requireValue(),
             useProperty = annotation.arguments.firstOrNull {
                 it.requireName() == "useProperty"
             }?.value as? Boolean ?: false,
@@ -58,7 +58,7 @@ internal fun KSClassDeclaration.sequenceViewModelBinderArgs(): Sequence<BinderAr
             }?.value as? KSType,
             boundType = annotation.arguments.firstOrNull {
                 it.requireName() == "boundType"
-            }?.value as? KSType,
+            }?.requireValue(),
             parameterizedBoundType = null,
             useProperty = annotation.arguments.firstOrNull {
                 it.requireName() == "useProperty"

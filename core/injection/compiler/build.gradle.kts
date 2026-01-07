@@ -15,4 +15,25 @@ dependencies {
     ksp(libs.auto.service.ksp)
 
     implementation(libs.kotlin.inject.runtime)
+
+    testImplementation(libs.kotlin.inject.runtime)
+    testImplementation(projects.core.injection)
+    testImplementation(libs.ksp.api)
+
+    testImplementation(libs.bundles.kotlin.compile.testing)
+    testImplementation(platform(libs.junit5.bom))
+    testImplementation(libs.bundles.kotlin.test.junit5)
+
+    testRuntimeOnly(libs.junit5.engine)
+    testRuntimeOnly(libs.junit5.launcher)
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+        jvmArgs(
+           "--add-opens=java.base/java.lang=ALL-UNNAMED",
+            "--add-opens=java.base/java.util=ALL-UNNAMED",
+        )
+    }
 }
