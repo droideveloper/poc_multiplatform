@@ -44,7 +44,7 @@ preview-scanner = "0.8.1"
 roborazzi = "1.54.0"
 
 kotlin-compile-testing = "0.12.1"
-junit5 = "5.13.4"
+junit5 = "6.0.2"
 
 # compiler
 kotlin-poet = "2.2.0"

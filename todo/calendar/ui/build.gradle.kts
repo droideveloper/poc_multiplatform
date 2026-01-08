@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.androidLibrary
-
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.kotlin.serialization)

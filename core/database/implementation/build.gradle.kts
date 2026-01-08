@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.androidLibrary
-
 plugins {
     alias(libs.plugins.td.multiplatform.library)
     alias(libs.plugins.td.multiplatform.room)
