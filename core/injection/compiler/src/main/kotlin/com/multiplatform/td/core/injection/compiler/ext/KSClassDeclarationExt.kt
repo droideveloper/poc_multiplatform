@@ -34,16 +34,16 @@ internal fun KSClassDeclaration.sequenceBinderArgs(): Sequence<BinderArgs> {
     return items.map { annotation ->
         BinderArgs(
             scope = annotation.arguments.firstOrNull {
-                it.requireName() == "scope"
+                it.requireName() == ArgumentName.Scope.name
             }?.value as? KSType,
             boundType = annotation.arguments.firstOrNull {
-                it.requireName() == "boundType"
+                it.requireName() == ArgumentName.BoundType.name
             }?.requireValue(),
             parameterizedBoundType = annotation.arguments.firstOrNull {
-                it.requireName() == "parameterizedBoundType"
+                it.requireName() == ArgumentName.ParameterizedBoundType.name
             }?.requireValue(),
             useProperty = annotation.arguments.firstOrNull {
-                it.requireName() == "useProperty"
+                it.requireName() == ArgumentName.UseProperty.name
             }?.value as? Boolean ?: false,
         )
     }
@@ -54,40 +54,35 @@ internal fun KSClassDeclaration.sequenceViewModelBinderArgs(): Sequence<BinderAr
     return items.map { annotation ->
         BinderArgs(
             scope = annotation.arguments.firstOrNull {
-                it.requireName() == "scope"
+                it.requireName() == ArgumentName.Scope.name
             }?.value as? KSType,
             boundType = annotation.arguments.firstOrNull {
-                it.requireName() == "boundType"
+                it.requireName() == ArgumentName.BoundType.name
             }?.requireValue(),
             parameterizedBoundType = null,
             useProperty = annotation.arguments.firstOrNull {
-                it.requireName() == "useProperty"
+                it.requireName() == ArgumentName.UseProperty.name
             }?.value as? Boolean ?: false,
         )
     }
 }
 
-internal fun KSClassDeclaration.singleBinderScopeKSType(): KSType? {
-    val annotation = annotations.single { it.asShortName() == ContributesBinder::class.simpleName }
-    return annotation.arguments.firstOrNull { it.requireName() == "scope" }?.value as? KSType
-}
+sealed interface ArgumentName {
+    val name: String
 
-internal fun KSClassDeclaration.singleBinderBoundKSType(): KSType? {
-    val annotation = annotations.single { it.asShortName() == ContributesBinder::class.simpleName }
-    return annotation.arguments.firstOrNull { it.requireName() == "boundType" }?.value as? KSType
-}
+    data object Scope : ArgumentName {
+        override val name: String = "scope"
+    }
 
-internal fun KSClassDeclaration.singleBinderUseProperty(): Boolean {
-    val annotation = annotations.single { it.asShortName() == ContributesBinder::class.simpleName }
-    return annotation.arguments.firstOrNull { it.requireName() == "useProperty" }?.value as? Boolean ?: false
-}
+    data object BoundType : ArgumentName {
+        override val name: String = "boundType"
+    }
 
-internal fun KSClassDeclaration.singleViewModelScopeKSType(): KSType? {
-    val annotation = annotations.single { it.asShortName() == ContributesViewModel::class.simpleName }
-    return annotation.arguments.firstOrNull { it.requireName() == "scope" }?.value as? KSType
-}
+    data object ParameterizedBoundType : ArgumentName {
+        override val name: String = "parameterizedBoundType"
+    }
 
-internal fun KSClassDeclaration.singleViewModelUseProperty(): Boolean {
-    val annotation = annotations.single { it.asShortName() == ContributesViewModel::class.simpleName }
-    return annotation.arguments.firstOrNull { it.requireName() == "useProperty"}?.value as? Boolean ?: false
+    data object UseProperty : ArgumentName {
+        override val name: String = "useProperty"
+    }
 }
