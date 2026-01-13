@@ -1,7 +1,6 @@
 package com.multiplatform.td.conventions
 
 import androidx.room.gradle.RoomExtension
-import com.android.build.api.dsl.androidLibrary
 import de.jensklingenberg.ktorfit.gradle.KtorfitPluginExtension
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
@@ -134,16 +133,6 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformDefaults(
     }
     config(this)
     iosTargets()
-}
-
-internal fun KotlinMultiplatformExtension.configureMultiplatformLibrary() {
-    configureMultiplatformDefaults {
-        androidLibrary {
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
-            }
-        }
-    }
 }
 
 internal fun KotlinMultiplatformExtension.iosTargets(

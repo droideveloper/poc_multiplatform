@@ -32,7 +32,7 @@ class UiMultiplatformPlugin : Plugin<Project> {
             }
 
             extensions.getByType<KotlinMultiplatformExtension>().apply {
-                configureMultiplatformLibrary()
+                configureMultiplatformDefaults {}
                 applyCommonCompose(compose, project)
                 applyAndroidCompose(compose, project)
             }

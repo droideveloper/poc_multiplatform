@@ -26,7 +26,7 @@ class LibraryMultiplatformPlugin : Plugin<Project> {
         }
 
        extensions.getByType<KotlinMultiplatformExtension>().apply {
-            configureMultiplatformLibrary()
+           configureMultiplatformDefaults {}
         }
 
         dependencies {}
