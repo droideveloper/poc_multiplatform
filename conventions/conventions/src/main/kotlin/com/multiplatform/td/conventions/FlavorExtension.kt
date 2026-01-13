@@ -5,7 +5,6 @@ import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.android.build.api.dsl.ProductFlavor
 import com.android.build.api.variant.AndroidComponentsExtension
-import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 
 internal val flavors = mapOf(
     "mock" to ".mock",
@@ -38,14 +37,9 @@ internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtensi
     finalizeDsl { extension ->
         with(extension) {
             localDependencySelection {
-                val buildTypes = listOf("debug", "release")
-                selectBuildTypeFrom.set(buildTypes)
-                flavors.forEach { (name, _) ->
-                    productFlavorDimension(name) {
-                        selectFrom.set(
-                            buildTypes.map { "$name${it.uppercaseFirstChar()}" },
-                        )
-                    }
+                selectBuildTypeFrom.set(listOf("debug", "release"))
+                productFlavorDimension("default") {
+                    selectFrom.set(flavors.map { it.key })
                 }
             }
         }
