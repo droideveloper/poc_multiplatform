@@ -21,12 +21,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.button.TdPrimaryButton
 import com.multiplatform.td.core.ui.button.TdSecondaryButton
 import com.multiplatform.td.core.ui.image.TdImage
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.core.ui.generated.resources.Res
 import tdmultiplatform.core.ui.generated.resources.core_ui_error_primary_title
 import tdmultiplatform.core.ui.generated.resources.core_ui_error_secondary_title

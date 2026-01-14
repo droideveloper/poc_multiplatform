@@ -15,8 +15,8 @@ kotlin {
 
                 implementation(libs.kotlin.datetime)
 
-                implementation(compose.animation)
-                implementation(compose.material3)
+                implementation(libs.compose.animation)
+                implementation(libs.compose.material3)
             }
         }
     }

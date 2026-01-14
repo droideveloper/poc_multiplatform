@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.composable.TickEffect
 import com.multiplatform.td.core.app.inject.store
@@ -48,7 +49,6 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.forecast.ui.generated.resources.Res
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_go_back
 import kotlin.time.Duration.Companion.seconds

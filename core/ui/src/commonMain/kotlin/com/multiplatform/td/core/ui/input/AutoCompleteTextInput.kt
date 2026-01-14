@@ -19,10 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import com.multiplatform.td.core.ui.TdTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TdAutoCompleteTextInput(
@@ -107,7 +107,7 @@ private fun DropDownMenu(
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun EmptyInput() = TdTheme {
     Box(
@@ -125,7 +125,7 @@ private fun EmptyInput() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun InputWithValue() = TdTheme {
     Box(
@@ -143,7 +143,7 @@ private fun InputWithValue() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun InputWithError() = TdTheme {
     Box(

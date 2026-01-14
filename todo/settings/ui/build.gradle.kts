@@ -29,7 +29,7 @@ kotlin {
                 implementation(projects.core.environment.gateway)
                 implementation(projects.core.environment.implementation)
 
-                implementation(compose.components.resources)
+                implementation(libs.compose.components.resources)
 
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.kotlin.serialization.json)

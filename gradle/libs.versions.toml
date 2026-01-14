@@ -7,7 +7,8 @@ androidx-lifecycle = "2.9.6"
 android-tools = "31.13.2"
 androidx-test = "1.7.0"
 androidx-test-junit = "1.3.0"
-compose-multiplatform = "1.9.3"
+compose-multiplatform = "1.10.0"
+compose-material3 = "1.9.0"
 android-desugar-jdk-libs = "2.1.5"
 junit = "4.13.2"
 kotlin = "2.3.0"
@@ -87,6 +88,17 @@ roborazzi-core = { group = "io.github.takahirom.roborazzi", name = "roborazzi-co
 roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
 roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+
+# compose
+compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose-multiplatform" }
+compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose-multiplatform" }
+compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "compose-material3" }
+compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose-multiplatform" }
+compose-components-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "compose-multiplatform" }
+compose-preview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "compose-multiplatform" }
+compose-ui-tooling = { group = "org.jetbrains.compose.ui", name = "ui-tooling", version.ref = "compose-multiplatform" }
+compose-ui-test = { group = "org.jetbrains.compose.ui", name = "ui-test", version.ref = "compose-multiplatform" }
+compose-animation = { group = "org.jetbrains.compose.animation", name = "animation", version.ref = "compose-multiplatform" }
 
 # core libraries
 android-desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "android-desugar-jdk-libs" }

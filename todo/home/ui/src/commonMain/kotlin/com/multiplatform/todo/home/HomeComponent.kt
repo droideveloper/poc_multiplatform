@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.debugInspectorInfo
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import com.multiplatform.td.core.ui.TdTheme
@@ -40,7 +41,6 @@ import com.multiplatform.todo.home.home.HomeEvent
 import com.multiplatform.todo.home.home.MenuItem
 import com.multiplatform.todo.home.home.selectNewButtonDescription
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.home.ui.generated.resources.Res
 import tdmultiplatform.todo.home.ui.generated.resources.ic_add
 

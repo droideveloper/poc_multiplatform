@@ -19,7 +19,7 @@ kotlin {
                 implementation(projects.core.app)
 
                 implementation(libs.navigation.compose)
-                implementation(compose.runtime)
+                implementation(libs.compose.runtime)
             }
         }
     }

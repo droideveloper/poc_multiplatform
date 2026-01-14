@@ -17,10 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.multiplatform.td.core.ui.TdTheme
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.core.ui.generated.resources.Res
 import tdmultiplatform.core.ui.generated.resources.core_ui_select_option
 
@@ -67,7 +67,7 @@ fun TdSelectInput(
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun NoValue() = TdTheme {
     Box(
@@ -83,7 +83,7 @@ private fun NoValue() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun Error() = TdTheme {
     Box(
@@ -100,7 +100,7 @@ private fun Error() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun ValueSelected() = TdTheme {
     Box(

@@ -76,8 +76,8 @@ dependencies {
 
     testImplementation(libs.bundles.ui.testing)
 
-    testImplementation(compose.uiTooling)
-    testImplementation(compose.preview)
+    testImplementation(libs.compose.ui.tooling)
+    testImplementation(libs.compose.preview)
 
     testImplementation(libs.preview.scanner)
 

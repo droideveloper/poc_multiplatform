@@ -15,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiiplatform.td.core.database.composable.LocalDatabaseComponent
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
@@ -31,7 +32,6 @@ import com.multiplatform.todo.tasks.inject.createTasksComponent
 import com.multiplatform.todo.tasks.selectSecondaryTitle
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.tasks.ui.generated.resources.Res
 import tdmultiplatform.todo.tasks.ui.generated.resources.ic_filter
 import tdmultiplatform.todo.tasks.ui.generated.resources.tasks_title

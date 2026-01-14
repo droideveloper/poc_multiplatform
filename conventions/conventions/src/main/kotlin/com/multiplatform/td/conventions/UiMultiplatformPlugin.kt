@@ -25,20 +25,18 @@ class UiMultiplatformPlugin : Plugin<Project> {
                 apply(ComposeCompilerGradleSubplugin::class)
                 apply(MetadataPlugin::class)
             }
-            val compose = project.dependencies.extensions.getByType<ComposePlugin.Dependencies>()
-
             extensions.getByType<KotlinMultiplatformAndroidComponentsExtension>().apply {
                 configureAndroidLibrary(target, true)
             }
 
             extensions.getByType<KotlinMultiplatformExtension>().apply {
                 configureMultiplatformDefaults {}
-                applyCommonCompose(compose, project)
-                applyAndroidCompose(compose, project)
+                applyCommonCompose(project)
+                applyAndroidCompose(project)
             }
 
             dependencies {
-                "androidRuntimeClasspath"(compose.uiTooling)
+                "androidRuntimeClasspath"(composeUiTooling.asDependency())
             }
         }
     }

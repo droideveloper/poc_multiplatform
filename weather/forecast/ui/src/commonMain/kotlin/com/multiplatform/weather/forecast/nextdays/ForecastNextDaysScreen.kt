@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.composable.TickEffect
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
@@ -72,7 +73,6 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.forecast.ui.generated.resources.Res
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_go_home
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_number_of_days

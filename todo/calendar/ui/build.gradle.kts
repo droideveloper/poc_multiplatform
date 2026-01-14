@@ -34,7 +34,7 @@ kotlin {
                 implementation(projects.core.navigation.gateway)
                 implementation(projects.core.navigation.implementation)
 
-                implementation(compose.components.resources)
+                implementation(libs.compose.components.resources)
 
                 implementation(libs.kotlin.inject.runtime)
                 implementation(libs.kotlin.datetime)

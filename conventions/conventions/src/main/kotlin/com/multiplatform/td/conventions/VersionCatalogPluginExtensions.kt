@@ -34,6 +34,23 @@ internal fun Optional<VersionConstraint>.asInt() =
         .toInt()
 
 // library dependencies
+internal val Project.composeRuntime
+    get() = libs.findLibrary("compose.runtime")
+internal val Project.composeFoundation
+    get() = libs.findLibrary("compose.foundation")
+internal val Project.composeMaterial3
+    get() = libs.findLibrary("compose.material3")
+internal val Project.composeUi
+    get() = libs.findLibrary("compose.ui")
+internal val Project.composeComponentsResources
+    get() = libs.findLibrary("compose.components.resources")
+internal val Project.composePreview
+    get() = libs.findLibrary("compose.preview")
+internal val Project.composeUiTooling
+    get() = libs.findLibrary("compose.ui.tooling")
+internal val Project.composeUiTest
+    get() = libs.findLibrary("compose.ui.test")
+
 internal val Project.kotlinSerializationCore
     get() = libs.findLibrary("kotlin.serialization.core")
 internal val Project.kotlinSerializationJson

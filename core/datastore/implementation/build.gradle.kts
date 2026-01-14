@@ -27,7 +27,7 @@ kotlin {
 
                 implementation(libs.bundles.datastore)
 
-                implementation(compose.runtime)
+                implementation(libs.compose.runtime)
             }
         }
     }

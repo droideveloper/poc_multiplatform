@@ -32,9 +32,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.multiplatform.td.core.ui.TdTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -149,7 +149,7 @@ fun TdTextInput(
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun EmptyTextField() = TdTheme {
     Box(
@@ -166,7 +166,7 @@ private fun EmptyTextField() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun TextFieldWithValue() = TdTheme {
     Box(
@@ -183,7 +183,7 @@ private fun TextFieldWithValue() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun TextFieldWithError() = TdTheme {
     Box(
@@ -201,7 +201,7 @@ private fun TextFieldWithError() = TdTheme {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun TextFieldWithMaxLengthAndIcon() = TdTheme {
     Box(

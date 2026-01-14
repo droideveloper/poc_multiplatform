@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
@@ -26,7 +27,6 @@ import com.multiplatform.weather.onboarding.UiState
 import com.multiplatform.weather.onboarding.inject.OnboardingComponent
 import com.multiplatform.weather.onboarding.inject.createOnboardingComponent
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.onboarding.ui.generated.resources.Res
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_city_body
