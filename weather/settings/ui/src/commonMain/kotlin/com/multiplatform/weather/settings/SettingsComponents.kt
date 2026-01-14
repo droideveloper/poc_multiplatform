@@ -14,10 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.weather.core.measure.Speed
 import com.multiplatform.weather.core.ui.FwTheme
 import com.multiplatform.weather.core.ui.selectDayBackground
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SingleChoiceSegmentedButtonRowScope.FwSegmentedButton(

@@ -8,19 +8,17 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.ComposePlugin
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 
 internal fun KotlinMultiplatformExtension.applyAndroidCompose(
-    compose: ComposePlugin.Dependencies,
     project: Project,
 ) {
     with(project) {
         sourceSets.androidMain.configure {
             dependencies {
-                implementation(compose.preview)
+                implementation(composePreview.asDependency())
                 implementation(androidxActivityCompose.asDependency())
             }
         }
@@ -28,18 +26,17 @@ internal fun KotlinMultiplatformExtension.applyAndroidCompose(
 }
 
 internal fun KotlinMultiplatformExtension.applyCommonCompose(
-    compose: ComposePlugin.Dependencies,
     project: Project,
 ) {
     with(project) {
         sourceSets.commonMain.configure {
             dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.ui)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
+                implementation(composeRuntime.asDependency())
+                implementation(composeFoundation.asDependency())
+                implementation(composeMaterial3.asDependency())
+                implementation(composeUi.asDependency())
+                implementation(composeComponentsResources.asDependency())
+                implementation(composePreview.asDependency())
                 implementation(androidxLifecycleViewModel.asDependency())
                 implementation(androidxLifecycleRuntimeCompose.asDependency())
             }
@@ -47,8 +44,7 @@ internal fun KotlinMultiplatformExtension.applyCommonCompose(
         if (isCommonTestEnabled()) {
             sourceSets.commonTest.configure {
                 dependencies {
-                    @OptIn(ExperimentalComposeLibrary::class)
-                    implementation(compose.uiTest)
+                    implementation(composeUiTest.asDependency())
                 }
             }
         }

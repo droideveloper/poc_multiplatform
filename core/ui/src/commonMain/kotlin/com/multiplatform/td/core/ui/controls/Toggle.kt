@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.multiplatform.td.core.ui.TdTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TdToggle(
@@ -64,13 +64,13 @@ internal fun selectCheckStateColor(checked: Boolean) = when {
     else -> TdTheme.colors.greys.primary
 }
 
-@Preview()
+@Preview
 @Composable
 private fun Checked() = TdTheme {
     TdToggle(checked = true)
 }
 
-@Preview()
+@Preview
 @Composable
 private fun NotChecked() = TdTheme {
     TdToggle(checked = false)

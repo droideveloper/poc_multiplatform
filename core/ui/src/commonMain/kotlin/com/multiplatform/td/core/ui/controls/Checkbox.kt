@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.ui.TdTheme
 import com.multiplatform.td.core.ui.card.RippleIndicationFactory
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TdCheckbox(
@@ -137,19 +137,19 @@ private fun Checked() = TdTheme {
     TdCheckbox(checked = true)
 }
 
-@Preview()
+@Preview
 @Composable
 private fun NotChecked() = TdTheme {
     TdCheckbox(checked = false)
 }
 
-@Preview()
+@Preview
 @Composable
 private fun RoundedChecked() = TdTheme {
     TdCheckboxRounded(checked = true)
 }
 
-@Preview()
+@Preview
 @Composable
 private fun RoundedNotChecked() = TdTheme {
     TdCheckboxRounded(checked = false)

@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.composable.LocalComponentStore
@@ -53,7 +54,6 @@ import com.multiplatform.weather.settings.inject.SettingsComponent
 import com.multiplatform.weather.settings.inject.createSettingsComponent
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.settings.ui.generated.resources.Res
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_decrement
 import tdmultiplatform.weather.settings.ui.generated.resources.ic_increment

@@ -35,7 +35,7 @@ kotlin {
                 implementation(projects.weather.core.measure.gateway)
                 implementation(projects.weather.core.ui)
 
-                implementation(compose.components.resources)
+                implementation(libs.compose.components.resources)
 
                 implementation(projects.core.app)
                 implementation(projects.core.coroutines)

@@ -25,7 +25,7 @@ kotlin {
 
                 implementation(libs.bundles.database)
 
-                implementation(compose.runtime)
+                implementation(libs.compose.runtime)
             }
         }
     }

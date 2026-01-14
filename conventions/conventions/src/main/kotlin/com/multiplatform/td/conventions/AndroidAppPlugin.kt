@@ -23,26 +23,24 @@ class AndroidAppPlugin : Plugin<Project> {
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
             }
-            val compose = project.dependencies.extensions.getByType<ComposePlugin.Dependencies>()
 
             extensions.getByType<ApplicationAndroidComponentsExtension>().apply {
                 configureAndroidApplication(target)
             }
 
             dependencies {
-                add("implementation", compose.runtime)
-                add("implementation", compose.foundation)
-                add("implementation", compose.material3)
-                add("implementation", compose.ui)
-                add("implementation", compose.components.resources)
-                add("implementation", compose.components.uiToolingPreview)
+                add("implementation", composeRuntime.asDependency())
+                add("implementation", composeFoundation.asDependency())
+                add("implementation", composeMaterial3.asDependency())
+                add("implementation", composeUi.asDependency())
+                add("implementation", composeComponentsResources.asDependency())
+                add("implementation", composePreview.asDependency())
                 add("implementation", androidxLifecycleViewModel.asDependency())
                 add("implementation", androidxLifecycleRuntimeCompose.asDependency())
 
-                add("implementation", compose.preview)
                 add("implementation", androidxActivityCompose.asDependency())
 
-                add("debugImplementation", compose.uiTooling)
+                add("debugImplementation", composeUiTooling.asDependency())
 
                 add("testImplementation", jUnit.asDependency())
                 add("testImplementation", espressoCore.asDependency())

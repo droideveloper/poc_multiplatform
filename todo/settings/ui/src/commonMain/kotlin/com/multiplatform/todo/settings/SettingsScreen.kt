@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.multiplatform.td.core.app.composable.LocalComponentStore
 import com.multiplatform.td.core.app.inject.store
@@ -40,7 +41,6 @@ import com.multiplatform.todo.settings.inject.SettingsComponent
 import com.multiplatform.todo.settings.inject.createSettingsComponent
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.todo.settings.ui.generated.resources.Res
 import tdmultiplatform.todo.settings.ui.generated.resources.ic_decrement
 import tdmultiplatform.todo.settings.ui.generated.resources.ic_increment

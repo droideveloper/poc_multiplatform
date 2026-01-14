@@ -24,7 +24,7 @@ class MultiplatformKoverPlugin : Plugin<Project> {
                 filters {
                     excludes {
                         annotatedBy(
-                            "org.jetbrains.compose.ui.tooling.preview.Preview",
+                            "androidx.compose.ui.tooling.preview.Preview",
                             "com.multiplatform.td.core.ui.KoverIgnore",
                             "**.Database",
                             "**.Dao",

@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.ui.input.InputError
 import com.multiplatform.td.core.ui.input.InputValue
 import com.multiplatform.td.core.ui.input.TextError
@@ -38,7 +39,6 @@ import com.multiplatform.td.core.ui.input.TextValue
 import com.multiplatform.td.core.ui.input.isError
 import com.multiplatform.td.core.ui.input.selectErrorMessage
 import com.multiplatform.td.core.ui.input.violatesRequired
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

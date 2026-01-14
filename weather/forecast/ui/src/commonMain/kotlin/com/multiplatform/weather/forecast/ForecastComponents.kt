@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import com.multiplatform.td.core.ui.button.TdTextLinkBlue
@@ -70,7 +71,6 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.forecast.ui.generated.resources.Res
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_humidity
 import tdmultiplatform.weather.forecast.ui.generated.resources.forecast_ui_number_of_days

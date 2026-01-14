@@ -12,8 +12,8 @@ kotlin {
             dependencies {
                 implementation(libs.bundles.ui.testing)
 
-                implementation(compose.uiTooling)
-                implementation(compose.preview)
+                implementation(libs.compose.ui.tooling)
+                implementation(libs.compose.preview)
 
                 implementation(libs.preview.scanner)
 

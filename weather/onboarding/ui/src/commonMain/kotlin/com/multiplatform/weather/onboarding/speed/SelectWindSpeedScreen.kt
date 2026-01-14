@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.multiplatform.td.core.app.viewmodel.kotlinInjectViewModel
 import com.multiplatform.td.core.ui.KoverIgnore
 import com.multiplatform.td.core.ui.effects.OnScreenStart
@@ -21,7 +22,6 @@ import com.multiplatform.weather.onboarding.UiState
 import com.multiplatform.weather.onboarding.city.rememberOnboardingComponent
 import com.multiplatform.weather.settings.WindSpeedSection
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import tdmultiplatform.weather.onboarding.ui.generated.resources.Res
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_title
 import tdmultiplatform.weather.onboarding.ui.generated.resources.onboarding_ui_select_wind_speed_unit

@@ -45,7 +45,7 @@ kotlin {
                 implementation(projects.core.kotlin)
                 implementation(projects.core.mvi)
 
-                implementation(compose.components.resources)
+                implementation(libs.compose.components.resources)
 
                 implementation(libs.kotlin.inject.runtime)
 
