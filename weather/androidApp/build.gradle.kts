@@ -98,7 +98,7 @@ dependencies {
 kover {
     currentProject {
         createVariant("custom") {
-            add("mockDebug")
+            add("mockDebug", optional = true)
         }
     }
 }

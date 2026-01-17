@@ -9,7 +9,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradleSubplugin
-import org.jetbrains.kotlin.gradle.plugin.KotlinAndroidPluginWrapper
 import kotlin.apply
 
 class AndroidAppPlugin : Plugin<Project> {
@@ -18,7 +17,6 @@ class AndroidAppPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply(AppPlugin::class)
-                apply(KotlinAndroidPluginWrapper::class)
                 apply(LanguageLintPlugin::class)
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
