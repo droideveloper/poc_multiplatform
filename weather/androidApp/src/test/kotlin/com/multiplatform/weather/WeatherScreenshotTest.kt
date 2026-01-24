@@ -15,9 +15,9 @@ import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
-import sergio.sastre.composable.preview.scanner.common.CommonComposablePreviewScanner
-import sergio.sastre.composable.preview.scanner.common.CommonPreviewInfo
-import sergio.sastre.composable.preview.scanner.common.screenshotid.CommonPreviewScreenshotIdBuilder
+import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreviewScanner
+import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
+import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 import java.io.File
 
@@ -34,7 +34,7 @@ class WeatherScreenshotTest(
 ) : AbstractScreenshotTest() {
 
     data class ScreenshotTestSuite(
-        val preview: ComposablePreview<CommonPreviewInfo>,
+        val preview: ComposablePreview<AndroidPreviewInfo>,
         val name: String,
     ) {
 
@@ -43,8 +43,8 @@ class WeatherScreenshotTest(
 
     companion object {
 
-        private val previews: List<ComposablePreview<CommonPreviewInfo>> by lazy {
-            CommonComposablePreviewScanner()
+        private val previews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
+            AndroidComposablePreviewScanner()
                 .scanPackageTrees(
                     "com.multiplatform.weather",
                 )
@@ -59,8 +59,8 @@ class WeatherScreenshotTest(
         }
     }
 
-    private fun screenshotNameFor(preview: ComposablePreview<CommonPreviewInfo>): String =
-        "${CommonPreviewScreenshotIdBuilder(preview).build()}.png"
+    private fun screenshotNameFor(preview: ComposablePreview<AndroidPreviewInfo>): String =
+        "${AndroidPreviewScreenshotIdBuilder(preview).build()}.png"
 
     @get:Rule
     val roborazziRule = RoborazziRule(

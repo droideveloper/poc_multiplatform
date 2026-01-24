@@ -42,7 +42,8 @@ android-targetSdk = "36"
 material3Android = "1.4.0"
 
 preview-scanner = "0.8.1"
-roborazzi = "1.56.0"
+classgraph = "4.8.184"
+roborazzi = "1.57.0"
 
 kotlin-compile-testing = "0.12.1"
 junit5 = "6.0.2"
@@ -83,7 +84,7 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 androidx-test-orchestrator = { group = "androidx.test", name = "orchestrator", version.ref = "orchestrator" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectiric" }
 
-preview-scanner = { group = "com.github.sergio-sastre.ComposablePreviewScanner", name = "common", version.ref = "preview-scanner" }
+classgraph = { module = "io.github.classgraph:classgraph", version.ref = "classgraph" }
 roborazzi-core = { group = "io.github.takahirom.roborazzi", name = "roborazzi-core", version.ref = "roborazzi" }
 roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }

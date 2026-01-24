@@ -79,7 +79,9 @@ dependencies {
     testImplementation(libs.compose.ui.tooling)
     testImplementation(libs.compose.preview)
 
-    testImplementation(libs.preview.scanner)
+    testImplementation(libs.kotlin.reflect)
+    testImplementation(libs.classgraph)
+    testImplementation(libsTree)
 
     testImplementation(libs.bundles.roborazzi)
 
@@ -99,6 +101,7 @@ kover {
     currentProject {
         createVariant("custom") {
             add("mockDebug", optional = true)
+            // https://github.com/Kotlin/kotlinx-kover/issues/784 to resolve remote optional, set it to false
         }
     }
 }
