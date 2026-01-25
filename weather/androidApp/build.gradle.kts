@@ -79,9 +79,8 @@ dependencies {
     testImplementation(libs.compose.ui.tooling)
     testImplementation(libs.compose.preview)
 
-    testImplementation(libs.kotlin.reflect)
-    testImplementation(libs.classgraph)
-    testImplementation(libsTree)
+    testImplementation(libs.preview.scanner.core)
+    testImplementation(libs.preview.scanner.android)
 
     testImplementation(libs.bundles.roborazzi)
 

@@ -15,9 +15,8 @@ kotlin {
                 implementation(libs.compose.ui.tooling)
                 implementation(libs.compose.preview)
 
-                implementation(libs.kotlin.reflect)
-                implementation(libs.classgraph)
-                implementation(libsTree)
+                implementation(libs.preview.scanner.core)
+                implementation(libs.preview.scanner.android)
 
                 implementation(libs.bundles.roborazzi)
 
