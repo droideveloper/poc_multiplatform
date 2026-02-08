@@ -2,6 +2,11 @@ buildscript {
     dependencies {
         classpath(libs.kotlin.gradle.plugin)
         classpath(libs.ksp.symbol.gradle.plugin)
+        classpath(
+            fileTree("./conventions/libs") {
+                includes += "ktlint-gradle/*.jar"
+            },
+        )
     }
 }
 
@@ -18,7 +23,6 @@ plugins {
     alias(libs.plugins.buildkonfig) apply false
     alias(libs.plugins.room) apply false
     alias(libs.plugins.mokkery) apply false
-    alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.kover) apply false
 }
 

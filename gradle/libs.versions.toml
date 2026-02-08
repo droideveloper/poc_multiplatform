@@ -41,6 +41,7 @@ android-minSdk = "23"
 android-targetSdk = "36"
 material3Android = "1.4.0"
 
+classgraph = "4.8.184"
 preview-scanner = "0.8.1"
 roborazzi = "1.57.0"
 
@@ -83,6 +84,7 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 androidx-test-orchestrator = { group = "androidx.test", name = "orchestrator", version.ref = "orchestrator" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectiric" }
 
+classgraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classgraph" }
 preview-scanner-android = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "android", version.ref = "preview-scanner" }
 preview-scanner-core = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "core", version.ref = "preview-scanner" }
 roborazzi-core = { group = "io.github.takahirom.roborazzi", name = "roborazzi-core", version.ref = "roborazzi" }

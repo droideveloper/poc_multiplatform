@@ -15,8 +15,13 @@ kotlin {
                 implementation(libs.compose.ui.tooling)
                 implementation(libs.compose.preview)
 
-                implementation(libs.preview.scanner.core)
-                implementation(libs.preview.scanner.android)
+                implementation(libs.classgraph)
+                implementation(libs.kotlin.reflect)
+                implementation(
+                    fileTree("${rootDir.absolutePath}/conventions/libs") {
+                        includes += "composable-preview-scanner/*.jar"
+                    },
+                )
 
                 implementation(libs.bundles.roborazzi)
 

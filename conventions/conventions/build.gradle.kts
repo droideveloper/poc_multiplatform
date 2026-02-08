@@ -32,8 +32,12 @@ dependencies {
     compileOnly(libs.buildkonfig.gradle.plugin)
     compileOnly(libs.buildkonfig.compiler.gradle.plugin)
     compileOnly(libs.mokkery.gradle.plugin)
-    compileOnly(libs.ktlint.gradle.plugin)
     compileOnly(libs.kover.gradle.plugin)
+    compileOnly(
+        fileTree("../libs") {
+            includes += "ktlint-gradle/*.jar"
+        },
+    )
 }
 
 tasks {

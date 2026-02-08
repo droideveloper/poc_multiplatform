@@ -7,7 +7,6 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask

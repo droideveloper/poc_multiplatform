@@ -79,8 +79,13 @@ dependencies {
     testImplementation(libs.compose.ui.tooling)
     testImplementation(libs.compose.preview)
 
-    testImplementation(libs.preview.scanner.core)
-    testImplementation(libs.preview.scanner.android)
+    testImplementation(libs.classgraph)
+    testImplementation(libs.kotlin.reflect)
+    testImplementation(
+        fileTree("${rootDir.absolutePath}/conventions/libs") {
+            includes += "composable-preview-scanner/*.jar"
+        },
+    )
 
     testImplementation(libs.bundles.roborazzi)
 
