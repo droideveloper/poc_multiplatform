@@ -54,11 +54,11 @@ auto-service = "1.1.1"
 auto-service-ksp = "1.2.0"
 
 # ktlint local
-kt-lint = "1.0.0"
-semver = "1.1.1"
+kt-lint = "1.8.0"
+semver = "2.1.0"
 jgit = "5.13.3.202401111512-r"
 slf4j = "2.0.17"
-commons-io = "2.17.0"
+commons-io = "2.21.0"
 
 [libraries]
 # compiler

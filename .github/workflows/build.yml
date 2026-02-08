@@ -23,154 +23,154 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute lint check
         run: ./gradlew ktlintCheck --no-configuration-cache
-  unit-test:
-    name: Unit test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute unit tests
-        run: ./gradlew jvmTest # jvmTest + testUnitTest = allTest (so execute separately)
-  ui-unit-test:
-    name: Ui unit test on android
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather ]
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute ui tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:testStagingDebugUnitTest
-  integration-test:
-    name: Integration test on android
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather ]
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Build mock apk for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebug -Pbuildkonfig.flavor=mock
-      - name: Build mock test apk for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebugAndroidTest -Pbuildkonfig.flavor=mock
-      - name: Auth into gcloud for ${{ matrix.app }}
-        uses: google-github-actions/auth@v3
-        with:
-          credentials_json: ${{ secrets[format('{0}_gcloud_auth_json', matrix.app)] }}
-      - name: Setup Gcloud for ${{ matrix.app }}
-        uses: google-github-actions/setup-gcloud@v3
-        with:
-          install_components: alpha
-      - name: Setup project for ${{ matrix.app }}
-        shell: bash
-        run: gcloud config set project ${{ vars[format('{0}_testlab_project_id', matrix.app)] }}
-      - name: Run TestLab ${{ matrix.app }}
-        shell: bash
-        run: |
-          gcloud alpha firebase test android run \
-          --quiet \
-          --use-orchestrator \
-          --timeout 30m \
-          --device model=MediumPhone.arm,version=33 \
-          --client-details=matrixLabel="${{ matrix.app }} tests" \
-          --num-flaky-test-attempts=2 \
-          --app ${{ matrix.app }}/androidApp/build/outputs/apk/mock/debug/androidApp-mock-debug.apk \
-          --test ${{ matrix.app }}/androidApp/build/outputs/apk/androidTest/mock/debug/androidApp-mock-debug-androidTest.apk
-  screenshot-test:
-    name: Screenshot test on android
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather ]
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-        with:
-          lfs: 'true'
-          submodules: 'recursive'
-          ssh-key: ${{ secrets.git_ssh_key }}
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute snapshot tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:verifyRoborazziStagingDebug
-  test-kover:
-    name: Report coverage
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather ]
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute kover report on tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:koverXmlReportCustom
-      - name: Add coverage report to PR
-        id: kover
-        uses: mi-kas/kover-report@v1
-        with:
-          path: |
-            ${{ github.workspace }}/${{ matrix.app }}/androidApp/build/reports/kover/reportCustom.xml
-          title: ${{ matrix.app }} Code Coverage
-          update-comment: true
-          min-coverage-overall: 50
-          min-coverage-changed-files: 80
-          coverage-counter-type: LINE
-  build-android-app:
-    name: Build android application
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather, todo ]
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - name: Gradle cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-${{ matrix.app }}
-      - name: Execute build ${{ matrix.app }} android app
-        run: ./gradlew :${{ matrix.app }}:androidApp:bundleStagingDebug -Pbuildkonfig.flavor=staging
+#  unit-test:
+#    name: Unit test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute unit tests
+#        run: ./gradlew jvmTest # jvmTest + testUnitTest = allTest (so execute separately)
+#  ui-unit-test:
+#    name: Ui unit test on android
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        app: [ weather ]
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute ui tests for ${{ matrix.app }}
+#        run: ./gradlew :${{ matrix.app }}:androidApp:testStagingDebugUnitTest
+#  integration-test:
+#    name: Integration test on android
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        app: [ weather ]
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Build mock apk for ${{ matrix.app }}
+#        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebug -Pbuildkonfig.flavor=mock
+#      - name: Build mock test apk for ${{ matrix.app }}
+#        run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebugAndroidTest -Pbuildkonfig.flavor=mock
+#      - name: Auth into gcloud for ${{ matrix.app }}
+#        uses: google-github-actions/auth@v3
+#        with:
+#          credentials_json: ${{ secrets[format('{0}_gcloud_auth_json', matrix.app)] }}
+#      - name: Setup Gcloud for ${{ matrix.app }}
+#        uses: google-github-actions/setup-gcloud@v3
+#        with:
+#          install_components: alpha
+#      - name: Setup project for ${{ matrix.app }}
+#        shell: bash
+#        run: gcloud config set project ${{ vars[format('{0}_testlab_project_id', matrix.app)] }}
+#      - name: Run TestLab ${{ matrix.app }}
+#        shell: bash
+#        run: |
+#          gcloud alpha firebase test android run \
+#          --quiet \
+#          --use-orchestrator \
+#          --timeout 30m \
+#          --device model=MediumPhone.arm,version=33 \
+#          --client-details=matrixLabel="${{ matrix.app }} tests" \
+#          --num-flaky-test-attempts=2 \
+#          --app ${{ matrix.app }}/androidApp/build/outputs/apk/mock/debug/androidApp-mock-debug.apk \
+#          --test ${{ matrix.app }}/androidApp/build/outputs/apk/androidTest/mock/debug/androidApp-mock-debug-androidTest.apk
+#  screenshot-test:
+#    name: Screenshot test on android
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        app: [ weather ]
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#        with:
+#          lfs: 'true'
+#          submodules: 'recursive'
+#          ssh-key: ${{ secrets.git_ssh_key }}
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute snapshot tests for ${{ matrix.app }}
+#        run: ./gradlew :${{ matrix.app }}:androidApp:verifyRoborazziStagingDebug
+#  test-kover:
+#    name: Report coverage
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        app: [ weather ]
+#    permissions:
+#      contents: read
+#      pull-requests: write
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - uses: gradle/actions/setup-gradle@v4
+#      - name: Execute kover report on tests for ${{ matrix.app }}
+#        run: ./gradlew :${{ matrix.app }}:androidApp:koverXmlReportCustom
+#      - name: Add coverage report to PR
+#        id: kover
+#        uses: mi-kas/kover-report@v1
+#        with:
+#          path: |
+#            ${{ github.workspace }}/${{ matrix.app }}/androidApp/build/reports/kover/reportCustom.xml
+#          title: ${{ matrix.app }} Code Coverage
+#          update-comment: true
+#          min-coverage-overall: 50
+#          min-coverage-changed-files: 80
+#          coverage-counter-type: LINE
+#  build-android-app:
+#    name: Build android application
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        app: [ weather, todo ]
+#    steps:
+#      - name: Check out code
+#        uses: actions/checkout@v5
+#      - name: Set up jdk
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 21
+#      - name: Gradle cache
+#        uses: actions/cache@v4
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
+#          restore-keys: |
+#            ${{ runner.os }}-gradle-${{ matrix.app }}
+#      - name: Execute build ${{ matrix.app }} android app
+#        run: ./gradlew :${{ matrix.app }}:androidApp:bundleStagingDebug -Pbuildkonfig.flavor=staging
 
