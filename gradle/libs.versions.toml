@@ -53,6 +53,13 @@ kotlin-poet = "2.2.0"
 auto-service = "1.1.1"
 auto-service-ksp = "1.2.0"
 
+# ktlint local
+kt-lint = "1.0.0"
+semver = "1.1.1"
+jgit = "5.13.3.202401111512-r"
+slf4j = "2.0.17"
+commons-io = "2.17.0"
+
 [libraries]
 # compiler
 auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
@@ -179,12 +186,21 @@ mokkery-gradle-plugin = { group = "dev.mokkery", name = "mokkery-gradle", versio
 ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 kover-gradle-plugin = { group = "org.jetbrains.kotlinx", name = "kover-gradle-plugin", version.ref = "kover" }
 
+#ktlint
+commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
+jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
+kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin" }
+ktlint-rule-engine = { group = "com.pinterest.ktlint", name = "ktlint-rule-engine", version.ref = "kt-lint" }
+semver = { group = "net.swiftzer.semver", name = "semver", version.ref = "semver" }
+slf4j = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4j" }
+
 [bundles]
 serialization = ["kotlin-serialization-core", "kotlin-serialization-json", "kotlin-serialization-json-okio", "okio"]
 database = ["room-runtime", "sqlite-bundled"]
 datastore = ["androidx-datastore-core", "androidx-datastore-core-okio", "androidx-datastore-preferences-core", "okio"]
 coil = ["coil-compose", "coil-network"]
 androidx-lifecycle = ["androidx-lifecycle-runtime-compose", "androidx-lifecycle-viewmodel", "androidx-lifecycle-viewmodel-compose"]
+ktlint = ["commons-io", "jgit", "kotlin-reflect", "kotlin-script-runtime", "ktlint-rule-engine", "semver", "slf4j"]
 
 espresso = ["androidx-espresso-core", "androidx-espresso-contrib", "androidx-espresso-intents", "androidx-espresso-accessibility", "androidx-espresso-web"]
 espresso-idling = ["androidx-espresso-idling", "androidx-espresso-idling-resources"]
