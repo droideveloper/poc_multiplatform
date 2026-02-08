@@ -38,7 +38,6 @@ dependencies {
             includes += "ktlint-gradle/*.jar"
         },
     )
-    implementation(libs.bundles.ktlint)
 }
 
 tasks {
