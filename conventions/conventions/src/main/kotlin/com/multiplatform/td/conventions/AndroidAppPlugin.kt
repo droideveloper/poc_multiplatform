@@ -50,5 +50,3 @@ class AndroidAppPlugin : Plugin<Project> {
         }
     }
 }
-
-

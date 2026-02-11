@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlinx.serialization.gradle.SerializationGradleSubplugin
 
-class DataMultiplatformPlugin: Plugin<Project> {
+class DataMultiplatformPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
@@ -64,5 +64,3 @@ class DataMultiplatformPlugin: Plugin<Project> {
         configureKspTargetMetadataDependencies()
     }
 }
-
-

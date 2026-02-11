@@ -7,7 +7,6 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
@@ -67,8 +66,7 @@ internal fun KotlinMultiplatformExtension.applyCommonCompose(
 internal fun applyTargetKspDependencies(
     target: Project,
     targets: List<String>,
-) = with(target)
-{
+) = with(target) {
     val isKtorfitAvailable = extensions.findByType<KtorfitPluginExtension>() != null
     val isRoomAvailable = extensions.findByType<RoomExtension>() != null
 
@@ -83,8 +81,7 @@ internal fun applyTargetKspDependencies(
 internal fun applyTargetKotlinInjectDependencies(
     target: Project,
     targets: List<String>,
-) = with(target)
-{
+) = with(target) {
     dependencies {
         targets.forEach {
             add(it, kotlinInjectCompilerKsp.asDependency())
@@ -134,7 +131,7 @@ internal fun KotlinMultiplatformExtension.configureMultiplatformDefaults(
 internal fun KotlinMultiplatformExtension.iosTargets(
     named: String,
     isShared: Boolean = true,
-    options: Map<String, String> = emptyMap()
+    options: Map<String, String> = emptyMap(),
 ) {
     iosArches().forEach { target ->
         target().binaries.framework {

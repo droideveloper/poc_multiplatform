@@ -21,10 +21,10 @@ class LanguageLintPlugin : Plugin<Project> {
             filter {
                 exclude { element ->
                     val path = element.file.path
-                    path.contains("\\generated\\")
-                        || path.contains("/generated/")
-                        || path.contains("\\buildkonfig\\")
-                        || path.contains("/buildkonfig/")
+                    path.contains("\\generated\\") ||
+                        path.contains("/generated/") ||
+                        path.contains("\\buildkonfig\\") ||
+                        path.contains("/buildkonfig/")
                 }
             }
         }
