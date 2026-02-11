@@ -12,4 +12,3 @@ internal fun KotlinTargetContainerWithPresetFunctions.iosArches(): List<IosArch>
     this::iosSimulatorArm64,
     this::iosX64,
 )
-

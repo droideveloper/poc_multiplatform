@@ -21,7 +21,7 @@ class RoomMultiplatformPlugin : Plugin<Project> {
 
         extensions.getByType<RoomExtension>().apply {
             schemaDirectory(
-                "${project.projectDir.path}/schema"
+                "${project.projectDir.path}/schema",
             )
         }
 

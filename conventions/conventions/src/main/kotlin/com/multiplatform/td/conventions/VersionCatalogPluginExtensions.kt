@@ -112,5 +112,3 @@ internal val Project.espressoCore
     get() = libs.findLibrary("androidx.espresso.core")
 internal val Project.robolectric
     get() = libs.findLibrary("robolectric")
-
-

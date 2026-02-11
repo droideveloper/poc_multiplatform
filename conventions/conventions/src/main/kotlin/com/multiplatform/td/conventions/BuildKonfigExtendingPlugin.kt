@@ -9,7 +9,7 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 
-class BuildKonfigExtendingPlugin: Plugin<Project> {
+class BuildKonfigExtendingPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {

@@ -81,8 +81,7 @@ internal fun Project.configureKspTargetMetadataDependencies() {
             taskNames = when {
                 isAndroidTarget -> kotlinLibraryMetadataTargets()
                 else -> kotlinJvmMetadataTargets()
-            }
+            },
         )
     }
 }
-

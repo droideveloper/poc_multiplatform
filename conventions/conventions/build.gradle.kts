@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.ktlint)
 }
 
 group = "com.multiplatform.td.conventions"
@@ -9,6 +10,11 @@ group = "com.multiplatform.td.conventions"
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+}
+
+ktlint {
+    version.set("1.7.1")
+    enableExperimentalRules.set(true)
 }
 
 kotlin {

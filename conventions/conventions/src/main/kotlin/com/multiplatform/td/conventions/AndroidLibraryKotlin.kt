@@ -80,7 +80,7 @@ internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtensi
 internal fun Project.isAndroidResourcesShouldIncluded(): Boolean =
     isCommonTestEnabled() ||
         isAndroidUnitTestEnabled() ||
-            isaAndroidInstrumentedTestEnabled()
+        isaAndroidInstrumentedTestEnabled()
 
 internal fun Project.isAndroidUnitTestEnabled(): Boolean =
     layout.projectDirectory.dir("src/test").asFile.exists() ||
