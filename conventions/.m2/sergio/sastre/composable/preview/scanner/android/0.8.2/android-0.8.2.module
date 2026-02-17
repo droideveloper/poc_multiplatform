@@ -1,0 +1,78 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "sergio.sastre.composable.preview.scanner",
+    "module": "android",
+    "version": "0.8.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.13"
+    }
+  },
+  "variants": [
+    {
+      "name": "shadowRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "shadowed",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-0.8.2.jar",
+          "url": "android-0.8.2.jar",
+          "size": 6341747,
+          "sha512": "97d6aae9e12acf4a06fee208586eb48a520c286f901ea8e68b513dd5cde58d03c05f1d441dcd97baa887ee80228928b3502d416554b380993534bfc4d2a31f02",
+          "sha256": "04b59562ea89e046adaa9a93892227b6f9e2a4ca0b0f4d9201622382586bae22",
+          "sha1": "4f080f78d16a365e6e262d615f68c69423380f3f",
+          "md5": "42cf38ce6cd45ed9cede216d1b755ddd"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-0.8.2-javadoc.jar",
+          "url": "android-0.8.2-javadoc.jar",
+          "size": 261,
+          "sha512": "7378b8cf4124c62c4447b41333a110f7d0ac2b2e4c9342049ad4d1ae27d655f68037c133c665d3af2942d2721e8e3f4fabb4bb77ada355804ab76b2a437c5c08",
+          "sha256": "0ba073017221df3b63495772d2d7e60d37501227ea7823cd62977dd269e7746a",
+          "sha1": "afe6d41eb7e2226497c0ca3ed1a6718bef7d3ab2",
+          "md5": "255cc6a551983cd3a522d507979b60ce"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-0.8.2-sources.jar",
+          "url": "android-0.8.2-sources.jar",
+          "size": 21136,
+          "sha512": "af98a1852a4b52662c898850d61f5b209f085e3481eaff7e1c68aa7547b5fb7f62817132a98729173ff641aeb0f261b1c63ae15435d429c60d8766783c05e007",
+          "sha256": "25c107dac91ad3bdea029e5b49867169b44d91895278eb739b46476a373c1ce9",
+          "sha1": "5cd9e35bee303ea351f602ce9e45efa3072d0d5c",
+          "md5": "aa74823f191e96e8e68915e1d9ae1e71"
+        }
+      ]
+    }
+  ]
+}

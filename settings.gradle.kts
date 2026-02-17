@@ -12,6 +12,9 @@ pluginManagement {
             }
         }
         mavenCentral()
+        mavenLocal {
+            setUrl("${rootProject.projectDir.path}/conventions/.m2")
+        }
         gradlePluginPortal()
     }
 }
@@ -26,7 +29,9 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
-        maven { url = uri("https://jitpack.io" ) }
+        mavenLocal {
+            setUrl("${rootProject.projectDir.path}/conventions/.m2")
+        }
     }
 }
 

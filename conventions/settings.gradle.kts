@@ -8,6 +8,9 @@ pluginManagement {
             }
         }
         mavenCentral()
+        mavenLocal {
+            setUrl("${rootProject.projectDir.path}/.m2")
+        }
         gradlePluginPortal()
     }
 }
@@ -23,6 +26,9 @@ dependencyResolutionManagement {
         }
         mavenCentral()
         maven("https://plugins.gradle.org/m2/")
+        mavenLocal {
+            setUrl("${rootProject.projectDir.path}/.m2")
+        }
     }
 
     versionCatalogs {
