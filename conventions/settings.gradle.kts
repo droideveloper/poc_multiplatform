@@ -39,4 +39,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "TdConventions"
-include(":conventions")

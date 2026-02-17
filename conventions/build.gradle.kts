@@ -75,8 +75,8 @@ gradlePlugin {
             id = "td.multiplatform.app"
             implementationClass = "com.multiplatform.td.conventions.AndroidAppPlugin"
         }
-        register("TdBuildKonfig") {
-            id = "td.build.konfig"
+        register("TdMultiplatformBuildKonfig") {
+            id = "td.multiplatform.build.konfig"
             implementationClass = "com.multiplatform.td.conventions.BuildKonfigExtendingPlugin"
         }
         register("TdMultiplatformCommon") {

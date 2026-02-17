@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.td.multiplatform.library)
     alias(libs.plugins.td.multiplatform.kotlin.inject.common)
-    alias(libs.plugins.td.build.konfig)
+    alias(libs.plugins.td.multiplatform.build.konfig)
 }
 
 internal val `package` = "com.multiplatform.td.core.environment"

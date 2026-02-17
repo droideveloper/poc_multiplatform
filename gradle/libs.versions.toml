@@ -220,8 +220,7 @@ td-multiplatform-app = { id = "td.multiplatform.app", version = "unspecified" }
 td-multiplatform-common = { id = "td.multiplatform.common", version = "unspecified" }
 td-multiplatform-room = { id = "td.multiplatform.room", version = "unspecified" }
 td-multiplatform-mokkery = { id = "td.multiplatform.mokkery", version = "unspecified" }
-td-multiplatform-ksp = { id = "td.multiplatform.ksp", version = "unspecified" }
 td-multiplatform-kotlin-inject = { id = "td.multiplatform.kotlin.inject", version = "unspecified" }
 td-multiplatform-kotlin-inject-common = { id = "td.multiplatform.kotlin.inject.common", version = "unspecified" }
-td-build-konfig = { id = "td.build.konfig", version = "unspecified" }
+td-multiplatform-build-konfig = { id = "td.multiplatform.build.konfig", version = "unspecified" }
 td-kover = { id = "td.multiplatform.kover", version = "unspecified" }
