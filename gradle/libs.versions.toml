@@ -17,7 +17,7 @@ kotlin-serilization = "1.10.0"
 kotlin-datetime = "0.7.1"
 kotlin-coroutines = "1.10.2"
 navigation-compose = "2.9.2"
-ksp = "2.3.4"
+ksp = "2.3.6"
 room = "2.8.4"
 sqplite-bundled = "2.6.2"
 ktorfit = "2.7.2"
@@ -223,4 +223,4 @@ td-multiplatform-mokkery = { id = "td.multiplatform.mokkery", version = "unspeci
 td-multiplatform-kotlin-inject = { id = "td.multiplatform.kotlin.inject", version = "unspecified" }
 td-multiplatform-kotlin-inject-common = { id = "td.multiplatform.kotlin.inject.common", version = "unspecified" }
 td-multiplatform-build-konfig = { id = "td.multiplatform.build.konfig", version = "unspecified" }
-td-kover = { id = "td.multiplatform.kover", version = "unspecified" }
+td-multiplatform-kover = { id = "td.multiplatform.kover", version = "unspecified" }

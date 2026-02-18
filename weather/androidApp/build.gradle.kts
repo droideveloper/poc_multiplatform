@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.td.multiplatform.app)
-    alias(libs.plugins.td.kover)
+    alias(libs.plugins.td.multiplatform.kover)
     alias(libs.plugins.roborazzi)
 }
 
