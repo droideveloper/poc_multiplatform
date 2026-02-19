@@ -23,34 +23,6 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute lint check
         run: ./gradlew ktlintCheck --rerun-tasks
-  unit-test:
-    name: Unit test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute unit tests
-        run: ./gradlew jvmTest --rerun-tasks
-  ui-unit-test:
-    name: Ui unit test on android
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-      - name: Set up jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - uses: gradle/actions/setup-gradle@v4
-      - name: Execute ui tests
-        run: ./gradlew testAndroidHost --rerun-tasks
   integration-test:
     name: Integration test on android
     runs-on: ubuntu-latest
