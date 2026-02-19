@@ -104,7 +104,7 @@ internal class ForecastNextDaysScreenTest : AbstractAndroidUnitTest() {
                 .assertIsDisplayed()
 
             onAllNodesWithText("32 °C", useUnmergedTree = true)
-                .assertCountEquals(6)
+                .assertCountEquals(7)
         }
     }
 
