@@ -22,7 +22,7 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute lint check
-        run: ./gradlew ktlintCheck --no-configuration-cache
+        run: ./gradlew ktlintCheck --rerun-tasks
   unit-test:
     name: Unit test
     runs-on: ubuntu-latest
@@ -36,13 +36,10 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - name: Execute unit tests
-        run: ./gradlew jvmTest # jvmTest + testUnitTest = allTest (so execute separately)
+        run: ./gradlew jvmTest --rerun-tasks
   ui-unit-test:
     name: Ui unit test on android
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [ weather ]
     steps:
       - name: Check out code
         uses: actions/checkout@v5
@@ -52,8 +49,8 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
-      - name: Execute ui tests for ${{ matrix.app }}
-        run: ./gradlew :${{ matrix.app }}:androidApp:testStagingDebugUnitTest
+      - name: Execute ui tests
+        run: ./gradlew testAndroidHost --rerun-tasks
   integration-test:
     name: Integration test on android
     runs-on: ubuntu-latest
