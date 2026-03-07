@@ -12,9 +12,11 @@ import kotlin.test.BeforeTest
 
 abstract class AbstractDispatcherTest {
 
+    protected val dispatcher = UnconfinedTestDispatcher()
+
     @BeforeTest
     fun setup() {
-        Dispatchers.setMain(UnconfinedTestDispatcher())
+        Dispatchers.setMain(dispatcher)
     }
 
     @AfterTest

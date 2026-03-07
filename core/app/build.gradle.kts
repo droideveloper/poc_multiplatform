@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.td.multiplatform.ui)
     alias(libs.plugins.td.multiplatform.kotlin.inject)
+    alias(libs.plugins.td.multiplatform.mokkery)
 }
 
 kotlin {
@@ -9,6 +10,16 @@ kotlin {
     }
 
     sourceSets {
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(projects.core.testing.implementation)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(projects.core.testing.gateway)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(projects.core.coroutines)
