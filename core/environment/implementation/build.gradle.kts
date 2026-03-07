@@ -7,7 +7,7 @@ plugins {
 internal val `package` = "com.multiplatform.td.core.environment"
 
 kotlin {
-    androidLibrary {
+    android {
         namespace = `package`
     }
 

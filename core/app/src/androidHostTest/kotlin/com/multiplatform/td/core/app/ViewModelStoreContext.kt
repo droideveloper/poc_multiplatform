@@ -11,7 +11,7 @@ internal fun ViewModelStoreContext(
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalViewModelStoreOwner provides viewModelStoreOwner
+        LocalViewModelStoreOwner provides viewModelStoreOwner,
     ) {
         content()
     }

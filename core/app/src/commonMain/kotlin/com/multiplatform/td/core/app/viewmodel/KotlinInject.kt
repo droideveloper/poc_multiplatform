@@ -12,8 +12,8 @@ import com.multiplatform.td.core.app.error.CompositionContextException
 
 @Composable
 inline fun <reified VM : ViewModel> kotlinInjectViewModel(
-    viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwner.current ?:
-        throw CompositionContextException.NotFound(ViewModelStoreOwner::class),
+    viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwner.current
+        ?: throw CompositionContextException.NotFound(ViewModelStoreOwner::class),
     key: String? = null,
     extras: CreationExtras = defaultExtras(viewModelStoreOwner),
     noinline create: () -> VM,
@@ -28,8 +28,8 @@ inline fun <reified VM : ViewModel> kotlinInjectViewModel(
 
 @Composable
 inline fun <reified VM : ViewModel, reified P> kotlinInjectViewModel(
-    viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwner.current ?:
-        throw CompositionContextException.NotFound(ViewModelStoreOwner::class),
+    viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwner.current
+        ?: throw CompositionContextException.NotFound(ViewModelStoreOwner::class),
     key: String? = null,
     extras: CreationExtras = defaultExtras(viewModelStoreOwner),
     param: P,

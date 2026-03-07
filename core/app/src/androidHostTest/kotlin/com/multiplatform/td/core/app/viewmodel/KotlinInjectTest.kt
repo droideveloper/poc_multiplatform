@@ -37,7 +37,7 @@ internal class KotlinInjectTest : AbstractAndroidUnitTest() {
                 ViewModelStoreContext(
                     viewModelStoreOwner = DefaultViewModelStoreOwner(),
                 ) {
-                    val factory : (String) -> ViewModel = { param -> ParameterizedViewModel(param) }
+                    val factory: (String) -> ViewModel = { param -> ParameterizedViewModel(param) }
                     val viewModel = kotlinInjectViewModel(param = "parameterized-view-model", create = factory)
                     assertTrue { viewModel is ParameterizedViewModel }
                     viewModel as ParameterizedViewModel
