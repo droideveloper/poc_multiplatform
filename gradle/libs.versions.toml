@@ -48,7 +48,7 @@ kotlin-compile-testing = "0.12.1"
 junit5 = "6.0.3"
 
 # compiler
-kotlin-poet = "2.2.0"
+kotlin-poet = "2.3.0"
 auto-service = "1.1.1"
 auto-service-ksp = "1.2.0"
 
