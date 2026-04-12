@@ -1,0 +1,78 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.jlleitschuh.gradle",
+    "module": "ktlint-gradle",
+    "version": "14.2.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.1.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "shadowRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "shadowed",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ktlint-gradle-14.2.2.jar",
+          "url": "ktlint-gradle-14.2.2.jar",
+          "size": 3932913,
+          "sha512": "9c13c696adfd82a540401c3292e753ec8db8beb71e9825b738987768f77cac7add94007efebc37d909f2c7e47c8cede4a7c69804659e5f4a4dbdadc2273744e4",
+          "sha256": "e90e748c2c51981149e9ea991d2a241677da9ad3fb8a84ee73d920dee9f33ed2",
+          "sha1": "514f6bcc9e1f73ce771ef70a677160d58db837c0",
+          "md5": "8a04f4f7a692cf368db81e98adeb6d83"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ktlint-gradle-14.2.2-javadoc.jar",
+          "url": "ktlint-gradle-14.2.2-javadoc.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ktlint-gradle-14.2.2-sources.jar",
+          "url": "ktlint-gradle-14.2.2-sources.jar",
+          "size": 40803,
+          "sha512": "86746f798c21c11e3ea7dd2b4ad680a0659b380c08b11e9d3ddc2859b1e07509f2e9a905e880d7676731d9064b221b9aa7d31098c2e111f6c809fa8f89ccefac",
+          "sha256": "492318f82153f42d3099701a9aa0d4c99e8519d88c9cee35c2537fe85ba5983e",
+          "sha1": "fc7a55533e6761bcf45bc22eaa1260599b6ba084",
+          "md5": "3620c7364e152b8afb5b5438adc57ebe"
+        }
+      ]
+    }
+  ]
+}

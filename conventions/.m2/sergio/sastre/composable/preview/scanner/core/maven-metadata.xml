@@ -3,11 +3,11 @@
   <groupId>sergio.sastre.composable.preview.scanner</groupId>
   <artifactId>core</artifactId>
   <versioning>
-    <latest>0.8.2</latest>
-    <release>0.8.2</release>
+    <latest>0.8.3</latest>
+    <release>0.8.3</release>
     <versions>
-      <version>0.8.2</version>
+      <version>0.8.3</version>
     </versions>
-    <lastUpdated>20260217114728</lastUpdated>
+    <lastUpdated>20260407103603</lastUpdated>
   </versioning>
 </metadata>
