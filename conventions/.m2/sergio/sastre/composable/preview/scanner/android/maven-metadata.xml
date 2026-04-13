@@ -3,11 +3,11 @@
   <groupId>sergio.sastre.composable.preview.scanner</groupId>
   <artifactId>android</artifactId>
   <versioning>
-    <latest>0.8.2</latest>
-    <release>0.8.2</release>
+    <latest>0.8.3</latest>
+    <release>0.8.3</release>
     <versions>
-      <version>0.8.2</version>
+      <version>0.8.3</version>
     </versions>
-    <lastUpdated>20260217114727</lastUpdated>
+    <lastUpdated>20260407103601</lastUpdated>
   </versioning>
 </metadata>
