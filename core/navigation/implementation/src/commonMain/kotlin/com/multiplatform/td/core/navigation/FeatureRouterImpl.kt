@@ -1,11 +1,10 @@
 package com.multiplatform.td.core.navigation
 
-import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
 
 internal class FeatureRouterImpl(
-    private val navController: NavController,
+    private val navController: NavControllerProxy,
 ) : FeatureRouter {
 
     override fun <T : Any> navigate(route: FeatureRoute<T>) = when {
