@@ -13,6 +13,11 @@ kotlin {
     }
 
     sourceSets {
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(projects.core.testing.implementation)
+            }
+        }
         commonTest {
             dependencies {
                 implementation(projects.core.testing.gateway)

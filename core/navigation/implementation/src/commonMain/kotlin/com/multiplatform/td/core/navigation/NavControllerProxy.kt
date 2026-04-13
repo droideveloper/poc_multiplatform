@@ -6,7 +6,7 @@ import androidx.navigation.Navigator
 
 interface NavControllerProxy {
 
-    fun <T: Any> navigate(
+    fun <T : Any> navigate(
         route: T,
         navOptions: NavOptions? = null,
         navigatorExtras: Navigator.Extras? = null,
@@ -16,13 +16,13 @@ interface NavControllerProxy {
 }
 
 fun createNavController(
-    navController: NavController
+    navController: NavController,
 ): NavControllerProxy = object : NavControllerProxy {
 
     override fun <T : Any> navigate(
         route: T,
         navOptions: NavOptions?,
-        navigatorExtras: Navigator.Extras?
+        navigatorExtras: Navigator.Extras?,
     ) = navController.navigate(route, navOptions, navigatorExtras)
 
     override fun popBackStack(): Boolean =
