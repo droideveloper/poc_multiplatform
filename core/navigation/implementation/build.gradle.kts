@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.td.multiplatform.kotlin.inject.common)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.td.multiplatform.mokkery)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -11,6 +13,17 @@ kotlin {
     }
 
     sourceSets {
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(projects.core.testing.implementation)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(projects.core.testing.gateway)
+                implementation(libs.kotlin.serialization.core)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(projects.core.navigation.gateway)
