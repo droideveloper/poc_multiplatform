@@ -9,11 +9,14 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
-fun <T> Flow<T>.throttle(delay: Duration): Flow<T>  = flow {
+fun <T> Flow<T>.throttle(
+    delay: Duration,
+    clockProvider: () -> Instant = { Clock.System.now() },
+): Flow<T>  = flow {
     require(delay.isPositive())
     var previous: Instant? = null
     collect { value ->
-        val current = Clock.System.now()
+        val current = clockProvider()
         when (val before = previous) {
             null -> {
                 previous = current
