@@ -34,6 +34,7 @@ ktlint = "14.2.2"
 kover = "0.9.8"
 espresso = "3.7.0"
 orchestrator = "1.6.1"
+turbine = "1.2.1"
 
 # android app values
 android-compileSdk = "36"
@@ -125,6 +126,7 @@ kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-c
 kotlin-coroutines-darwin = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-darwin", version.ref = "kotlin-coroutines" }
 
 kotlin-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
+coroutines-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 compose-material-icons = { group = "org.jetbrains.compose.material", name = "material-icons-core", version = "1.7.3" }
