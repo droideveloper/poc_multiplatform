@@ -10,5 +10,5 @@ internal fun KotlinTargetContainerWithPresetFunctions.iosTargets() = iosArches()
 internal fun KotlinTargetContainerWithPresetFunctions.iosArches(): List<IosArch> = listOf(
     this::iosArm64,
     this::iosSimulatorArm64,
-    this::iosX64,
+    // this::iosX64,
 )

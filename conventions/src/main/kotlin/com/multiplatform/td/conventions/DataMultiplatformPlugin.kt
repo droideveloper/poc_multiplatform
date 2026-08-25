@@ -53,10 +53,6 @@ class DataMultiplatformPlugin : Plugin<Project> {
             }
         }
 
-        extensions.getByType<KtorfitPluginExtension>().apply {
-            compilerPluginVersion.set("2.3.3")
-        }
-
         dependencies {
             configureKspDependencies()
         }
