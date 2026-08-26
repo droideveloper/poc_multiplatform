@@ -1,7 +1,7 @@
 package com.multiplatform.weather.framework
 
 import androidx.activity.ComponentActivity
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule
 
 fun <A : ComponentActivity> createWeatherComposeTestRule(
     rule: WeatherActivityScenarioRule<A>,
