@@ -20,7 +20,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
+      - name: Gradle cache
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-weather-${{ hashFiles('**/*.gradle*') }}
       - name: Execute lint check
         run: ./gradlew ktlintCheck --rerun-tasks
   integration-test:
@@ -37,7 +43,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
+      - name: Gradle cache
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
       - name: Build mock apk for ${{ matrix.app }}
         run: ./gradlew :${{ matrix.app }}:androidApp:assembleMockDebug -Pbuildkonfig.flavor=mock
       - name: Build mock test apk for ${{ matrix.app }}
@@ -83,7 +95,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
+      - name: Gradle cache
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
       - name: Execute snapshot tests for ${{ matrix.app }}
         run: ./gradlew :${{ matrix.app }}:androidApp:verifyRoborazziStagingDebug
   test-kover:
@@ -103,7 +121,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
+      - name: Gradle cache
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ matrix.app }}-${{ hashFiles('**/*.gradle*') }}
       - name: Execute kover report on tests for ${{ matrix.app }}
         run: ./gradlew :${{ matrix.app }}:androidApp:koverXmlReportCustom
       - name: Add coverage report to PR
