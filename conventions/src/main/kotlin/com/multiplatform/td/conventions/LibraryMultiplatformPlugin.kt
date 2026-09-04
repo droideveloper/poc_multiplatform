@@ -18,7 +18,6 @@ class LibraryMultiplatformPlugin : Plugin<Project> {
             apply(KotlinMultiplatformPluginWrapper::class)
             apply(KotlinMultiplatformAndroidPlugin::class)
             apply(LanguageLintPlugin::class)
-            apply(MetadataPlugin::class)
         }
 
         extensions.getByType<KotlinMultiplatformAndroidComponentsExtension>().apply {

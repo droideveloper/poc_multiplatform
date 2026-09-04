@@ -14,7 +14,6 @@ class ContributeKspPlugin : Plugin<Project> {
         with(pluginManager) {
             apply(KotlinMultiplatformPluginWrapper::class)
             apply(KspGradleSubplugin::class)
-            apply(MetadataPlugin::class)
         }
 
         extensions.getByType<KotlinMultiplatformExtension>().apply {
