@@ -12,7 +12,6 @@ class CommonMultiplatformPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(MultiplatformPlugin::class)
-            apply(MetadataPlugin::class)
         }
         extensions.getByType<KotlinMultiplatformExtension>().apply {
             sourceSets.commonMain.configure {

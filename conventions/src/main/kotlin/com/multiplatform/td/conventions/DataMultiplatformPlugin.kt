@@ -19,7 +19,6 @@ class DataMultiplatformPlugin : Plugin<Project> {
             apply(LanguageLintPlugin::class)
             apply(SerializationGradleSubplugin::class)
             apply(KtorfitGradlePlugin::class)
-            apply(MetadataPlugin::class)
         }
 
         extensions.getByType<KotlinMultiplatformExtension>().apply {

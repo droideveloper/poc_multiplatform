@@ -23,7 +23,6 @@ class UiMultiplatformPlugin : Plugin<Project> {
                 apply(LanguageLintPlugin::class)
                 apply(ComposePlugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
-                apply(MetadataPlugin::class)
             }
             extensions.getByType<KotlinMultiplatformAndroidComponentsExtension>().apply {
                 configureAndroidLibrary(target, true)
