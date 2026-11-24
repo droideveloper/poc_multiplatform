@@ -8,7 +8,7 @@ import org.robolectric.annotation.GraphicsMode
 
 @Config(
     sdk = [
-        Build.VERSION_CODES.M,
+        Build.VERSION_CODES.O,
         // Build.VERSION_CODES.TIRAMISU,
     ],
     qualifiers = RobolectricDeviceQualifiers.Pixel5,
