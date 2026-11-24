@@ -19,6 +19,9 @@ internal val Project.coreDesugarLibrary
 internal val Project.compileSdkVersion
     get() = libs.findVersion("android.compileSdk")
 
+internal val Project.compileSdkMinorVersion
+    get() = libs.findVersion("android.compileSdkMinor")
+
 internal val Project.targetSdkVersion
     get() = libs.findVersion("android.targetSdk")
 

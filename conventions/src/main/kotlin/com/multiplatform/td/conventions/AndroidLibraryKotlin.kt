@@ -16,7 +16,11 @@ internal fun AndroidComponentsExtension<KotlinMultiplatformAndroidLibraryExtensi
     finalizeDsl { extension ->
         with(extension) {
             minSdk = target.minSdkVersion.asInt()
-            compileSdk = target.compileSdkVersion.asInt()
+            compileSdk {
+                version = release(target.compileSdkVersion.asInt()) {
+                    minorApiLevel = target.compileSdkMinorVersion.asInt()
+                }
+            }
 
             androidResources {
                 enable = enabledAndroidResources

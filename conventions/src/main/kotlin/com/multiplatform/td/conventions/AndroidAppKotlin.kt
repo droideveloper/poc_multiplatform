@@ -16,7 +16,11 @@ internal fun ApplicationAndroidComponentsExtension.configureAndroidApplication(
             defaultConfig {
                 targetSdk = target.targetSdkVersion.asInt()
                 minSdk = target.minSdkVersion.asInt()
-                compileSdk = target.compileSdkVersion.asInt()
+                compileSdk {
+                    version = release(target.compileSdkVersion.asInt()) {
+                        minorApiLevel = target.compileSdkMinorVersion.asInt()
+                    }
+                }
                 versionCode = 1
                 versionName = "1.0.0"
 
